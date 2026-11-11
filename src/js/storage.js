@@ -198,10 +198,17 @@ class Configuration extends StorageDB{
     }
     loadJson(json){
         var self = this;
+        /** the port belongs to the backend this browser runs (see background.js), an imported one is stale */
+        var port = this.getItem("backend.port");
         Object.keys(json).forEach(function(key) {
+            if(key == "__computed") // derived values written by getJson()
+                return;
             var nKey = self.translateKey(key) || key;
+            if(nKey == "backend.port")
+                return;
             self.setItem(nKey, json[key], true);
         });
+        this.setItem("backend.port", port || "", true);
         this.commit();
     }
     getJson(){
