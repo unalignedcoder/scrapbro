@@ -408,6 +408,15 @@ html:not([dir]) pre {
     }
     
     var DLG_CSS = null;
+    /** clean up after an error in a capture: dialog, page lock and the pending node in the sidebar */
+    function captureFailed(e, rdf, itemId){
+        console.error(e);
+        document.querySelectorAll("scrapbee-dialog").forEach(el => el.remove());
+        unlock();
+        if(rdf && itemId)
+            browser.runtime.sendMessage({type: 'REMOVE_FAILED_NODE', rdf, itemId}).catch(() => {});
+        alert("ScrapBro: capture failed: " + (e && e.message || e));
+    }
     var startCapture = async function(saveType, rdf, rdfHome, itemId, autoClose=false){
         if(!lock()) return;
 
@@ -425,7 +434,7 @@ html:not([dir]) pre {
             /** css is inlined into the page, point icons to the extension */
             DLG_CSS = DLG_CSS.replace(/url\(\/icons\//g, "url(" + browser.runtime.getURL("/icons/"));
 
-            var icon = browser.runtime.getURL("/icons/bee.png");
+            var icon = browser.runtime.getURL("/icons/bro.png");
             DLG_CSS += `.scrapbee-dlg-title{background-image:url(${icon}) !important;}`;
         }
 
@@ -599,7 +608,7 @@ html:not([dir]) pre {
     browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         if(request.type == "SAVE_ADVANCE_REQUEST"){
             if(oldLockListener)
-                reject(Error("a task already exists on this page"));
+                return Promise.reject(Error("a task already exists on this page"));
             if(lock()){
                 return new Promise(async (resolve, reject) => {
                     try{
@@ -613,10 +622,11 @@ html:not([dir]) pre {
             return gatherContent(request.saveType == "SAVE_SELECTION", request.page, request.subPath);
         }else if(request.type == 'SAVE_PAGE_REQUEST' || request.type == 'SAVE_SELECTION_REQUEST'){
             if(oldLockListener)
-                reject(Error("a task already exists on this page"));
+                return Promise.reject(Error("a task already exists on this page"));
             
             browser.runtime.sendMessage({type: "CREATE_NODE_REQUEST", nodeType: "page", title: document.title, url: location.href}).then((r) => {
-                startCapture(request.type.replace(/_REQUEST/, ""), r.rdf, r.rdfHome, r.itemId, request.autoClose);
+                startCapture(request.type.replace(/_REQUEST/, ""), r.rdf, r.rdfHome, r.itemId, request.autoClose)
+                    .catch(e => captureFailed(e, r.rdf, r.itemId));
             }).catch(function (error) {
                 alert("capture failed: " + error);
             });
@@ -638,7 +648,8 @@ html:not([dir]) pre {
                     if(request.saveType == "SAVE_URL"){
                         saveBookmarkIcon(request.rdf, request.rdfHome, request.itemId);
                     }else{
-                        startCapture(request.saveType, request.rdf, request.rdfHome, request.itemId);
+                        startCapture(request.saveType, request.rdf, request.rdfHome, request.itemId)
+                            .catch(e => captureFailed(e, request.rdf, request.itemId));
                     }
                 });
             }

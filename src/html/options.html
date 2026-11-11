@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>ScrapBro -> {Setting}</title>
-    <link rel="icon" href="/icons/bee.svg" type="image/x-icon" rel="shortcut icon"/>
+    <link rel="icon" href="/icons/bro.png" type="image/png"/>
     <link rel="stylesheet" type="text/css" href="/css/options.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="/css/tree.css" media="screen"/>
     <script type="text/javascript" src="/libs/browser-polyfill.min.js"></script>
@@ -26,15 +26,15 @@
       </div>
       <div id="div-install" class="div-area" style="display:none">
         <!-- about:preferences -->
-        <div class="tips fit-content" style="">
+        <div class="tips fit-content" id="install-tip">
           {CUSTOM_INSTALL_TIP}
         </div>
         <table width="" cellspacing="" cellpadding="" border="0" class="form-table" style="max-width:700px">
           <tr>
             <td>{Step}-1</td>
             <td>
-              <div class="">
-                {STEP1_TEXT_1}
+              <div class="tips" id="step1-tip">
+                {STEP1_TEXT_1}<br/><br/>{STEP1_TEXT_2}
               </div>
               <div style="display:none;">
                 <label>
@@ -46,23 +46,18 @@
                   <span style="vertical-align:bottom;">{DOWNLOAD_SOURCE_2}</span>
                 </label>
               </div>
-              <br />
               <input id="btnDownloadBackend" type="button" name="add" value="{Download}"/>
-              <span class="download-path"></span>
+              <span class="download-path" id="backend-saved"></span>
               <br/><br/>
-              <div class="tips">
-                {STEP1_TEXT_2}
-                </div>
             </td>
           </tr>
           <tr class="hr"><td colspan="2"><hr/></td></tr>
           <tr>
             <td>{Step}-2</td>
             <td>
-              <div class="">{STEP2_TEXT_1}</div>
-              <br />
+              <div class="tips" id="step2-tip">{STEP2_TEXT_1}</div>
               <input id="btnDownloadScripts" type="button" name="add" value="{Download}"/>
-              <span class="download-path"></span>
+              <span class="download-path" id="scripts-saved"></span>
               <br /><br />       
             </td>
           </tr>
@@ -73,14 +68,9 @@
               <div>
                 {STEP3_TEXT_1}
                 <br>
-                <br>Linux/Mac:
-                <br>{STEP3_TEXT_2}
-                <br>cd <i style="color:#900">&lt;{FIREFOX_DOWNLOAD_DIRECTORY}&gt;/scrapbee</i>
-                <br>bash install.sh
-                <br>
-                <br>Windows:
-                <br>open <i style="color:#900">&lt;{FIREFOX_DOWNLOAD_DIRECTORY}&gt;\scrapbee</i>
-                <br>{Execute} install.bat ({STEP3_TEXT_3})
+                <br><span id="step3-run">Windows: <b class="script-name">install_chrome.bat</b>, Linux/Mac: <b class="script-name">bash install_chrome.sh</b>
+                  ({STEP3_TEXT_3})</span>
+                <br><span id="step3-folder"></span>
               </div>
             </td>
           </tr>
@@ -99,9 +89,10 @@
           <tr>
             <td>{BACKEND_PROGRAM}</td>
             <td id="" style="position:relative">
-              <div class="tips">
+              <div class="tips" id="backend-tip">
                 {BACKEND_TIP}
               </div>
+              <div class="download-path saved" id="backend-status"></div>
               <div class="panel" style="vertical-align:top;padding:0">
                 <table class="form-table inner" width="" cellspacing="10" cellpadding="" border="0">
                   <tr>

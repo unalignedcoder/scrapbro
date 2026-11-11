@@ -94,6 +94,8 @@ class BookTree {
         r = r.replace(/\\/g, "/").replace(/([^\:\/])\/{2,}/g, function(a, b, c){
             return b + "/";
         });
+        /** used in css url() and html attributes: spaces, brackets and quotes in paths, e.g. "(common)", break them */
+        r = r.replace(/[ ()'"]/g, c => "%" + c.charCodeAt(0).toString(16).toUpperCase());
         return r;
     }
     listenUserEvents($container) {

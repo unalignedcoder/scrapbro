@@ -146,16 +146,16 @@
         "message": "Browser Download Directory"
     },
     "CUSTOM_INSTALL_TIP": {
-        "message": "All steps here are guid to install backend which will be started in 'Automatically' mode.<br/> \"{FIREFOX_DOWNLOAD_DIRECTORY}\" below means default download directory set in browser Preference (Files and Applications - Downloads)."
+        "message": "These steps install the backend program, which ScrapBro then starts by itself ('Automatically' mode in the settings)."
     },
     "STEP1_TEXT_1": {
-        "message": "Download ScrapBro backend executable to\"<i>{FIREFOX_DOWNLOAD_DIRECTORY}</i>/scrapbro/\", by just click on the button below."
+        "message": "Download the ScrapBro backend program."
     },
     "STEP1_TEXT_2": {
-        "message": "Please ensure https://raw.githubusercontent.com accessable. <br><br>You maybe meet problem that the browser does not download the program correctly, then you can close the browser and remove existing executable in\"<i>{FIREFOX_DOWNLOAD_DIRECTORY}</i>/scrapbro/\", start Firefox and download again. (Please use standard version of {Firefox} 60 or later)"
+        "message": "The program is downloaded from the latest ScrapBro release on GitHub. If the browser blocks it, open its downloads page and choose to keep the file."
     },
     "STEP2_TEXT_1": {
-        "message": "Download installation scripts to \"<i>{FIREFOX_DOWNLOAD_DIRECTORY}</i>/scrapbro/\""
+        "message": "Download the installation scripts."
     },
     "STEP3_TEXT_1": {
         "message": "Run installation scripts"
@@ -164,10 +164,10 @@
         "message": "Run the commands in your terminal:"
     },
     "STEP3_TEXT_3": {
-        "message": "You maybe need to run the script as administrator"
+        "message": "it registers the backend for your user, no administrator rights needed"
     },
     "STEP4_TEXT": {
-        "message": "Restart {Firefox}"
+        "message": "Turn ScrapBro off and on again in the extensions page of the browser, or restart the browser."
     },
     "BASIC_TEXT": {
         "message": "Foreground"
@@ -516,5 +516,20 @@
     },
     "PORT_AUTO_TIP":{
         "message": "picked automatically, no need to set it"
+    },
+    "SAVED_TO":{
+        "message": "Saved to"
+    },
+    "DOWNLOAD_AGAIN":{
+        "message": "Download again"
+    },
+    "BACKEND_RUNNING":{
+        "message": "The backend program is running"
+    },
+    "IN_FOLDER":{
+        "message": "in the folder"
+    },
+    "Downloading___":{
+        "message": "Downloading..."
     }
 }

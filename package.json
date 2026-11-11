@@ -10,6 +10,7 @@
         "package": "node build.mjs --zip",
         "lint:firefox": "node build.mjs firefox && npx --yes web-ext lint --source-dir dist/firefox",
         "run:firefox": "node build.mjs firefox && npx --yes web-ext run --source-dir dist/firefox",
-        "sign:firefox": "node build.mjs firefox && npx --yes web-ext sign --source-dir dist/firefox --artifacts-dir dist --channel unlisted"
+        "sign:firefox": "node build.mjs firefox && npx --yes web-ext sign --source-dir dist/firefox --artifacts-dir dist --channel unlisted",
+        "backend": "cd backend && go build -trimpath -ldflags \"-s -w\" -o ../dist/scrapbro_backend.exe ."
     }
 }

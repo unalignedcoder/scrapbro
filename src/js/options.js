@@ -249,6 +249,7 @@ $(document).ready(async function(){
     }
     browser.runtime.sendMessage({type: 'GET_BACKEND_VERSION'}).then((version) => {
         initTools(version);
+        showBackendStatus(version);
     });
     function findOffsetParent(el){
         var r = document.body;
@@ -297,11 +298,7 @@ $(document).ready(async function(){
         }
     });
     $(`input[name=backend_type]:checked`).click();
-    var dp = HISTORY.getItem("backend.download.path");
-    if(dp){
-        $("#txtBackendPath").show();
-        $("#txtBackendPath").html("{ALREADY_DOWNLOADED_TO}: ".translate() + dp);
-    }
+    showInstallState();
     
     function applyArea(){
         $(".div-area").hide();
@@ -351,9 +348,11 @@ $(document).ready(async function(){
 
             /*** download backend config file */
             var [src_exec, dest_exec] = getBackendDownload();
+            /** the program is where step 1 saved it, or next to the scripts */
+            var exePath = HISTORY.getItem("backend.download.path") || downloadPath;
             var json = {"description": "ScrapBro backend",
                         "name": NATIVE_HOST,
-                        "path": downloadPath + dest_exec, /** path to backend executable */
+                        "path": exePath + dest_exec,
                         "type": "stdio"};
             if(IS_FIREFOX)
                 json.allowed_extensions = [browser.runtime.id];
@@ -361,42 +360,74 @@ $(document).ready(async function(){
                 json.allowed_origins = [`chrome-extension://${browser.runtime.id}/`];
             await downloadText(JSON.stringify(json, null, 2), `scrapbro/${jsonName}`);
 
-            $(self).next(".download-path").show();
-            $(self).next(".download-path").html("{ALREADY_DOWNLOADED_TO}: ".translate() + downloadPath);
+            HISTORY.setItem("backend.scripts.path", downloadPath, true, true);
+            showInstallState();
         }catch(e){
-            alert(e);
+            alert(e.message || e);
         }
     });
 
     /** download backend */
     $("#btnDownloadBackend").click(function(){
-        var self = this;
-        function Start(){
-            // const extRoot = "moz-extension://" + global.extensionId;
-            var [src_exec, dest_exec] = getBackendDownload();
-            /** download backend executable */
-            downloadFile(src_exec, "scrapbro/" + dest_exec).then(function(dwInfo){
-                /*** query really filename of backend executable */
-                var downloadPath = dwInfo.filename.replace(/[^\\\/]*$/,"");
-                if(downloadPath){
-                    HISTORY.setItem("backend.download.path", downloadPath);
-                    $(self).next(".download-path").show();
-                    $(self).next(".download-path").text("{ALREADY_DOWNLOADED_TO}: ".translate() + downloadPath);
-                }
-            }).catch(e => {
-                alert(e);
-            });
-        }
-        $("#txtBackendPath").show();
-        $("#txtBackendPath").text("Downloading...");  // todo: error output
-        setTimeout(Start, 1000);
+        var [src_exec, dest_exec] = getBackendDownload();
+        $("#backend-saved").removeClass("error").text("{Downloading___}".translate()).show();
+        downloadFile(src_exec, "scrapbro/" + dest_exec).then(function(dwInfo){
+            /*** where the browser really saved it (the user can choose) */
+            var downloadPath = dwInfo.filename.replace(/[^\\\/]*$/,"");
+            if(downloadPath)
+                HISTORY.setItem("backend.download.path", downloadPath, true, true);
+            showInstallState();
+        }).catch(e => {
+            $("#backend-saved").addClass("error").text(e.message).show();
+            alert(e.message);
+        });
     });
+
+    /** install page: once a file is saved, show where instead of the instructions */
+    function showSaved(id, path){
+        var $el = $("#" + id);
+        $el.removeClass("error");
+        if(path)
+            $el.empty().append(document.createTextNode("{SAVED_TO}: ".translate()), $("<b>").text(path)).show();
+        else
+            $el.hide();
+    }
+    function showInstallState(){
+        var family = IS_FIREFOX ? "firefox" : "chrome";
+        var exePath = HISTORY.getItem("backend.download.path");
+        var scriptsPath = HISTORY.getItem("backend.scripts.path");
+        showSaved("backend-saved", exePath);
+        showSaved("scripts-saved", scriptsPath);
+        $("#btnDownloadBackend").val((exePath ? "{DOWNLOAD_AGAIN}" : "{Download}").translate());
+        $("#btnDownloadScripts").val((scriptsPath ? "{DOWNLOAD_AGAIN}" : "{Download}").translate());
+        $("#step1-tip").toggle(!exePath && !backendRunning);
+        $("#step2-tip").toggle(!scriptsPath && !backendRunning);
+        $("#install-tip").toggle(!(exePath && scriptsPath) && !backendRunning);
+        var script = GLOBAL.platformOS == "win" ? `install_${family}.bat` : `bash install_${family}.sh`;
+        $("#step3-run").empty().append(document.createTextNode("{Execute} ".translate()), $("<b>").text(script),
+                                       document.createTextNode(" (" + "{STEP3_TEXT_3}".translate() + ")"));
+        if(scriptsPath)
+            $("#step3-folder").empty().append(document.createTextNode("{IN_FOLDER}: ".translate()), $("<b>").text(scriptsPath));
+    }
+    /** configure page: the backend explanation is only needed until the backend runs */
+    var backendRunning = false;
+    function showBackendStatus(version){
+        backendRunning = !!version;
+        if(backendRunning){
+            var where = CONF.getItem("backend.type") == "address" ? CONF.getBackendAddress() : "{Port} ".translate() + CONF.getItem("backend.port");
+            $("#backend-status").text(`${"{BACKEND_RUNNING}".translate()} (${version}, ${where})`).show();
+        }else{
+            $("#backend-status").hide();
+        }
+        $("#backend-tip").toggle(!backendRunning);
+        showInstallState();
+    }
 
     /** registers the json for the current user (no admin needed), firefox forks read the mozilla key too */
     function installBat(backend_path, jsonName){
-        var softs = IS_FIREFOX ? ["Mozilla"] : ["Google\Chrome", "Microsoft\Edge", "BraveSoftware\Brave-Browser", "Chromium", "Vivaldi"];
+        var softs = IS_FIREFOX ? ["Mozilla"] : ["Google\\Chrome", "Microsoft\\Edge", "BraveSoftware\\Brave-Browser", "Chromium", "Vivaldi"];
         var keys = softs.map(soft =>
-            `reg add "HKEY_CURRENT_USER\Software\${soft}\NativeMessagingHosts\${NATIVE_HOST}" /ve /d "${backend_path}${jsonName}" /f\r\n`);
+            `reg add "HKEY_CURRENT_USER\\Software\\${soft}\\NativeMessagingHosts\\${NATIVE_HOST}" /ve /d "${backend_path}${jsonName}" /f\r\n`);
         return `chcp 65001\r\n\r
 ${keys.join("")}\r
 echo done\r
@@ -439,22 +470,29 @@ echo done
                 conflictAction: "overwrite",
                 saveAs: false
             }).then(function(id){
-                browser.downloads.onChanged.addListener((downloadDelta) => {
-                    if(downloadDelta.id == id && (downloadDelta.state && downloadDelta.state.current == "complete")){
-                        // if(callback)callback(id);
-                        browser.downloads.search({id: id}).then((downloads) => {
-                            // var filename = downloads[0].filename;
-                            resolve(downloads[0]);
-                        });
+                function fn(delta){
+                    if(delta.id != id || !delta.state)
+                        return;
+                    if(delta.state.current == "complete"){
                         browser.downloads.onChanged.removeListener(fn);
+                        browser.downloads.search({id}).then((downloads) => resolve(downloads[0]));
+                    }else if(delta.state.current == "interrupted"){
+                        browser.downloads.onChanged.removeListener(fn);
+                        browser.downloads.search({id}).then((downloads) => {
+                            reject(Error(`download failed (${(downloads[0] && downloads[0].error) || "interrupted"}): ${src}`));
+                        });
                     }
-                });
-            });
+                }
+                browser.downloads.onChanged.addListener(fn);
+            }).catch(reject);
         });
     }
     
     function downloadText(text, filename, callback, saveAs=false){
-        var blob = new Blob([text], {type : 'text/plain'});
+        /** the type must fit the extension, chromium appends ".txt" to e.g. a ".bat" saved as text/plain */
+        var ext = (filename.match(/\.(\w+)$/) || [])[1];
+        var type = {json: "application/json", txt: "text/plain"}[ext] || "application/octet-stream";
+        var blob = new Blob([text], {type});
         var objectURL = URL.createObjectURL(blob);
         return new Promise((resolve, reject) => {
             browser.downloads.download({
@@ -463,18 +501,24 @@ echo done
                 conflictAction: "overwrite",
                 saveAs: saveAs
             }).then(function(id){
-                browser.downloads.onChanged.addListener((downloadDelta) => {
-                    if(downloadDelta.id == id && (downloadDelta.state && downloadDelta.state.current == "complete")){
-                        browser.downloads.search({id: id}).then((downloads) => {
-                            // var filename = downloads[0].filename;
-                            resolve(downloads[0]);
-                        });
-                        URL.revokeObjectURL(objectURL);
+                function fn(delta){
+                    if(delta.id != id || !delta.state)
+                        return;
+                    if(delta.state.current == "complete" || delta.state.current == "interrupted"){
                         browser.downloads.onChanged.removeListener(fn);
+                        URL.revokeObjectURL(objectURL);
+                        browser.downloads.search({id}).then((downloads) => {
+                            if(delta.state.current == "complete")
+                                resolve(downloads[0]);
+                            else
+                                reject(Error(`saving ${filename} failed: ${(downloads[0] && downloads[0].error) || "interrupted"}`));
+                        });
                     }
-                });
-            }).catch(function (error) {
-                reject(e);
+                }
+                browser.downloads.onChanged.addListener(fn);
+            }).catch(function(error){
+                URL.revokeObjectURL(objectURL);
+                reject(error);
             });
         });
     }
@@ -493,6 +537,7 @@ echo done
         }else if(request.type == "BACKEND_SERVICE_STARTED"){
             initTools(request.version);
             $("input[name=backend_port]").val(CONF.getItem("backend.port"));
+            showBackendStatus(request.version);
         }
     });
     

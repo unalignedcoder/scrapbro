@@ -143,16 +143,16 @@
        "message": "火狐下载目录"
     },
     "CUSTOM_INSTALL_TIP": {
-        "message": "注，以下流程仅用于安装以\"自动\"方式运行的后端程序。<br/> 以下\"火狐下载目录\"指浏览器默认的下载目录，可以在浏览器首选项里找到和设置 (文件与应用程序 - 下载)"
+        "message": "以下步骤安装后端程序，之后 ScrapBro 会自动启动它（设置中的“自动”模式）。"
     },
     "STEP1_TEXT_1": {
-        "message": "下载ScrapBro后端可执行文件到 \"<i>{FIREFOX_DOWNLOAD_DIRECTORY}</i>/scrapbro/\"，只需点击下方按钮。"
+        "message": "下载 ScrapBro 后端程序。"
     },
     "STEP1_TEXT_2": {
-        "message": "请确保 https://raw.githubusercontent.com 可访问，如果下载遇到问题，可以尝试手工下载, 见帮助<br><br>重复下载时，您可能会遇到文件不能正确下载的问题，此时可以尝试关闭{Firefox}并删除 \"<i>{FIREFOX_DOWNLOAD_DIRECTORY}</i>/scrapbro/\" 中的已有可执行文件，再次启动{Firefox}后重新下载。另外，请使用{Firefox}60以上的标准版{Firefox}。"
+        "message": "程序从 GitHub 上 ScrapBro 的最新版本下载。如果浏览器阻止下载，请打开浏览器的下载页面并选择保留文件。"
     },
     "STEP2_TEXT_1": {
-        "message": "下载安装脚本到 \"<i>{FIREFOX_DOWNLOAD_DIRECTORY}</i>/scrapbro/\""
+        "message": "下载安装脚本。"
     },
     "STEP3_TEXT_1": {
         "message": "运行安装脚本"
@@ -161,10 +161,10 @@
         "message": "在终端中运行"
     },
     "STEP3_TEXT_3": {
-        "message": "你可能需要以管理员身份运行此脚本"
+        "message": "为当前用户注册后端，无需管理员权限"
     },
     "STEP4_TEXT": {
-        "message": "重启{Browser}"
+        "message": "在浏览器的扩展页面中关闭并重新开启 ScrapBro，或重启浏览器。"
     },
     "BASIC_TEXT": {
         "message": "前景"
@@ -516,5 +516,20 @@
     },
     "PORT_AUTO_TIP":{
         "message": "自动选择，无需设置"
+    },
+    "SAVED_TO":{
+        "message": "已保存到"
+    },
+    "DOWNLOAD_AGAIN":{
+        "message": "重新下载"
+    },
+    "BACKEND_RUNNING":{
+        "message": "后端程序正在运行"
+    },
+    "IN_FOLDER":{
+        "message": "所在目录"
+    },
+    "Downloading___":{
+        "message": "正在下载..."
     }
 }

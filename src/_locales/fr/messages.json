@@ -137,16 +137,16 @@
         "message": "Répertoire de téléchargements de Firefox"
     },
     "CUSTOM_INSTALL_TIP": {
-        "message": "Toutes les étapes ici sont guidées pour installer le backend qui sera démarré en mode 'Automatiquement'<br/> \"{FIREFOX_DOWNLOAD_DIRECTORY}\" ci-dessous signifie le répertoire de téléchargement par défaut défini dans les préférences du navigateur (Fichiers et applications - Téléchargements)"
+        "message": "Ces étapes installent le programme backend, que ScrapBro démarre ensuite tout seul (mode 'Automatiquement' dans les paramètres)."
     },
     "STEP1_TEXT_1": {
-        "message": "Téléchargez l'exécutable du backend ScrapBro vers \"<i>{FIREFOX_DOWNLOAD_DIRECTORY}</i>/scrapbro/\", en cliquant simplement sur le bouton ci-dessous."
+        "message": "Téléchargez le programme backend de ScrapBro."
     },
     "STEP1_TEXT_2": {
-        "message": "Veuillez vous assurer https://raw.githubusercontent.com accessible. <br><br>Vous rencontrez peut-être le problème que Firefox ne télécharge pas correctement le programme, vous pouvez alors fermer Firefox et supprimer l'exécutable existant dans\"<i>{FIREFOX_DOWNLOAD_DIRECTORY}</i>/scrapbro/\", démarrez Firefox et téléchargez à nouveau. (Veuillez utiliser la version standard de {Firefox} 60 ou une version ultérieure"
+        "message": "Le programme est téléchargé depuis la dernière version de ScrapBro sur GitHub. Si le navigateur le bloque, ouvrez sa page de téléchargements et choisissez de conserver le fichier."
     },
     "STEP2_TEXT_1": {
-        "message": "Télécharger les scripts d'installation vers \"<i>{FIREFOX_DOWNLOAD_DIRECTORY}</i>/scrapbro/\""
+        "message": "Téléchargez les scripts d'installation."
     },
     "STEP3_TEXT_1": {
         "message": "Lancer manuellement le script d'installation téléchargé:"
@@ -155,10 +155,10 @@
         "message": "Lancer les commandes dans une fenêtre de console:"
     },
     "STEP3_TEXT_3": {
-        "message": "Il faut peut-être exécuter le script comme administrateurr"
+        "message": "il enregistre le backend pour votre utilisateur, sans droits d'administrateur"
     },
     "STEP4_TEXT": {
-        "message": "Relancer {Firefox}"
+        "message": "Désactivez puis réactivez ScrapBro dans la page des extensions du navigateur, ou redémarrez le navigateur."
     },
     "BASIC_TEXT": {
         "message": "Couleur du texte"
@@ -489,5 +489,20 @@
     },
     "PORT_AUTO_TIP":{
         "message": "choisi automatiquement, rien à régler"
+    },
+    "SAVED_TO":{
+        "message": "Enregistré dans"
+    },
+    "DOWNLOAD_AGAIN":{
+        "message": "Télécharger à nouveau"
+    },
+    "BACKEND_RUNNING":{
+        "message": "Le programme backend fonctionne"
+    },
+    "IN_FOLDER":{
+        "message": "dans le répertoire"
+    },
+    "Downloading___":{
+        "message": "Téléchargement..."
     }
 }

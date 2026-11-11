@@ -20,7 +20,7 @@ function showNotification({message, title=''}) {
         type: 'basic',
         title: title,
         message: message,
-        iconUrl: '/icons/bee.png'
+        iconUrl: '/icons/bro.png'
     });
 }
 
@@ -65,17 +65,13 @@ function gtv(a, b){
     return false;
 }
 
+/* is version a >= version b, compared part by part from the left (2.0.0 >= 1.7.3) */
 function gtev(a, b){
     a = getVersionParts(a);
     b = getVersionParts(b);
-    try{
-        for(var i=0; i<b.length; i++){
-            if(parseInt(a[i]) < parseInt(b[i])){
-                return false;
-            }
-        }
-    }catch(e){
-        return false;
+    for(var i=0; i<b.length; i++){
+        if(a[i] != b[i])
+            return a[i] > b[i];
     }
     return true;
 }

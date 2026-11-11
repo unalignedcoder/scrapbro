@@ -32,6 +32,7 @@ function build(target){
     const manifestPath = path.join(out, "manifest.json");
     const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
     manifest.version = version;
+    setIcon(manifest, out);
     fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 4) + "\n");
     let line = `${target}: dist/${target} (${version})`;
     if(options.zip){
@@ -40,6 +41,25 @@ function build(target){
         line += `, dist/${zipName}`;
     }
     console.log(line);
+}
+
+/* the extension icon: one PNG, used for every place and size (the browser scales it).
+   Replace src/icons/bro.png to change it, its pixel size is read from the file.
+   The stores want at least 128x128, a square PNG of 128 or more is best. */
+const ICON = "icons/bro.png";
+function setIcon(manifest, out){
+    const png = fs.readFileSync(path.join(out, ICON));
+    if(png.readUInt32BE(12) != 0x49484452) // "IHDR"
+        throw Error(`${ICON} is not a PNG file`);
+    const width = png.readUInt32BE(16), height = png.readUInt32BE(20);
+    if(width != height)
+        console.warn(`warning: ${ICON} is ${width}x${height}, icons should be square`);
+    if(options.zip && width < 128)
+        console.warn(`warning: ${ICON} is ${width}x${width}, the stores want at least 128x128`);
+    manifest.icons = {[width]: ICON};
+    const action = manifest.action || manifest.browser_action;
+    if(action) action.default_icon = {[width]: ICON};
+    if(manifest.sidebar_action) manifest.sidebar_action.default_icon = ICON;
 }
 
 /* minimal zip writer (deflate), enough for the extension stores */

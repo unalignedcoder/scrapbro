@@ -37,6 +37,12 @@ npm run package      # also writes dist/scrapbro-<browser>-<version>.zip for the
 
 Bump `version` in `package.json` before packaging a release; it is written into both manifests.
 
+### Icon
+
+`src/icons/bro.png` is the only icon file: the toolbar button, sidebar, extensions page, notifications and page tabs all use it,
+and the browser scales it to each size. To change the icon, replace that file (keep the name). The build reads its size and
+writes it into both manifests. Use a square PNG of at least 128×128, which the stores ask for.
+
 ### Try it
 
 - **Chromium:** open `chrome://extensions` (`edge://extensions`), enable Developer mode, *Load unpacked* → `dist/chrome`. Reload the extension there after a rebuild.
@@ -80,7 +86,10 @@ packages both extensions and attaches everything to a GitHub release named after
 ## Compatibility notes
 
 - Internal names that end up in saved pages (CSS classes like `scrapbee-marker-*`) are kept, so pages edited with ScrapBee and ScrapBro stay interchangeable.
-- ScrapBro and ScrapBee can be installed side by side; they use different native host names.
+- **Do not install ScrapBro and ScrapBee in the same browser profile.** Both read and write the same scrapbooks, each keeps
+  its own copy of the tree in memory and saves the whole RDF file on every change, so working with both can silently lose
+  changes or leave a scrapbook inconsistent. Switch instead: export the settings from ScrapBee, remove it, install ScrapBro
+  and import them. Back up the scrapbook folders before the first use.
 
 ## License
 

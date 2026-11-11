@@ -74,10 +74,18 @@ input[type=button].movedn{
 }
 .download-path{
     border-radius:5px;
-    border:1px solid;
-    background:#ccc;
+    border:1px solid #7a7;
+    background:#dfd;
     padding:5px;
     display:none;
+}
+.download-path.error{
+    border-color:#c66;
+    background:#fdd;
+}
+div.download-path{
+    width:fit-content;
+    margin-bottom:5px;
 }
 .form-table input[type=button]::-moz-focus-inner{
     border:none;

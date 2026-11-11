@@ -167,7 +167,7 @@ var DialogDownloadTable = class extends Dialog {
         this.content = `
 <div class='scrapbee-dlg-table-outer'><table class='scrapbee-dlg-table'><thead></thead><tbody></tbody></table></div>
 <div class='scrapbee-dlg-yesno-buttons'>
-<div class='scrapbee-dlg-table-hint'>${content}</div>
+<div class='scrapbee-dlg-table-hint'></div>
 <input type="button" name="" value="Close" class="blue-button close-button"/>
 </div>`;
         this.findChild("input.close-button").addEventListener("click", function(){
