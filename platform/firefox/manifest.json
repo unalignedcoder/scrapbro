@@ -1,0 +1,64 @@
+{
+    "manifest_version": 2,
+    "name": "ScrapBro",
+    "version": "0.0.0",
+    "description": "__MSG_extensionDescription__",
+    "default_locale": "en",
+    "icons": {
+        "64": "icons/bee.png"
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "scrapbro@tuscoss.com",
+            "strict_min_version": "140.0",
+            "data_collection_permissions": {
+                "required": ["none"]
+            }
+        }
+    },
+    "permissions": [
+        "activeTab",
+        "contextMenus",
+        "downloads",
+        "storage",
+        "tabs",
+        "unlimitedStorage",
+        "webNavigation",
+        "nativeMessaging",
+        "notifications",
+        "scripting",
+        "<all_urls>",
+        "file:///*"
+    ],
+    "background": {
+        "page": "html/background.html"
+    },
+    "sidebar_action": {
+        "default_title": "ScrapBro",
+        "default_panel": "html/sidebar.html",
+        "default_icon": "icons/bee.png",
+        "open_at_install": false
+    },
+    "browser_action": {
+        "default_icon": {
+            "16": "icons/bee.png",
+            "32": "icons/bee.png"
+        },
+        "default_title": "ScrapBro",
+        "default_popup": "popup/browser_action.html"
+    },
+    "options_ui": {
+        "open_in_tab": true,
+        "page": "html/options.html"
+    },
+    "web_accessible_resources": ["css/*", "icons/*", "html/advcap.html"],
+    "commands": {
+        "_execute_sidebar_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+Y",
+                "mac": "MacCtrl+Shift+Y"
+            },
+            "description": "Toggle ScrapBro sidebar"
+        }
+    }
+}

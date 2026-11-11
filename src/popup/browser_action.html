@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <script type="text/javascript" src="/libs/browser-polyfill.min.js"></script>
+    <script type="text/javascript" src="/libs/jquery-3.3.1.js"></script>
+    <script type="module" src="/js/proto.js"></script>
+    <script type="module" src="browser_action.js"></script>
+    <style type="text/css" media="screen">
+     body{
+       padding:5px;
+     }
+     hr{
+       height:1px;
+       background:#999;
+       border:none;
+     }
+     input[type=button]::before{
+       content: "\200B";
+       background:url(/icons/delete.svg) no-repeat;
+       background-position:10px center;
+       background-size: 20px 20px;
+       width:20px;
+       height:20px;
+       border:1px solid;
+     }
+     .mi{
+       display:block;
+       width:200px;
+       height:30px;
+       /* display:flex; */
+       /* justify-content: flex-start; */
+       /* flex-wrap: nowrap; */
+       font-family: Arial, Helvetica, sans-serif;
+       font-size: 12px;
+       text-align:left;
+       vertical-align:middle;
+       line-height:30px;
+       color:#333;
+       cursor:pointer;
+       border-radius:5px;
+     }
+     .mi:before{
+       content:"";
+       display:inline-block;
+       background-color:#333;
+       mask-size:18px 18px;
+       width:18px;
+       height:18px;
+       border:1px solid;
+       mask-repeat: no-repeat;
+       mask-position: 0px 0px;
+       margin-left:10px;
+       margin-right:3px;
+       vertical-align:middle;
+     }
+     .mi:hover{
+       background:#599;
+     }
+     .mi[disabled=true]{
+       color:#999;
+     }
+     .mi[disabled=true]:before{
+       background-color:#999;
+     }
+     #btnCapturePage:before{
+       mask-image: url("/icons/page.svg");
+     }
+     #btnCaptureSelection:before{
+       mask-image: url("/icons/selection.svg");
+     }
+     #btnCaptureUrl:before{
+       mask-image: url("/icons/link.svg");
+     }
+     #btnCaptureAdv:before{
+       mask-image: url("/icons/advance.svg");
+     }
+     #btnCaptureTabs:before{
+       mask-image: url("/icons/tabs.svg");
+     }
+     #btnOpenInSidebar:before{
+       mask-image: url("/icons/sidebar.svg");
+     }     
+     #btnSetting:before{
+       mask-image: url("/icons/settings.svg");
+     }
+     #btnTools:before{
+       mask-image: url("/icons/tool.svg");
+     }
+     #btnHelp:before{
+       mask-image: url("/icons/help.svg");
+     }
+    </style>
+  </head>
+  <body>
+    <div type="button" class="mi" id="btnCapturePage">{CapturePage}</div>
+    <div type="button" class="mi" id="btnCaptureSelection">{CaptureSelection}</div>
+    <div type="button" class="mi" id="btnCaptureUrl">{CaptureUrl}</div>
+    <div type="button" class="mi" id="btnCaptureAdv">{CaptureAdvance}</div>
+    <div type="button" class="mi" id="btnCaptureTabs">{CaptureTabs}</div>
+    <hr />
+    <div type="button" class="mi" id="btnOpenInSidebar">{OPEN_IN_SIDEBAR}</div>
+    <div type="button" class="mi" id="btnTools">{Tools}</div>
+    <div type="button" class="mi" id="btnSetting">{Configure}</div>
+    <div type="button" class="mi" id="btnHelp">{Help}</div>
+  </body>
+</html>

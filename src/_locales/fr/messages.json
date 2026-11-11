@@ -1,0 +1,493 @@
+{
+    "extensionName": {
+        "message": "ScrapBro",
+        "description": "Nom de l'extension."
+    },
+    "extensionDescription": {
+        "message": "Capture localement les pages web et gère les pages capturées dans un panneau latéral. Est compatible avec les documents de l'ancienne extension Scrapbook. Nécessite l'installation et l'exécution d'un programme backend en plus du navigateur web.",
+        "description": "Description de l'extension."
+    },
+    "Firefox":{
+        "message": "navigateur"
+    },
+    "DLG_OK": {
+        "message": "OK"
+    },
+    "DLG_CANCEL": {
+        "message": "ANNULATION"
+    },
+    "Setting": {
+        "message": "Paramètres"
+    },
+    "Reload": {
+        "message": "Recharger"
+    },
+    "Search": {
+        "message": "Recherche"
+    },
+    "Stop": {
+        "message": "Arrêter"
+    },
+    "Help": {
+        "message": "Aide"
+    },
+    "Folder": {
+        "message": "Dossier"
+    },
+    "Open_Folder": {
+        "message": "Ouvrir le dossier"
+    },
+    "Title": {
+        "message": "Titre"
+    },
+    "Content": {
+        "message": "Contenu"
+    },    
+    "Rename": {
+        "message": "Renommer"
+    },
+    "Step": {
+        "message": "Etape"
+    },
+    "Name": {
+        "message": "Nom"
+    },
+    "Save": {
+        "message": "Sauver"
+    },
+    "MODIFY_DOM_ON": {
+        "message": "Nettoyage de la page"
+    },
+    "MODIFY_DOM_OFF": {
+        "message": "Arrêt du nettoyage"
+    },
+    "MARK_PEN": {
+        "message": "Type de surlignage"
+    },
+    "SOURCE_CODE": {
+        "message": "Code source"
+    },    
+    "File": {
+        "message": "Fichier"
+    },
+    "Donate": {
+        "message": "Don"
+    },
+    "DONATE_WITH_PAYPAL": {
+        "message": "Don avec PayPal"
+    },
+    "New_Folder": {
+        "message": "Nouveau dossier"
+    },
+    "New_Separator": {
+        "message": "Nouveau séparateur"
+    },
+    "New_Note": {
+        "message": "Nouvelle remarque"
+    },    
+    "CapturePage": {
+        "message": "Capture de la page"
+    },
+    "As_Root_Node": {
+        "message": "Commme noeud racine"
+    },
+    "At_Current_Position": {
+        "message": "A la position courante"
+    },
+    "CaptureSelection": {
+        "message": "Capture de la sélection"
+    },
+    "CaptureUrl": {
+        "message": "Capturer un signet"
+    },
+    "CaptureAdvance": {
+        "message": "Capture avancée..."
+    },
+    "CaptureTabs": {
+        "message": "Capturer tous les onglets"
+    },
+    "Download": {
+        "message": "Télécharger"
+    },
+    "ToggleSidebar": {
+        "message": "Permuter le panneau latéral"
+    },
+    "Delete": {
+        "message": "Supprimer"
+    },
+    "Initiate": {
+        "message": "Initialisation"
+    },
+    "History": {
+        "message": "Historique"
+    },
+    "Log": {
+        "message": "Journal"
+    },
+    "RDF_Files":{
+        "message": "Fichiers RDF"
+    },
+    "Backend_Port":{
+        "message": "Port du backend"
+    },
+    "Background": {
+        "message": "Couleur de l'arrière-plan"
+    },
+    "FIREFOX_DOWNLOAD_DIRECTORY":{
+        "message": "Répertoire de téléchargements de Firefox"
+    },
+    "CUSTOM_INSTALL_TIP": {
+        "message": "Toutes les étapes ici sont guidées pour installer le backend qui sera démarré en mode 'Automatiquement'<br/> \"{FIREFOX_DOWNLOAD_DIRECTORY}\" ci-dessous signifie le répertoire de téléchargement par défaut défini dans les préférences du navigateur (Fichiers et applications - Téléchargements)"
+    },
+    "STEP1_TEXT_1": {
+        "message": "Téléchargez l'exécutable du backend ScrapBro vers \"<i>{FIREFOX_DOWNLOAD_DIRECTORY}</i>/scrapbro/\", en cliquant simplement sur le bouton ci-dessous."
+    },
+    "STEP1_TEXT_2": {
+        "message": "Veuillez vous assurer https://raw.githubusercontent.com accessible. <br><br>Vous rencontrez peut-être le problème que Firefox ne télécharge pas correctement le programme, vous pouvez alors fermer Firefox et supprimer l'exécutable existant dans\"<i>{FIREFOX_DOWNLOAD_DIRECTORY}</i>/scrapbro/\", démarrez Firefox et téléchargez à nouveau. (Veuillez utiliser la version standard de {Firefox} 60 ou une version ultérieure"
+    },
+    "STEP2_TEXT_1": {
+        "message": "Télécharger les scripts d'installation vers \"<i>{FIREFOX_DOWNLOAD_DIRECTORY}</i>/scrapbro/\""
+    },
+    "STEP3_TEXT_1": {
+        "message": "Lancer manuellement le script d'installation téléchargé:"
+    },
+    "STEP3_TEXT_2": {
+        "message": "Lancer les commandes dans une fenêtre de console:"
+    },
+    "STEP3_TEXT_3": {
+        "message": "Il faut peut-être exécuter le script comme administrateurr"
+    },
+    "STEP4_TEXT": {
+        "message": "Relancer {Firefox}"
+    },
+    "BASIC_TEXT": {
+        "message": "Couleur du texte"
+    },
+    "BOOKMARK_TEXT": {
+        "message": "Couleur des signets"
+    },
+    "SELECTED_ITEM": {
+        "message": "Couleur de la sélection"
+    },
+    "FONT_SIZE": {
+        "message": "Taille de police"
+    },
+    "FONT_NAME": {
+        "message": "nom de police"
+    },
+    "LINE_SPACING": {
+        "message": "Espacement des lignes"
+    },        
+    "Language": {
+        "message": "Langue"
+    },
+    "Separator": {
+        "message": "Séparateur"
+    },
+    "BACKEND_TIP": {
+        "message": "ScrapBro a besoin d'un \"programme backend spécial\" pour fonctionner normalement.<br/><br/>Il existe 2 modes pour installer et démarrer le programme backend, automatiquement ou manuellement. <a href=\"#area=help&scroll=help_install\">help</a>"
+    },    
+    "RDF_FILES_TIP": {
+        "message": "Editez le chemin des fichiers RDF (avec une extension '.rdf') contenant les informations sur les documents téléchargés qui sont sauvés dans un répertoire \"data\" au même niveau que le fichier RDF. <a href='#area=help&scroll=help_rdf'>help</a><br /><br /> Par exemple, c:\\scrapbee\\test.rdf (Windows)&nbsp;&nbsp;&nbsp;&nbsp;/home/userID/scrapbro/test.rdf (Linux)&nbsp;&nbsp;&nbsp;&nbsp;/Users/userID/scrapbro/test.rdf (Mac)<br /><br /> Vous pouvez utiliser plusieurs fichiers RDF pour organiser vos documents.<br /> Il est possible d'avoir plusieurs fichiers RDF dans un même répertoire.<br /> ScrapBro initialise le fichier RDF si nécessaire (tags XML).<br />Les fichiers RDF créés par l'ancienne extension <a href=\"https://en.wikipedia.org/wiki/ScrapBook\" target=\"_blank\">ScrapBook</a> sont supportés.<br /><br /><b>Cliquez sur le bouton '+' ci-dessous pour enregistrer un nouveau RDF, choississez un alias dans le champ 'Nom' et le chemin absolu dans le champ 'Fichier'.</b>"
+    },
+    "BACKEND_PORT_TIP":{
+        "message": "Port TCP du programme backend de ScrapBro, choisi automatiquement"
+    },
+    "_COLOR":{
+        "message": ""
+    },
+    "Appearance":{
+        "message": "Apparence"
+    },    
+    "Scrap":{
+        "message": "scrap"
+    },
+    "COLOR_TIP":{
+        "message": "Paramétrisation de la couleur de certains éléments pour modifier l'apparence de ScrapBro. <br>Les couleurs sont dans un format hexadécimal #FFFFFF ou #FFF"
+    },
+    "ALREADY_DOWNLOADED_TO": {
+        "message": "déjà téléchargé dans"
+    },
+    "Behavior":{
+        "message": "Comportement"
+    },
+    "OPEN_IN_CURRENT_TAB":{
+        "message": "Ouvrir dans l'onglet courant"
+    },
+    "OPEN_IN_CURRENT_TAB_TIP":{
+        "message": "Par défaut, ScrapBro ouvre chaque page sauvée dans un nouvel onglet lors d'un simple clic dans le panneau latéral. Il utilise l'onglet courant si la touche Ctrl est enfoncée pendant le clic (touche Méta sur Mac) ou si le bouton du milieu est utilisé. Ce comportement est inversé si l'option est sélectionnée. "
+    },
+    "DONATE_WORDS":{
+        "message": "Pour encourager les améliorations de ScrapBee, <br />toute donation est la bienvenue.<br />Merci pour votre support !!! <br /> <i><a target='_blank' href='https://addons.mozilla.org/en-US/firefox/addon/scrapbee/'>Donnez un bonne note à Scrapbook!</i></a>"
+    },
+    "MORE_DONATE_WAY_TOGGLE":{
+        "message": "In other way"
+    },    
+    "MORE_DONATE_WAY":{
+        "message": ""
+    },
+    "RESULTS_FOUND": {
+        "message": " résultat(s) trouvé(s)"
+    },
+    "NOT_EXISTS": {
+        "message": " non trouvé"
+    },
+    "Yes": {
+        "message": "Oui"
+    },
+    "No": {
+        "message": "Non"
+    },
+    "CREATE_OR_NOT": {
+        "message": "le créer"
+    },
+    "NewDirectory": {
+        "message": "Nouveau répertoire"
+    },
+    "ConfirmDeleteDirectory": {
+        "message": "Ceci est un répertoire, voulez-vous vraiment le supprimer avec tout son contenu?"
+    },
+    "ConfirmDeleteItem": {
+        "message": "Détruire l'élément sélectionné??"
+    },
+    "Warning": {
+        "message": "Avertissement"
+    },
+    "Confirm": {
+        "message": "Confirmation"
+    },
+    "Loading___": {
+        "message": "Chargement..."
+    },
+    "Starting___": {
+        "message": "Démarrage..."
+    },    
+    "SAME_RDF_MODIFIED": {
+        "message": "Le RDF a été modifié, choisir OK pour rafraîchir"
+    },
+    "NO_SELECTION_ACTIVATED": {
+        "message": "Aucune sélection activée"
+    },
+    "Announcement": {
+        "message": "Annonce"
+    },
+    "NODE_MOVER_TIP":{
+        "message": "Avec cet outil, vous pouvez déplacer ou copier des nœuds et leur contenu entre 2 RDF (arborescences de livre). Le dragage et la suppression de nœuds dans un RDF sont également disponibles ici."
+    },
+    "NODE_MOVER_WARN_TIP":{
+        "message": "<b>ATTENTION</b><br>Veuillez vous assurer d'avoir une sauvegarde de vos données avant d'utiliser cet outil.<br>N'effectuez aucune modification ailleurs en utilisant cet outil sous peine de provoquer des conflits."
+    },
+    "Tools":{
+        "message": "Outil de gestion"
+    },
+    "Node_Mover": {
+        "message": "Gestion des noeuds"
+    },
+    "Exporter": {
+        "message": "Exportateur"
+    },        
+    "Done": {
+        "message": "Fait"
+    },
+    "EDIT_CONTENT": {
+        "message": "Éditer"
+    },
+    "STOP_EDIT_CONTENT": {
+        "message": "Arrêter Modifier"
+    },    
+    "STORAGE_WARN": {
+        "message": "Pour l'instant, ScrapBro utilise le stockage local pour sauvegarder les préférences, déactivez le nettoyage automatique du stockage si vous l'avez positionné."
+    },
+    "NO_SOURCE_NODE_SELECTED": {
+        "message": "Aucun noeud source sélectionné"
+    },
+    "MOVE_TO": {
+        "message": "déplacer vers la "
+    },
+    "COPY_TO": {
+        "message": "copier vers la "
+    },
+    "Left": {
+        "message": "gauche"
+    },
+    "Right": {
+        "message": "droite"
+    },
+    "Sort": {
+        "message": "Trier"
+    },    
+    "Export": {
+        "message": "Export"
+    },
+    "Import": {
+        "message": "Import"
+    },    
+    "INVALID_CONFIGURATION_FILE":{
+        "message": "Fichier de configuration invalide"
+    },
+    "UNCHECK_ALL": {
+        "message": "Décocher tout"
+    },
+    "MULTI_SELECT": {
+        "message": "Sélection multiple"
+    },
+    "ERROR_MOVE_FOLER_INTO_ITSELF": {
+        "message": "Opération invalide: impossible de déplacer un dossier en tant que descendant de lui-même"
+    },
+    "OPEN_ALL_ITEMS":{
+        "message": "Ouvrir tous les articles"
+    },
+    "OPEN_ORIGIN_LINK":{
+        "message": "Ouvrir le lien"
+    },
+    "Properties":{
+        "message": "Propriétés"
+    },
+    "Page":{
+        "message": "Page"
+    },
+    "Bookmark":{
+        "message": "Signet"
+    },
+    "Note":{
+        "message": "Noter"
+    },    
+    "Selection":{
+        "message": "Sélection"
+    },
+    "CREATE_TIME":{
+        "message": "Créer du temps"
+    },
+    "Type":{
+        "message": "Type"
+    },
+    "General":{
+        "message": "Général"
+    },
+    "Comment":{
+        "message": "Commentaire"
+    },
+    "LOCATE_NODE":{
+        "message": "Localiser le nœud"
+    },
+    "SAVE_TO":{
+        "message": "Enregistrer dans"
+    },
+    "CAPTURE":{
+        "message": "CAPTURER"
+    },
+    "Icon":{
+        "message": "Icône"
+    },
+    "Select":{
+        "message": "Sélectionner"
+    },
+    "Default":{
+        "message": "Défaut"
+    },
+    "Clear":{
+        "message": "Nette"
+    },
+    "OPEN_IN_SIDEBAR": {
+        "message": "Ouvrir dans la barre latérale"
+    },
+    "FAIL_START_BACKEND_HINT": {
+        "message": "Impossible de démarrer le backend, veuillez vérifier <a href='options.html#area=install' target='_blank'>l'installation</a> et les <a href='options.html' target='_blank'>paramètres</a>"
+    },
+    "NO_RDF_SETTED_HINT": {
+        "message": "Aucun rdf réglé, veuillez vérifier les <a href='options.html' target='_blank'>paramètres</a>"
+    },
+    "EXPORTER_TYPE": {
+        "message": "Type"
+    },
+    "EXPORTER_HTML_PAGE": {
+        "message": "Page HTML"
+    },
+    "EXPORTER_SOURCE": {
+        "message": "La Source"
+    },
+    "EXPORTER_EXPORT_AS": {
+        "message": "Exporter sous"
+    },
+    "EXPORTER_INCLUDE_SEPARATOR": {
+        "message": "Inclure le séparateur"
+    },
+    "EXPORTER_OPEN_LINKS_IN_NEW_TAB": {
+        "message": "Ouvrir les liens dans un nouvel onglet"
+    },
+    "LOCK_EDITBAR": {
+        "message":"Verrouiller la barre d'édition"
+    },
+    "AUTO_CLOSE_SAVING_DIALOG": {
+        "message":"Boîte de dialogue d'enregistrement à fermeture automatique"
+    },
+    "SHOW_NOTIFICATION": {
+        "message":"Afficher les notifications"
+    },
+    "SAVING_SAVE_FRAMES" : {
+        "message":"Enregistrer les cadres"
+    },
+    "DOWNLOAD_SOURCE_1" : {
+        "message":"Source 1"
+    },
+    "DOWNLOAD_SOURCE_2" : {
+        "message":"Source 2"
+    },
+    "Automatically" : {
+        "message": "Automatiquement"
+    },
+    "Manually" : {
+        "message": "Manuellement"
+    },
+    "Port": {
+        "message": "Port"
+    },
+    "Password": {
+        "message": "Mot de passe"
+    },    
+    "Address": {
+        "message": "Address"
+    },
+    "BACKEND_PROGRAM": {
+        "message": "Programme Backend"
+    },
+    "Execute": {
+        "message": "Exécutez"
+    },
+    "Date": {
+        "message": "Date"
+    },
+    "Order":{
+        "message": "Ordonner"
+    },
+    "Target":{
+        "message": "cible"
+    },
+    "SORT_BY": {
+        "message": "Trier par"
+    },
+    "WHOLE_TREE": {
+        "message": "arbre entier"
+    },
+    "Ascending":{
+        "message":  "Ascendant"
+    },
+    "Descending":{
+        "message":  "Descendant"
+    },
+    "Debug":{
+        "message":  "Debug"
+    },
+    "CASE_SENSITIVE":{
+        "message":  "Sensible aux majuscules et minuscules"
+    },
+    "SIDEBAR_SHOW_ROOT":{
+        "message": "Afficher le nœud racine dans la barre latérale"
+    },
+    "SHOW_ROOT":{
+        "message": "montrer la racine"
+    },
+    "PORT_AUTO_TIP":{
+        "message": "choisi automatiquement, rien à régler"
+    }
+}

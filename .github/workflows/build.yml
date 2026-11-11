@@ -1,0 +1,74 @@
+# Tests the backend on every push that touches it.
+# A tag "v<version>" (the version of package.json) also builds the backend for every platform,
+# packages both extensions and publishes everything as a GitHub release.
+# The settings page of the extension downloads the backend from the latest release.
+name: build
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+    paths: ["backend/**", ".github/workflows/**"]   # not applied to tags
+  pull_request:
+    paths: ["backend/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: backend/go.mod
+      - run: go vet ./...
+      - run: go test ./...
+
+  release:
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: backend/go.mod
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Tag matches package.json
+        run: test "v$(node -p "require('./package.json').version")" = "$GITHUB_REF_NAME"
+
+      - name: Build backend
+        # names must match getBackendDownload() in src/js/options.js: scrapbro_backend_<win|lnx|mac>_<arch>[.exe]
+        run: |
+          mkdir -p dist
+          for target in windows/amd64/win windows/386/win windows/arm64/win \
+                        linux/amd64/lnx linux/386/lnx linux/arm64/lnx \
+                        darwin/amd64/mac darwin/arm64/mac; do
+            IFS=/ read -r goos goarch name <<< "$target"
+            ext=""; [ "$goos" = windows ] && ext=".exe"
+            (cd backend && CGO_ENABLED=0 GOOS=$goos GOARCH=$goarch \
+              go build -trimpath -ldflags "-s -w" -o "../dist/scrapbro_backend_${name}_${goarch}${ext}" .)
+          done
+          ls -l dist
+
+      - name: Package extensions
+        run: node build.mjs --zip
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" --title "ScrapBro $GITHUB_REF_NAME" --generate-notes \
+            dist/scrapbro_backend_* dist/scrapbro-*.zip

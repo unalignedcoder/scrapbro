@@ -1,0 +1,130 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>ScrapBro -> {Search}</title>
+    <link rel="icon" href="/icons/bee.svg" type="image/png" />
+    <script type="text/javascript" src="/libs/browser-polyfill.min.js"></script>
+    <script type="text/javascript" src="/libs/jquery-3.3.1.js"></script>
+    <script type="module" src="/js/proto.js"></script>
+    <script type="text/javascript" src="/js/message.js"></script>
+    <script type="module" src="/js/search.js"></script>
+    <style type="text/css" media="screen">
+     body{
+       margin:0;
+       padding:0
+     }
+     *{
+       font-family:"WenQuanYi Micro Hei",
+       "Open Sans",
+       "Fira Sans",
+       "Lucida Sans",
+       "Lucida Sans Unicode",
+       "Trebuchet MS",
+       "Liberation Sans",
+       "Nimbus Sans L",
+       sans-serif;
+       font-size:12px;
+     }
+     .item{margin-bottom:1em;}
+     .origin{color:green}
+     .icon{height:1em}
+     input[type=submit], input[type=button]{
+       padding:5px 20px;
+       appearance: none;
+       appearance: none;
+       border-radius:5px;
+       border:1px solid;
+       background:#079;
+       color:#fff;
+       cursor:pointer;
+     }
+     input[type=button]::-moz-focus-inner{
+       border:none;
+     }     
+     input[type=submit]:disabled{
+       background:#555;
+     }
+     input[type=checkbox]{
+       vertical-align:middle;
+     }
+     .match-content{
+       display:block;
+       width:fit-content;
+       width:-webkit-fit-content;
+       width:fit-content;
+       width:50em;
+       margin-bottom:2em;
+     }
+     .match-title{
+       color:blue;display:inline-block;
+       text-decoration:none;
+     }
+     .locate-button{
+       display:inline-block;
+       text-decoration:none;
+       margin:0 12px;
+       cursor:pointer;
+       background:#f55;
+       width:10px;
+       height:15px;
+       vertical-align:middle;
+       mask-image:url(/icons/locate.svg);
+       mask-size:100% 100%;
+     }
+     .match-comment{
+       color:#555;
+       display:block;
+       text-decoration:none;
+       /* width:fit-content;
+          width:-webkit-fit-content;
+          width:fit-content; */
+       width:50em;
+       border:1px solid #555;
+       border-radius:5px;
+       margin:5px 0;
+       padding:5px;
+     }
+     .match-source{
+       color:green;display:block;
+       text-decoration:none;
+       width:fit-content;
+       width:-webkit-fit-content;
+       width:fit-content;
+       max-width:50em;
+       white-space:nowrap;
+       overflow:hidden;
+       text-overflow:ellipsis;
+     }
+     img.icon{
+       width:24px;
+       height:24px;
+       margin-right:5px;
+       vertical-align:middle;
+     }
+     img.loading{
+       vertical-align:middle;
+       display:none;
+     }
+     #btnStop{
+       display:none;
+     }
+    </style>
+  </head>
+  <body>
+    <div id="" style="margin-top:0;white-space:nowrap;border-bottom:1px solid #999;height:60px;top:0;position:fixed;background:#fff;width:100%;vertical-align:middle;line-height:60px;z-index:9">
+      <form style="padding-left:30px;" id="searchForm">
+        {Search} <select id="lstRdfs" name="" autocomplate="off">
+        </select>
+        <input type="" name="" value="" id="txtSearch"/>
+        <input type="checkbox" name="source" value="title"/> {Title}
+        <input type="checkbox" name="source" value="body"/> {Content}
+        <input type="checkbox" name="source" value="comment"/> {Comment}
+        <input type="submit" name="search" value="{Search}" id="btnSearch"/>
+        <input type="button" name="stop" value="{Stop}" id="btnStop"/>
+        <img src="/icons/loading.gif" class="loading" alt="" />
+      </form>
+    </div>
+    <div id="divResult" class="some_class" style="margin-top:70px;position:relative;margin-bottom:50px;margin-left:30px;">
+    </div> 
+  </body>
+</html>

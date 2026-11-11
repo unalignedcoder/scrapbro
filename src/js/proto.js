@@ -1,0 +1,301 @@
+// let HEX_FUN = hex_md5;
+
+var HEX_FUN = function(s){
+    return hex_md5(s).substr(0, 15);
+}
+function NumberRange(a,b){
+    this.a=parseFloat(a);
+    this.b=parseFloat(b);
+};
+NumberRange.prototype.random=function(diff){
+  var n=diff;
+  while(n==diff){
+	n=Math.floor(Math.random() * (this.b-this.a+1)) + this.a;
+  }
+  return n;
+};
+NumberRange.prototype.forEach=function(fn,step){
+    if(!step)step=1;
+    if(isNaN(this.a)||isNaN(this.b))return;
+    var n=step>0?this.a:-this.a;
+    var m=step>0?this.b:-this.b;
+    var s=Math.abs(step);
+    var counter=0;
+    for(var i=n;i<=m;i+=step){
+	if(fn.apply(this,[i, counter++])===false)break;
+    }
+};
+String.prototype.htmlEncode = function(ignoreWs, ignoreAmp){
+    var s = this;
+    if(!ignoreAmp)s=s.replace(/&/g,'&amp;');
+    if(!ignoreWs)s = s.replace(/ /g,'&nbsp;');
+    return s.replace(/</g,'&lt;')
+	.replace(/>/g,'&gt;')
+	.replace(/\"/g,'&quot;')
+	.replace(/\'/g,'&#39;');
+};
+String.prototype.htmlDecode=function(){
+    return this.replace(/&amp;/g,'&')
+	.replace(/&quot;/g,'\"')
+	.replace(/&lt;/g,'<')
+	.replace(/&gt;/g,'>')
+	.replace(/&nbsp;/g,' ')
+	.replace(/&#39;/g,"'") ;
+};
+/* chrome only allows [A-Za-z0-9_] in message names, keys in _locales use "_" for other chars */
+String.prototype.toMessageName=function(){
+    return this.replace(/\W/g, "_");
+};
+String.prototype.translate=function(){
+    return this.fillData(function(s){
+	try{
+	    return browser.i18n.getMessage(s.toMessageName()) || "";
+	}catch(e){
+	    return s;
+	}
+    });
+};
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+/*
+  html style escape characters
+  @chars: chars be escaped
+  @slashed: replace chars slashed only
+*/
+String.prototype.escape = function(chars, slashed) {
+    return this.replace(new RegExp((slashed ? "\\\\":"") + "([" + chars + "])", "g"), function(a, b) {
+        return "&#" + b.charCodeAt(0) +";";
+    });
+};
+/* replace placeholders inside string with given data */
+String.prototype.fillData = function(data) {
+    /** value getter */
+    function v(s){
+	if(data instanceof Function){
+	    return data(s);
+	}
+        var parts = s.split("."), d = data, r;
+        for (let p of parts){
+            if(p){r = d[p]; d = r;}
+            if(!d) break;
+        }
+        return r;
+    }
+    var c = 1;
+    /** protect escaped brace */
+    var s = this.replace(/\\([\{\}])/g, function(a, b) {
+        var code = b.charCodeAt(0);
+        return `&#${code};`; 
+    });
+    /** escape slashed special characters (become normal) */
+    s = s.replace(/\{([\s\S]+)\}/g, function(a, b) {
+        return "{" + b.escape("?:!", true) + "}";
+    });
+    /** replace all placeholder recursively */
+    while(c) {
+        c = 0;
+        s = s.replace(/\{([^\{\}]+?)\}/g, function(match, key) { /** match placeholders */
+            var m = null, r;
+            if(m = key.match(/^([\s\S]+?)\!([\s\S]*?)(?:\:([\s\S]*))?$/)) { /** negative test: match [key]![true-part][:false-part] */
+                r = !v(m[1]) ? m[2] : (typeof(m[3]) !="undefined" ? m[3] : "");
+            } else if(m = key.match(/^([\s\S]+?)\?([\s\S]*?)(?:\:([\s\S]*))?$/)) { /** positive test: match [key]?[true-part][:false-part] */
+                r = v(m[1]) ? m[2] : (typeof(m[3]) !="undefined" ? m[3] : "");
+            } else { /** directly */
+                var t = v(key);
+                r = typeof(t) != "undefined" ? String(t).escape("?:!", false) : "";
+            }
+            c = 1;
+            return r;
+        });
+    }
+    return s.replace(/\&\#(\d+)\;/g, function(a, b){
+        return String.fromCharCode(parseInt(b));
+    });
+};
+String.prototype.shorten = function storten(l){
+    if(this.length > l){
+        return this.substring(0,l) + "...";
+    }
+    return this;
+};
+Date.prototype.format=function(fmt){
+    var o={
+	"M+":this.getMonth()+1,
+	"d+":this.getDate(), 
+	"h+":this.getHours(),
+	"m+":this.getMinutes(),
+	"s+":this.getSeconds(),
+	"q+":Math.floor((this.getMonth()+3)/3),
+	"S":this.getMilliseconds()
+    };
+    if(/(y+)/.test(fmt)){
+	fmt=fmt.replace(RegExp.$1,(this.getFullYear()+"").substr(4-RegExp.$1.length));
+    }
+    for(var k in o){
+	if(new RegExp("("+k+")").test(fmt)){
+	    fmt=fmt.replace(RegExp.$1,(RegExp.$1.length==1)?(o[k]):(("00"+o[k]).substr((""+o[k]).length)));	
+	}
+    }
+    return fmt;
+};
+String.prototype.isHexColor=function(){
+    return this.match(/^#([0-9a-f]{3,4}|[0-9a-f]{6}||[0-9a-f]{8})$/i);
+};
+/* DOM types do not exist in the background service worker */
+if(typeof NodeList != "undefined"){
+NodeList.prototype.forEach = Array.prototype.forEach;
+NodeList.prototype.iterateAll = function(fn){
+    this.forEach(function(item){
+        fn(item);
+        item.childNodes.iterateAll(fn);
+    });
+};
+DocumentFragment.prototype.html = function(){
+    var self = this;
+    return Array.prototype.reduce.call(
+        self.childNodes, 
+        (result, node) => result + (node.outerHTML || node.nodeValue),
+        ''
+    );
+};
+}
+function ScrapbeeElement(el){
+    this.el = el;
+    var uniqueId = el.getAttribute("sbuid");
+    if(uniqueId){
+        this.originEl = document.querySelector(`*[sbuid='${uniqueId}']`);
+        this.el.removeAttribute("sbuid");
+    }
+}
+ScrapbeeElement.prototype.getFullUrl=function(url){
+    var baseURI = this.el.baseURI.replace(/\/[^\/]+$/, "/");
+    return new URL(url, baseURI).href;
+};
+ScrapbeeElement.prototype.processInlineStyle=function(){
+    if(this.originEl && this.originEl.style.cssText){ // inline (on tag or js assigned)
+        this.el.setAttribute("style", this.el.style.cssText);
+    }
+};
+ScrapbeeElement.prototype.processResources=function(){
+    if(!this.originEl){
+        return [];
+    }
+    var t = this.el.tagName.toLowerCase().replace(/^\w/, function(m){return m.toUpperCase();});
+    var fn = "get" + t + "Resources";
+    var res = this.getCommonResources();
+    var dict = {}, r=[];
+    if(this[fn] instanceof Function){
+	var f = this[fn]();
+        if(f && f.constructor == Array){
+	    for(let s of f){
+	        res.push(s);
+	    }
+        }
+    }
+    for(let re of res){
+	if(!dict[re.url]){
+	    dict[re.url] = 1;
+	    r.push(re);
+	}
+    }
+    return r;
+}
+ScrapbeeElement.prototype.getCommonResources=function(){
+    var r = [];
+    try{
+        var self = this;
+        var style = window.getComputedStyle(this.originEl, false);
+        var bg = style.backgroundImage;
+        var m;
+        var regexpUrl = /url\(['"]?(.+?)['"]?\)/;
+        if(bg.match(regexpUrl)){
+            this.el.style.backgroundImage=bg.replace(regexpUrl, function(a, b){
+                var url = bg;
+                var hex = HEX_FUN(url);
+                r.push({tag:self.el.tagName, type:"image", url:b, hex: hex});
+                return "url(" + hex + ")";
+            });
+        }else if(m = bg.match(/data:image\/(.+?);base64,(.+)/)){
+	    var hex = HEX_FUN(bg);
+	    r.push({tag:this.el.tagName, type:"image", url:bg, hex: hex});
+	    this.el.style.backgroundImage = hex;
+        }
+    }catch(e){
+        console.log(`ScrapbeeElement.getCommonResources: ${e}`);
+    }
+    return r;
+};
+ScrapbeeElement.prototype.getInputResources=function(){
+    this.el.setAttribute("value", this.el.value);
+}
+ScrapbeeElement.prototype.getTextareaResources=function(){
+    this.el.innerHTML = this.el.value;
+}
+ScrapbeeElement.prototype.getBodyResources=function(){
+}
+ScrapbeeElement.prototype.getImgResources=function(){
+    var r=[];
+    ["data-orig-file", "data-medium-file", "data-large-file", "srcset", "onload", "onerror"].forEach((a)=>{
+        this.el.removeAttribute(a);    
+    });
+    if(this.el.getAttribute("src")){ // always absolute uri?
+        // data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='540' height='563'></svg>
+        if(!(/^data\:image\/svg/i).test(this.el.src)){
+	    var hex = HEX_FUN(this.el.src);
+	    r.push({tag:this.el.tagName, type:"image", url:this.el.src, hex});
+            this.el.src = hex;
+        }
+    }
+    return r;
+};
+ScrapbeeElement.prototype.getStyleResources=function(){
+    this.el.setAttribute("mark_remove", "1");
+    return [];
+};
+ScrapbeeElement.prototype.getScriptResources=function(){
+    var r = [];
+    // if(this.el.getAttribute("src")){
+    //     var hex = HEX_FUN(this.el.src);
+    //     r.push({tag:this.el.tagName, type:"image", url:this.el.src, hex});
+    // }
+
+    this.el.setAttribute("mark_remove", "1");
+    return r;
+};
+ScrapbeeElement.prototype.getLinkResources=function(){
+    var r = [];
+    if((/(^|\W)(shortcut|icon)(\W|$)/i).test(this.el.rel)){ // rel="shortcut icon"
+        var hex = HEX_FUN(this.el.href);
+        this.el.rel = "shortcut icon";
+        r.push({tag:this.el.tagName, type:"image", url:this.el.href, isIcon:true, hex});
+        this.el.href = hex;
+    }else{
+        this.el.setAttribute("mark_remove", "1");
+    }
+    return r;
+};
+ScrapbeeElement.prototype.getIframeResources=function(){
+    // this.el.setAttribute("mark_remove", "1");
+};
+ScrapbeeElement.prototype.getSourceResources=function(){
+    this.el.setAttribute("mark_remove", "1");
+}
+ScrapbeeElement.prototype.getMetaResources=function(){
+    var attr = this.el.getAttribute("http-equiv");
+    
+    // if(["expires", "content-security-policy", "pragma", "refresh", "origin-trial", "og:image", "image", "robots"
+    //     "set-cookie", "window-target", "page-enter", "page-exit"].indexOf(attr.toLowerCase()) > -1){
+    //     this.el.setAttribute("mark_remove", "1");
+    // }
+    
+    if(attr && attr.toLowerCase() == "content-type"){
+        
+    }else{
+        this.el.setAttribute("mark_remove", "1");
+    }
+};
+ScrapbeeElement.prototype.getBaseResources=function(){
+    this.el.setAttribute("mark_remove", "1");
+};
+true;
