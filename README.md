@@ -33,7 +33,7 @@ ScrapBro is fully compatible with the old ScrapBee and Scrabooks `.rdf` index fi
 ## Download and Install
 
 1. Install ScrapBro from your browser's add-on store.
-2. Open its Settings → Install, choose a folder, and download the backend.
+2. Open its Install page in Settings and download the backend and the install script.
 3. Run the install script in that folder once (`install.bat` on Windows, `install.sh` on Linux/macOS).
 4. In Settings, add your scrapbook folder (new or existing).
 5. Open the sidebar / side panel and start saving, browsing or reading pages.
@@ -65,7 +65,7 @@ Running the script once registers the backend for the current user.
 
 On Windows the configuration points to the program relative to its own folder, on Linux and macOS the script writes the absolute path when it copies the configuration into the browsers' folders.
 
-Differently from Scrapbee, the backend port needs no setup: a random, available port is picked on first start without needing intervention from the user.
+Differently from Scrapbee, <ins>the backend port needs no setup</ins>: a random, available port is picked on first start without needing intervention from the user.
 To run the backend yourself (e.g. as a service), start `scrapbro_backend web-server [port] [host] [password]` and choose *Manually* in the settings.
 
 The backend only answers the extension: requests from other web pages (checked by `Origin` and `Host`) are refused.
@@ -73,10 +73,7 @@ The backend only answers the extension: requests from other web pages (checked b
 ## Compatibility notes
 
 - Internal names that end up in saved pages (CSS classes like `scrapbee-marker-*`) are kept, so pages edited with ScrapBee and ScrapBro stay interchangeable.
-- **It is best not to install ScrapBro and ScrapBee in the same browser profile.** Both read and write the same scrapbooks, each keeps
-  its own copy of the tree in memory and saves the whole RDF file on every change, so working with both can silently lose
-  changes or leave a scrapbook inconsistent. You can rather export the settings from ScrapBee, remove it, install ScrapBro
-  and import the settings. This will work flawlessly, however always back up the scrapbook folders before doing any of this.
+- **It is best not to install ScrapBro and ScrapBee in the same browser profile.** Both read and write the same scrapbooks, each keeps its own copy of the tree in memory and saves the whole RDF file on every change, so working with both can silently lose changes or leave a scrapbook inconsistent. You can rather export the settings from ScrapBee, remove it, install ScrapBro and import the settings. This will work flawlessly, however always back up the scrapbook folders before doing any of this.
 
 ## License
 
