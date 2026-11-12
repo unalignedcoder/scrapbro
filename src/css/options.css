@@ -9,42 +9,78 @@
 	"Liberation Sans",
 	"Nimbus Sans L",
 	sans-serif;
-    font-size:12px;
+    font-size:13px;
 }
+/* a lighter, centred panel on the dark grey page */
 html{
-    height:100%;
-    width:100%;
+    background:#999;
 }
 body{
     margin:0;
-    display:table;
-    min-height:100%;
-    max-height:100%;
-    height: 100%;
-    width:100%;
+    padding:30px 20px;
+    box-sizing:border-box;
 }
 input{
     vertical-align:middle;
 }
 #div-page{
-    display:table-row;
-    background:#999;
+    display:flex;
+    max-width:1100px;
+    /* fixed height: every page scrolls inside the panel, the frame keeps its size */
+    height:calc(100vh - 60px);
+    margin:0 auto;
+    background:#c9c9c9;
+    border-radius:8px;
+    box-shadow:0 2px 14px rgba(0,0,0,0.3);
+    overflow:hidden;
 }
 #div-form-left {
-    display:table-cell;
-    background:#999;
-    padding:0;
-    vertical-align:top;
-    width:150px;
-    min-width:150px;
-    border-right:1px solid #777;
+    flex:0 0 160px;
+    overflow-y:auto;
+    overflow-x:hidden; /* the 3px border of the selected item would add a horizontal scrollbar */
+    background:#b6b6b6;
+    padding:10px 0;
+    border-right:1px solid #999;
 }
-.form-table {
+/* one spacing system for the install and configure tables: rows 10px apart, boxes with 10px inner padding,
+   labels in the first column aligned with the first line of text inside the boxes (10px row + 11px box inset) */
+.form-table:not(.inner){
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+}
+.form-table>tbody>tr>td{
+    padding:10px 0 10px 15px;
+    vertical-align:top;
+}
+.form-table>tbody>tr.hr>td{
+    padding:0;
+}
+.form-table hr{
+    margin:5px 0;
+}
+/* text without a box, inset like the text inside a box */
+.step-text{
+    padding:11px 0;
 }
 .div-area{
-    display:table-cell;
-    padding:15px;
-    overflow:scroll;
+    flex:1 1 auto;
+    min-width:0;
+    padding:20px 30px;
+    overflow:auto;
+}
+/* the log console fills the whole panel (it is absolutely positioned inside) */
+#div-log{
+    min-height:400px;
+}
+/* plain introduction above the install steps */
+.intro{
+    margin:0 0 10px 0;
+    padding-top:10px;
+}
+/* forget remembered install files, right aligned after the last download */
+.reset-button{
+    float:right;
 }
 input[type=button]{
     padding:5px 20px;
@@ -85,7 +121,8 @@ input[type=button].movedn{
 }
 div.download-path{
     width:fit-content;
-    margin-bottom:5px;
+    padding:10px;
+    margin-bottom:10px;
 }
 .form-table input[type=button]::-moz-focus-inner{
     border:none;
@@ -93,22 +130,27 @@ div.download-path{
 .rdf-row>input[type=button], input[type=button].narrow{
     padding:5px 10px;
 }
-#rdf-area div{
+/* one RDF per line, fitting the panel: the path field takes the remaining width (its text scrolls inside it) */
+#rdf-area .rdf-row{
+    display:flex;
+    align-items:center;
+    gap:6px;
     margin-bottom:3px;
     white-space:nowrap;
 }
-#rdf-area div span:nth-of-type(1){
-    display:inline-block;
-    /* width:50px; */
-    /* color:#f00; */
-    /* border:1px solid; */
-    text-align:right;
+#rdf-area .rdf-row > *{
+    flex:none;
 }
-#rdf-area div input[type=text]:nth-of-type(1){
-    width:100px;
+/* width:0, the flex sizes decide: an input otherwise keeps its default width (20 characters) as the row minimum */
+#rdf-area .rdf-row input[name=name]{
+    width:0;
+    flex:0 1 160px;
+    min-width:60px;
 }
-#rdf-area div input[type=text]:nth-of-type(2){
-    width:440px;
+#rdf-area .rdf-row input[name=value]{
+    width:0;
+    flex:1 1 auto;
+    min-width:0;
 }
 .form-table input[type=checkbox]{
     /* margin-top:8px; */
@@ -123,17 +165,16 @@ div.download-path{
 .form-table>tbody>tr>td:first-child{
     vertical-align:top;
     text-align:right;
-    /* text-decoration:underline; */
     font-weight:bold;
     font-size:15px;
     white-space:nowrap;
-    padding-top:0;
+    width:1%;
+    padding:21px 0 10px 0;
 }
 div.panel{
     border-radius:5px;
-    /* border:1px solid #777; */
     padding:10px;
-    white-space:nowrap;
+    /* may wrap in narrow windows (labels stay on one line, see td:first-child) */
 }
 .form-table.inner>tbody>tr>td:first-child,
 .form-table.inner>tbody>tr>td:nth-child(3),
@@ -158,6 +199,7 @@ div.panel{
     border-bottom:1px solid;
 }
 .left-index{
+    box-sizing:border-box; /* 100% wide including the border of the selected item */
     outline: none;
     padding:15px 0px;
     color:#000;
@@ -168,14 +210,14 @@ div.panel{
 }
 .left-index.focus{
     border-right:3px solid #079;
-    background:#bbb;
+    background:#c9c9c9;
 }
 .tips{
     border-radius:5px;
     border:1px solid #777;
     background:#cc9;
     padding:10px;
-    margin-bottom:5px;
+    margin-bottom:10px;
     text-align:left;
     font-weight:normal;
     white-space:normal;
@@ -256,17 +298,18 @@ li.h3{
     border: 0;
 }
 .help-mark{
-    width:20px;
-    height:20px;
-    background:url(icons/help-mark.svg);
-    background-size: 20px 20px;
+    width:16px;
+    height:16px;
+    background:url(/icons/help-mark.svg);
+    background-size: 16px 16px;
+    cursor:help;
     vertical-align:middle;
     display:inline-block;
 }
 .warn-mark{
     width:20px;
     height:20px;
-    background:url(icons/warn-mark.svg);
+    background:url(/icons/warn-mark.svg);
     background-size: 20px 20px;
     vertical-align:middle;
     display:inline-block;
@@ -586,4 +629,84 @@ hr{
 
 .boxx:hover{
     background:#599;
+}
+/* donate page */
+.donate{
+    text-align:center;
+    padding-top:30px;
+}
+.donate p{
+    font-size:15px;
+    margin:20px auto;
+    max-width:40em;
+}
+.donate p.credit{
+    font-size:13px;
+    color:#444;
+}
+/* the page is a column, its footer (icon and copyright) at the bottom; hidden with an inline display:none */
+#div-donate{
+    display:flex;
+    flex-direction:column;
+}
+.donate-footer{
+    margin-top:auto;
+    padding-top:30px;
+    text-align:center;
+}
+.donate-footer .copyright{
+    font-size:12px;
+    color:#444;
+    margin:8px 0 0 0;
+}
+.donate-footer .copyright a{
+    color:#444;
+}
+/* the ScrapBro icon above the menu */
+.menu-logo{
+    display:block;
+    margin:10px auto 15px auto;
+}
+/* no horizontal overflow: fields shrink, long paths wrap, long titles end with "..." */
+/* the backend table spans the panel, so the address field can be a share of it and shrink */
+#configure-table div.panel > table.form-table.inner{
+    width:100%;
+}
+.form-table input[name=backend_address]{
+    width:100%;
+    min-width:0;
+    max-width:30em;
+    box-sizing:border-box;
+}
+.download-path b, #run-folder b, #exporter .path{
+    word-break:break-all;
+}
+#node-mover #tree0, #node-mover #tree1{
+    overflow-x:hidden;
+}
+#node-mover .item{
+    display:flex;
+    align-items:center;
+    max-width:100%;
+    box-sizing:border-box;
+}
+#node-mover .item > *{
+    flex:none;
+}
+#node-mover .item label{
+    flex:1 1 auto;
+    min-width:0;
+    max-width:none;
+    white-space:nowrap;
+}
+/* configure: the section titles may wrap ("Backend / Program"), the column is as narrow as its longest word */
+#configure-table > tbody > tr > td:first-child{
+    white-space:normal;
+}
+/* the title columns of install ("Step 1") and configure have the same width (wider only for a longer translated word) */
+.form-table:not(.inner) > tbody > tr > td:first-child{
+    width:7.5em;
+}
+#export-status{
+    margin-top:15px;
 }

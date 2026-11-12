@@ -1,0 +1,499 @@
+{
+    "extensionDescription": {
+        "message": "웹 페이지를 로컬 디스크에 저장하고 브라우저 사이드바에서 정리합니다. ScrapBook 문서와 호환됩니다.",
+        "description": "Description of the extension."
+    },
+    "DLG_OK": {
+        "message": "확인"
+    },
+    "DLG_CANCEL": {
+        "message": "취소"
+    },
+    "Setting": {
+        "message": "설정"
+    },
+    "Configure": {
+        "message": "구성"
+    },
+    "Reload": {
+        "message": "새로 고침"
+    },
+    "Search": {
+        "message": "검색"
+    },
+    "Stop": {
+        "message": "중지"
+    },
+    "Help": {
+        "message": "도움말"
+    },
+    "Folder": {
+        "message": "폴더"
+    },
+    "Open_Folder": {
+        "message": "폴더 열기"
+    },
+    "Title": {
+        "message": "제목"
+    },
+    "Content": {
+        "message": "내용"
+    },
+    "Step": {
+        "message": "단계"
+    },
+    "Name": {
+        "message": "이름"
+    },
+    "Save": {
+        "message": "저장"
+    },
+    "MODIFY_DOM_ON": {
+        "message": "요소 삭제"
+    },
+    "MODIFY_DOM_OFF": {
+        "message": "삭제 끝내기"
+    },
+    "MARK_PEN": {
+        "message": "강조"
+    },
+    "SOURCE_CODE": {
+        "message": "소스 코드"
+    },
+    "File": {
+        "message": "파일"
+    },
+    "Donate": {
+        "message": "후원"
+    },
+    "New_Folder": {
+        "message": "새 폴더"
+    },
+    "New_Separator": {
+        "message": "새 구분선"
+    },
+    "New_Note": {
+        "message": "새 메모"
+    },
+    "CapturePage": {
+        "message": "페이지 저장"
+    },
+    "SAME_LEVEL": {
+        "message": "같은 수준"
+    },
+    "CaptureSelection": {
+        "message": "선택 영역 저장"
+    },
+    "CaptureUrl": {
+        "message": "북마크 저장"
+    },
+    "CaptureAdvance": {
+        "message": "고급 저장..."
+    },
+    "CaptureTabs": {
+        "message": "모든 탭 저장"
+    },
+    "Download": {
+        "message": "다운로드"
+    },
+    "Delete": {
+        "message": "삭제"
+    },
+    "Install": {
+        "message": "설치"
+    },
+    "Log": {
+        "message": "로그"
+    },
+    "RDF_Files": {
+        "message": "RDF 파일"
+    },
+    "CUSTOM_INSTALL_TIP": {
+        "message": "아래 단계는 백엔드 프로그램을 설치합니다. <b>세 파일을 모두 같은 폴더에 저장하세요.</b>"
+    },
+    "STEP1_TEXT_1": {
+        "message": "ScrapBro 백엔드 프로그램을 다운로드합니다."
+    },
+    "STEP1_TEXT_2": {
+        "message": "프로그램은 이 버전에 해당하는 GitHub의 ScrapBro 릴리스에서 다운로드되며, 저장하기 전에 SHA-256 체크섬을 확인합니다."
+    },
+    "STEP2_TEXT_1": {
+        "message": "프로그램 위치를 브라우저에 알려 주는 구성 파일을 다운로드합니다. <b>프로그램과 같은 폴더에 저장하세요.</b>"
+    },
+    "STEP3_TEXT_1": {
+        "message": "설치 스크립트를 실행합니다."
+    },
+    "STEP3_TEXT_3": {
+        "message": "현재 사용자에 대해 백엔드를 등록하며, 관리자 권한은 필요 없습니다"
+    },
+    "STEP4_TEXT": {
+        "message": "확장 프로그램 페이지에서 ScrapBro를 껐다가 다시 켜거나, 브라우저를 다시 시작하세요."
+    },
+    "FONT_SIZE": {
+        "message": "글꼴 크기"
+    },
+    "FONT_NAME": {
+        "message": "글꼴"
+    },
+    "LINE_SPACING": {
+        "message": "줄 간격"
+    },
+    "Separator": {
+        "message": "구분선"
+    },
+    "BACKEND_TIP": {
+        "message": "ScrapBro가 동작하려면 백엔드 프로그램이 필요합니다. <a href=\"#area=install\">설치</a> 페이지와 <a href=\"#area=help&scroll=help_install\">도움말</a>을 참고하세요."
+    },
+    "RDF_FILES_TIP": {
+        "message": "RDF 파일은 스크랩북의 <b>목차</b>이며, 저장된 페이지는 그 옆의 \"data\" 폴더에 보관됩니다. <a href='#area=help&scroll=help_rdf'>도움말</a>을 참고하세요.<br/><br/>RDF 파일은 여러 개 가질 수 있고, 같은 폴더에 두어도 됩니다. 아직 없는 파일은 빈 파일로 만들어집니다.<br/><a href=\"https://en.wikipedia.org/wiki/ScrapBook\" target=\"_blank\">ScrapBook</a> 및 <a href=\"https://github.com/vctfence/scrapbee\" target=\"_blank\">ScrapBee</a>의 RDF 파일도 사용할 수 있습니다.<br/><br/><b>아래의 \"+\"를 클릭해 RDF 파일을 추가하고, 이름과 파일의 전체 경로를 입력하세요.</b>"
+    },
+    "Appearance": {
+        "message": "모양"
+    },
+    "Behavior": {
+        "message": "동작"
+    },
+    "OPEN_IN_CURRENT_TAB": {
+        "message": "현재 탭에서 열기"
+    },
+    "OPEN_IN_CURRENT_TAB_TIP": {
+        "message": "기본적으로 항목을 클릭하면 새 탭에서 열리고, Ctrl(Mac에서는 Cmd)을 누른 채 클릭하거나 마우스 가운데 버튼으로 클릭하면 현재 탭에서 열립니다.<br/>이 옵션은 두 동작을 서로 바꿉니다."
+    },
+    "DONATE_WORDS": {
+        "message": "ScrapBro는 무료입니다. 유용하다면 커피 한 잔으로 개발을 응원해 주세요. 감사합니다!"
+    },
+    "RESULTS_FOUND": {
+        "message": " 개의 결과를 찾았습니다"
+    },
+    "ConfirmDeleteItem": {
+        "message": "선택한 항목을 삭제하시겠습니까?"
+    },
+    "Warning": {
+        "message": "경고"
+    },
+    "Loading___": {
+        "message": "불러오는 중..."
+    },
+    "Starting___": {
+        "message": "시작하는 중..."
+    },
+    "NO_SELECTION_ACTIVATED": {
+        "message": "선택 항목 없음"
+    },
+    "Announcement": {
+        "message": "변경 내역"
+    },
+    "NODE_MOVER_TIP": {
+        "message": "이 도구로 두 RDF 파일 사이에서 항목을 내용과 함께 이동하거나 복사할 수 있으며, 한 RDF 안에서 끌어 놓기와 삭제도 할 수 있습니다."
+    },
+    "NODE_MOVER_WARN_TIP": {
+        "message": "<b>주의</b><br>이 도구를 사용하기 전에 데이터를 백업하세요.<br>사용하는 동안 다른 곳에서 변경하지 마세요. 충돌이 생길 수 있습니다."
+    },
+    "Tools": {
+        "message": "도구"
+    },
+    "Node_Mover": {
+        "message": "항목 이동"
+    },
+    "Exporter": {
+        "message": "내보내기"
+    },
+    "Done": {
+        "message": "완료"
+    },
+    "EDIT_CONTENT": {
+        "message": "편집"
+    },
+    "STOP_EDIT_CONTENT": {
+        "message": "편집 끝내기"
+    },
+    "NO_SOURCE_NODE_SELECTED": {
+        "message": "원본 항목을 선택하지 않았습니다"
+    },
+    "MOVE_TO": {
+        "message": "이동할 곳:"
+    },
+    "COPY_TO": {
+        "message": "복사할 곳:"
+    },
+    "Left": {
+        "message": "왼쪽"
+    },
+    "Right": {
+        "message": "오른쪽"
+    },
+    "Sort": {
+        "message": "정렬"
+    },
+    "Export": {
+        "message": "내보내기"
+    },
+    "Import": {
+        "message": "가져오기"
+    },
+    "INVALID_CONFIGURATION_FILE": {
+        "message": "잘못된 구성 파일입니다"
+    },
+    "UNCHECK_ALL": {
+        "message": "모두 선택 해제"
+    },
+    "ERROR_MOVE_FOLER_INTO_ITSELF": {
+        "message": "잘못된 작업: 폴더를 자기 자신 안으로 이동할 수 없습니다"
+    },
+    "OPEN_ALL_ITEMS": {
+        "message": "모든 항목 열기"
+    },
+    "OPEN_ORIGIN_LINK": {
+        "message": "원래 주소 열기"
+    },
+    "Properties": {
+        "message": "속성"
+    },
+    "Page": {
+        "message": "페이지"
+    },
+    "Bookmark": {
+        "message": "북마크"
+    },
+    "Note": {
+        "message": "메모"
+    },
+    "Selection": {
+        "message": "선택 영역"
+    },
+    "CREATE_TIME": {
+        "message": "만든 시간"
+    },
+    "Type": {
+        "message": "종류"
+    },
+    "General": {
+        "message": "일반"
+    },
+    "Comment": {
+        "message": "설명"
+    },
+    "LOCATE_NODE": {
+        "message": "사이드바에 표시"
+    },
+    "SAVE_TO": {
+        "message": "저장 위치"
+    },
+    "CAPTURE": {
+        "message": "저장"
+    },
+    "Icon": {
+        "message": "아이콘"
+    },
+    "Select": {
+        "message": "선택"
+    },
+    "Default": {
+        "message": "기본값"
+    },
+    "Clear": {
+        "message": "지우기"
+    },
+    "OPEN_IN_SIDEBAR": {
+        "message": "사이드바에서 열기"
+    },
+    "FAIL_START_BACKEND_HINT": {
+        "message": "백엔드 프로그램이 실행 중이 아닙니다. <a href='options.html#area=install' target='_blank'>설치</a>와 <a href='options.html#area=log' target='_blank'>로그</a>를 확인하세요"
+    },
+    "NO_RDF_SETTED_HINT": {
+        "message": "아직 설정된 RDF 파일이 없습니다. <a href='options.html#area=configure' target='_blank'>설정</a>을 확인하세요"
+    },
+    "EXPORTER_TYPE": {
+        "message": "종류"
+    },
+    "EXPORTER_HTML_PAGE": {
+        "message": "HTML 페이지"
+    },
+    "EXPORTER_SOURCE": {
+        "message": "원본"
+    },
+    "EXPORTER_EXPORT_AS": {
+        "message": "내보낼 위치"
+    },
+    "EXPORTER_INCLUDE_SEPARATOR": {
+        "message": "구분선 포함"
+    },
+    "EXPORTER_OPEN_LINKS_IN_NEW_TAB": {
+        "message": "링크를 새 탭에서 열기"
+    },
+    "AUTO_CLOSE_SAVING_DIALOG": {
+        "message": "저장 대화 상자 자동으로 닫기"
+    },
+    "SHOW_NOTIFICATION": {
+        "message": "알림 표시"
+    },
+    "SAVING_SAVE_FRAMES": {
+        "message": "프레임 저장"
+    },
+    "Automatically": {
+        "message": "자동"
+    },
+    "Manually": {
+        "message": "수동"
+    },
+    "Port": {
+        "message": "포트"
+    },
+    "Password": {
+        "message": "비밀번호"
+    },
+    "Address": {
+        "message": "주소"
+    },
+    "BACKEND_PROGRAM": {
+        "message": "백엔드 프로그램"
+    },
+    "Execute": {
+        "message": "실행:"
+    },
+    "Date": {
+        "message": "날짜"
+    },
+    "Order": {
+        "message": "순서"
+    },
+    "Target": {
+        "message": "대상"
+    },
+    "SORT_BY": {
+        "message": "정렬 기준"
+    },
+    "WHOLE_TREE": {
+        "message": "전체 트리"
+    },
+    "Ascending": {
+        "message": "오름차순"
+    },
+    "Descending": {
+        "message": "내림차순"
+    },
+    "Debug": {
+        "message": "디버그"
+    },
+    "CASE_SENSITIVE": {
+        "message": "대소문자 구분"
+    },
+    "NEW_POS": {
+        "message": "새 항목 추가 위치"
+    },
+    "Top": {
+        "message": "맨 위"
+    },
+    "Bottom": {
+        "message": "맨 아래"
+    },
+    "SIDEBAR_SHOW_ROOT": {
+        "message": "사이드바에 루트 표시"
+    },
+    "SHOW_ROOT": {
+        "message": "루트 표시"
+    },
+    "PORT_AUTO_TIP": {
+        "message": "백엔드가 시작될 때 자동으로 선택되며, 비어 있는 동안 계속 사용됩니다. 설정할 필요가 없습니다."
+    },
+    "SAVED_TO": {
+        "message": "저장 위치"
+    },
+    "DOWNLOAD_AGAIN": {
+        "message": "다시 다운로드"
+    },
+    "BACKEND_RUNNING": {
+        "message": "백엔드 프로그램이 실행 중입니다"
+    },
+    "IN_FOLDER": {
+        "message": "폴더"
+    },
+    "Downloading___": {
+        "message": "다운로드 중..."
+    },
+    "STEP_SCRIPT_TEXT": {
+        "message": "구성 파일을 브라우저에 등록하는 설치 스크립트를 다운로드합니다. <b>이것도 같은 폴더에 저장하세요.</b>"
+    },
+    "INSTALL_SAME_FOLDER": {
+        "message": "파일이 서로 다른 폴더에 있습니다. 프로그램, 구성 파일, 설치 스크립트를 한 폴더로 옮긴 다음 그곳에서 스크립트를 실행하세요."
+    },
+    "RESET_STATE": {
+        "message": "초기화"
+    },
+    "RESET_STATE_TIP": {
+        "message": "파일을 저장한 위치를 잊고 모든 안내를 다시 표시합니다"
+    },
+    "DEBUG_TIP": {
+        "message": "로그에 자세한 줄 표시: 백엔드 메시지, 저장된 파일, 저장 단계와 소요 시간. 문제가 생겼을 때 유용합니다."
+    },
+    "DONATE_CREDIT": {
+        "message": "ScrapBro는 vctfence의 ScrapBee를 기반으로 합니다."
+    },
+    "LOCALE_DIR":{
+        "message": "ko",
+        "description": "Name of this locale folder, do not translate."
+    },
+    "NO_BACKEND_CHECKSUM":{
+        "message": "이 ScrapBro 빌드에는 백엔드 프로그램의 체크섬이 없어 다운로드할 수 없습니다. 릴리스 버전을 사용하거나 GitHub의 ScrapBro 릴리스에서 프로그램을 받으세요."
+    },
+    "BACKEND_CHECKSUM_MISMATCH":{
+        "message": "다운로드한 프로그램이 체크섬과 일치하지 않아 저장하지 않았습니다. 나중에 다시 시도하거나 GitHub에 알려 주세요."
+    },
+    "THEME":{
+        "message": "테마"
+    },
+    "THEME_AUTO":{
+        "message": "브라우저 따르기"
+    },
+    "THEME_LIGHT":{
+        "message": "밝게"
+    },
+    "THEME_DARK":{
+        "message": "어둡게"
+    },
+    "FONT_DEFAULT":{
+        "message": "기본값(시스템 글꼴)"
+    },
+    "BACKEND_LAUNCH":{
+        "message": "실행 방식"
+    },
+    "LAUNCH_TIP":{
+        "message": "<b>자동</b>: ScrapBro가 백엔드 프로그램을 직접 시작하므로 따로 할 일이 없습니다.<br/><b>수동</b>: ScrapBro가 시작하지 않고 아래 주소로 연결합니다. 직접 실행하는 백엔드(예: 서비스로 실행하거나 다른 컴퓨터에서 실행)에 사용합니다."
+    },
+    "PASSWORD_TIP":{
+        "message": "선택 사항. 이 컴퓨터의 다른 프로그램이 백엔드를 사용하지 못하도록 잠급니다. ScrapBro가 알아서 보내므로 입력을 요청받지 않습니다. 영문자와 숫자만 사용할 수 있습니다.<br/>수동 모드에서는 같은 비밀번호로 백엔드를 시작하세요."
+    },
+    "CLEAR_HIGHLIGHTS":{
+        "message": "강조 지우기"
+    },
+    "HIGHLIGHT_SAMPLE":{
+        "message": "예시 텍스트"
+    },
+    "TIP_SAVE":{
+        "message": "이 페이지의 변경 내용 저장"
+    },
+    "TIP_DELETE_ELEMENTS":{
+        "message": "페이지의 일부를 클릭하면 삭제되며, 버튼을 다시 클릭하면 끝납니다"
+    },
+    "TIP_HIGHLIGHT":{
+        "message": "텍스트를 선택한 다음 강조할 색을 고르세요"
+    },
+    "TIP_EDIT":{
+        "message": "페이지의 텍스트를 직접 편집"
+    },
+    "TIP_SOURCE_CODE":{
+        "message": "페이지의 HTML 소스 편집"
+    },
+    "TIP_RELOAD":{
+        "message": "저장된 페이지를 다시 불러옵니다. 저장하지 않은 변경 내용은 사라집니다"
+    },
+    "TIP_LOCATE":{
+        "message": "사이드바에서 이 페이지 선택"
+    },
+    "EXPORTED_TO":{
+        "message": "내보낸 위치"
+    },
+    "EXPORT_FAILED":{
+        "message": "내보내기 실패"
+    }
+}

@@ -107,6 +107,9 @@ class EditToolBar{
         /** toolbar */
         var div = this.divToolbar = document.body.querySelector(".scrapbee-edit-bar");
         var buttons = this.divToolbar.querySelectorAll("input[type=button]");
+        /** tooltips, in the order of the buttons */
+        ["TIP_SAVE", "TIP_DELETE_ELEMENTS", "TIP_HIGHLIGHT", "TIP_EDIT", "TIP_SOURCE_CODE", "TIP_RELOAD", "TIP_LOCATE"]
+            .forEach((key, i) => buttons[i].title = chrome.i18n.getMessage(key));
         /** save button */
         buttons[0].value = chrome.i18n.getMessage("save");
         buttons[0].addEventListener("click", function(){
@@ -132,7 +135,7 @@ class EditToolBar{
             self.toggleStatus("unlock");
             browser.tabs.sendMessage(self.tabId, {type: "CLEAR_MARK_PEN"}, {frameId: self.frameId}).then(function(){});
         });
-        $(`<div class='scrapbee-menu-item'>Clear Marks</div>`).appendTo($item);
+        $("<div class='scrapbee-menu-item'>").text(chrome.i18n.getMessage("CLEAR_HIGHLIGHTS")).appendTo($item);
         /** markers */
         for (let child of ["a1", "a2", "a3", "a4", "a5", "a6", "b1", "b2", "b3", "b4", "b5", "c1", "c2"]){
             var $item = $("<div class='scrapbee-marker'>").appendTo($m).bind("mousedown", function(e){
@@ -141,7 +144,7 @@ class EditToolBar{
                 browser.tabs.sendMessage(self.tabId, {type: "MARK_PEN", marker: `scrapbee-marker-${child}`},
                                          {frameId: self.frameId}).then(function(){});
             });
-            $(`<div class='scrapbee-menu-item scrapbee-marker-${child}'>Example Text</div>`).appendTo($item);
+            $(`<div class='scrapbee-menu-item scrapbee-marker-${child}'>`).text(chrome.i18n.getMessage("HIGHLIGHT_SAMPLE")).appendTo($item);
         }
         this.menu = $m[0];
         /** editing button */
@@ -166,7 +169,7 @@ class EditToolBar{
         });
         /** locate button */
         var btn = buttons[6];
-        btn.title = "{LOCATE_NODE}".translate();
+        btn.value = chrome.i18n.getMessage("LOCATE_NODE");
         btn.addEventListener("click", function(e){
             browser.runtime.sendMessage({type: 'LOCATE_ITEM', id:self.scrapId });
         });
@@ -232,41 +235,61 @@ document.addEventListener('DOMContentLoaded', async function(){
     var elFrame = document.body.querySelector("#contentFrame");
     // document.querySelector("link[rel='shortcut icon']").href= `${rootAddress}/favicon.ico`;
     browser.runtime.sendMessage({type:'GET_TAB_ID'}).then((tabId) => {
-        /** chromium does not report the initial about:blank iframe in getAllFrames(),
-            take the frame id from the navigation of the content frame instead */
-        var frameId;
         var url = `${rootAddress}/index.html?scrapbee_refresh=` + new Date().getTime();
-        browser.webNavigation.onDOMContentLoaded.addListener((details) => {
-            try{
-                if((details.tabId == tabId) && (details.parentFrameId == 0) && (frameId === undefined || details.frameId == frameId)){
-                    frameId = details.frameId;
-                    new Injector(tabId, frameId).executeScripts(
-                        "/libs/browser-polyfill.min.js", "/js/proto.js", "/js/marker.js", "/libs/jquery-3.3.1.js", "/js/viewer_frame.js",
-                    ).then(function(){
-                        browser.tabs.sendMessage(tabId, {type: "INIT", frameId}, {frameId}).then((status) => {
-                            if(status == "ok"){
-                                if(!editbar){
-                                    editbar = new EditToolBar(`${params.path}/data/${params.id}/`, params.id, tabId, frameId);
-                                    editbar.toggleStatus("lock");
-                                }
-                                $.get(url,function(r){
-		                        editbar.toggleStatus("unlock");
-                                    browser.tabs.sendMessage(tabId, {type: "GET_TITLE"}, {frameId}).then(([title, icon]) => {
-                                        document.title = title;
-                                        document.querySelector("link[rel='shortcut icon']").href = icon;
-                                    });
-	                            }).fail(function(e){});
-                            }
-                        }).catch(e => {});
-                    }).catch(function(e){
-                        log.error(e.message);
-                        return false;
-                    });
+        /** the editing code is injected into the frame of the saved page once per load. The frame is found
+            by its navigation (chromium does not list it in getAllFrames() before), or, where there are no
+            navigation events for frames of extension pages (firefox), by its address after it loaded */
+        var frameId, injectedThisLoad = false;
+        function setup(id){
+            frameId = id;
+            new Injector(tabId, frameId).executeScripts(
+                "/libs/browser-polyfill.min.js", "/js/proto.js", "/js/marker.js", "/libs/jquery-3.3.1.js", "/js/viewer_frame.js",
+            ).then(function(){
+                return browser.tabs.sendMessage(tabId, {type: "INIT", frameId, tabId}, {frameId});
+            }).then((status) => {
+                if(status != "ok")
+                    return log.error(`viewer: editing tools did not start (${status})`);
+                if(!editbar){
+                    editbar = new EditToolBar(`${params.path}/data/${params.id}/`, params.id, tabId, frameId);
+                    editbar.toggleStatus("lock");
                 }
-            }catch(e){
-                log.error(e.message);
+                editbar.frameId = frameId;
+                editbar.toggleStatus("unlock");
+                browser.tabs.sendMessage(tabId, {type: "GET_TITLE"}, {frameId}).then(([title, icon]) => {
+                    document.title = title;
+                    document.querySelector("link[rel='shortcut icon']").href = icon;
+                }).catch(() => {});
+            }).catch(function(e){
+                log.error(`viewer: ${e.message}`);
+            });
+        }
+        browser.webNavigation.onDOMContentLoaded.addListener((details) => {
+            if(details.tabId == tabId && details.parentFrameId == 0 && (frameId === undefined || details.frameId == frameId)){
+                injectedThisLoad = true;
+                setup(details.frameId);
             }
-            return true;
+        });
+        elFrame.addEventListener("load", function(){
+            if(injectedThisLoad){ // already done through the navigation event
+                injectedThisLoad = false;
+                return;
+            }
+            browser.webNavigation.getAllFrames({tabId}).catch(() => null).then((frames) => {
+                var frame = (frames || []).find(f => f.parentFrameId == 0 && String(f.url).indexOf(rootAddress) == 0)
+                         || (frames || []).find(f => f.parentFrameId == 0);
+                if(frame)
+                    return frame.frameId;
+                /** not tracked by webNavigation: ask the frames for their address */
+                return browser.scripting.executeScript({target: {tabId, allFrames: true}, func: () => location.href}).then((results) => {
+                    var found = (results || []).find(r => String(r.result).indexOf(rootAddress) == 0);
+                    return found ? found.frameId : undefined;
+                });
+            }).then((id) => {
+                if(id === undefined)
+                    log.error("viewer: frame of the saved page not found");
+                else
+                    setup(id);
+            }).catch(e => log.error(`viewer: ${e.message}`));
         });
         elFrame.src = url;
     });

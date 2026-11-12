@@ -1,0 +1,78 @@
+<h2>ScrapBro nedir?</h2>
+<p>ScrapBro web sayfalarını veya bölümlerini diskinize kaydeder ve tarayıcının kenar çubuğunda düzenler.
+<a href="https://en.wikipedia.org/wiki/ScrapBook" target="_blank">ScrapBook</a>
+ve çatalı olduğu <a href="https://github.com/vctfence/scrapbee" target="_blank">ScrapBee</a> verilerini okuyup yazar, böylece mevcut koleksiyonlarınız çalışmaya devam eder.
+Chrome, Edge, Brave, Vivaldi ve diğer Chromium tarayıcılarında, ayrıca Firefox ve türevlerinde çalışır.</p>
+<p><b>Önemli:</b> ScrapBro ile ScrapBee'yi aynı tarayıcıda kullanmayın. İkisi de aynı koleksiyon dosyalarına yazar,
+ikisini birlikte kullanmak değişikliklerin kaybolmasına veya bir koleksiyonun bozulmasına yol açabilir. Geçmek için ayarları ScrapBee'den dışa aktarın, onu kaldırın ve ardından burada içe aktarın.
+Önce koleksiyon klasörlerinizi yedekleyin.</p>
+
+<!-- use -->
+<h2>Nasıl kullanılır</h2>
+<li class="h3">İlk kullanımdan önce</li>
+<p>Arka uç programını <a href="#area=install">Kurulum</a> sayfasında anlatıldığı gibi kurun, ardından RDF dosyalarınızı
+<a href="#area=configure">Yapılandırma</a> sayfasında ekleyin (aşağıya bakın).</p>
+<li class="h3">Kaydetme</li>
+<p>ScrapBro'yu kenar çubuğunda açın (araç çubuğu düğmesi, ardından "{OPEN_IN_SIDEBAR}"), yeni ögelerin gideceği klasörü seçin,
+sonra sayfaya sağ tıklayın: <i>{CapturePage}</i>, <i>{CaptureSelection}</i> (önce bir metin seçin), <i>{CaptureUrl}</i>
+veya <i>{CaptureAdvance}</i>. Aynı işlemler, tüm açık sekmeleri de kaydedebilen araç çubuğu düğmesinde de vardır ("{CaptureTabs}").</p>
+<p>Kayıt sırasında kenar çubuğunu açık tutun (gelişmiş kayıt hariç). Yeni bir öge, sayfa kaydedilene kadar dönen bir simge gösterir.
+Ögeler sürüklenerek taşınabilir.</p>
+<li class="h3">Okuma ve düzenleme</li>
+<p>Kaydedilen sayfayı açmak için bir ögeye tıklayın. Kaydedilen bir sayfanın altındaki çubukla metni vurgulayabilir, sayfanın istenmeyen kısımlarını kaldırabilir,
+sayfayı düzenleyip değişiklikleri kaydedebilirsiniz. Bir ögenin yanındaki küçük düğme, sayfanın özgün adresini açar.</p>
+
+<!-- rdf -->
+<h2 id="help_rdf">RDF dosyaları</h2>
+<p>RDF dosyası bir koleksiyonun dizinidir: ögeleri ve klasörleri listeler, kaydedilen sayfalar ise yanındaki "data" klasöründe tutulur.
+Birden çok RDF dosyanız olabilir, her biri kenar çubuğunun üstündeki listede görünür.</p>
+<p><a href="#area=configure">Yapılandırma</a> sayfasında "+" düğmesine tıklayın, bir ad ve RDF dosyasının tam yolunu girin,
+örneğin <i>C:\scrapbooks\news\scrapbook.rdf</i> veya <i>/home/ben/scrapbooks/news/scrapbook.rdf</i>.
+Henüz var olmayan bir dosya boş olarak oluşturulur.</p>
+
+<!-- manual backend -->
+<h2 id="help_install">Arka ucu kendiniz çalıştırma</h2>
+<p>Normalde ScrapBro arka uç programını kendisi başlatır (Yapılandırma sayfasında "Otomatik") ve boş bir bağlantı noktası seçer.
+Kendiniz çalıştırmak için, örneğin bir hizmet olarak, "Elle" seçeneğini seçin, adresini girin ve şununla başlatın:</p>
+<div class="embeded-log-text">scrapbro_backend web-server [port] [host] [parola]<br/>
+örneğin scrapbro_backend web-server 9901 127.0.0.1</div>
+<p>Bir parola (yalnızca harf ve rakam) arka ucu korur, aynı parola Yapılandırma sayfasına da girilmelidir.</p>
+
+<!-- trouble -->
+<h2>Sorun giderme</h2>
+<p>Önce <a href="#area=configure">Yapılandırma</a> sayfasında <i>Hata ayıklama</i> seçeneğini açın ve <a href="#area=log">Günlüğe</a> bakın:
+arka uçla alınıp verilen iletileri, kaydedilen her dosyayı ve her kayıt adımını, bir şey başarısız olduğunda da hatayı gösterir.</p>
+
+<h4>Kenar çubuğu arka ucun çalışmadığını söylüyor</h4>
+<p>Günlük genellikle nedenini söyler:</p>
+<li><i>Specified native messaging host not found</i>: kurulum betiği çalıştırılmamış ya da yapılandırma dosyası sonradan taşınmış.
+Programı, yapılandırma dosyasını ve kurulum betiğini tek bir klasöre koyun ve betiği yeniden çalıştırın.</li>
+<li><i>Access to the specified native messaging host is forbidden</i>: yapılandırma dosyası başka bir ScrapBro kopyasına ait.
+Bu, uzantı kaldırılıp yeniden eklendiğinde olur ve kimliği değişebilir: yapılandırma dosyasını yeniden indirin (Kurulum, adım 2) ve betiği çalıştırın.</li>
+<li>Başlatmadan hemen sonra <i>Backend disconnected</i>: program eksik veya engellenmiş, yapılandırma dosyasının yanında olduğunu
+ve bir güvenlik yazılımının onu kaldırmadığını kontrol edin.</li>
+<p>Her değişiklikten sonra ScrapBro'yu tarayıcının uzantılar sayfasında kapatıp yeniden açın.</p>
+
+<h4>Tarayıcı programın indirilmesini engelliyor</h4>
+<p>Tarayıcılar henüz az indirilen programlar için uyarır. Tarayıcının indirmeler sayfasını açın ve dosyayı tutmayı seçin.
+Buradan da indirebilirsiniz: <a href="" class="download_exe">arka uç programını indir</a>.</p>
+
+<h4>Güvenlik yazılımı programı bildiriyor</h4>
+<p>Bazı virüs tarayıcıları arka uç gibi küçük, imzasız programları işaretler. Engellenir veya kaldırılırsa onu tarayıcının istisnalarına ekleyin.</p>
+
+<h4>Bir koleksiyon yüklenmiyor veya kaydedilemiyor</h4>
+<li>Yapılandırma sayfasındaki yolun doğru olduğunu ve RDF dosyasının var olduğunu kontrol edin.</li>
+<li>Koleksiyonları kullanıcınızın yazabildiği bir klasörde tutun, örneğin Windows'ta doğrudan C:\ içinde değil.</li>
+<li>Günlükte "failed to load ... 404" görünüyorsa arka uç dosyayı bulamamıştır: yolu kontrol edin.</li>
+
+<h4>Bağlantı noktası</h4>
+<p>Otomatik kipte bağlantı noktasını ScrapBro seçer ve doluysa başkasını alır, Yapılandırma sayfası kullanılanı gösterir.
+Elle kipinde arka uç "address already in use" bildirirse onu başka bir bağlantı noktasında başlatın.</p>
+
+<h4>Hâlâ çalışmıyor mu?</h4>
+<p>Bazen tarayıcıyı yeniden başlatmak işe yarar. Aksi halde sorunu günlükteki satırlarla birlikte şuraya bildirin:
+<a href="https://github.com/unalignedcoder/scrapbro/issues" target="_blank">github.com/unalignedcoder/scrapbro</a>.</p>
+
+<h2>Yedekleme</h2>
+<p>Koleksiyon klasörlerinizi (RDF dosyaları ve "data" klasörleri) düzenli olarak yedekleyin, ScrapBro kaydedilen sayfaları yedeklemez.
+Bir RDF dosyasını kaydetmeden önce, önceki sürümün bir kopyasını günde bir kez yanındaki "backup" klasörüne koyar.</p>

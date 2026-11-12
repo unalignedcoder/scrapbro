@@ -1,0 +1,78 @@
+<h2>ScrapBro란?</h2>
+<p>ScrapBro는 웹 페이지나 그 일부를 디스크에 저장하고 브라우저 사이드바에서 정리합니다.
+<a href="https://en.wikipedia.org/wiki/ScrapBook" target="_blank">ScrapBook</a>
+과 ScrapBro가 갈라져 나온 <a href="https://github.com/vctfence/scrapbee" target="_blank">ScrapBee</a>의 데이터를 읽고 쓰므로 기존 스크랩북을 그대로 사용할 수 있습니다.
+Chrome, Edge, Brave, Vivaldi 등 Chromium 기반 브라우저와 Firefox 및 그 파생 브라우저에서 동작합니다.</p>
+<p><b>중요:</b> ScrapBro와 ScrapBee를 같은 브라우저에서 사용하지 마세요. 둘 다 같은 스크랩북 파일에 기록하므로
+함께 사용하면 변경 내용이 사라지거나 스크랩북이 손상될 수 있습니다. 옮겨 오려면 ScrapBee에서 설정을 내보내고 ScrapBee를 제거한 다음 여기서 가져오세요.
+그 전에 스크랩북 폴더를 백업하세요.</p>
+
+<!-- use -->
+<h2>사용 방법</h2>
+<li class="h3">처음 사용하기 전에</li>
+<p><a href="#area=install">설치</a> 페이지의 설명대로 백엔드 프로그램을 설치한 다음,
+<a href="#area=configure">구성</a> 페이지에서 RDF 파일을 추가하세요(아래 참고).</p>
+<li class="h3">저장</li>
+<p>사이드바에서 ScrapBro를 열고(도구 모음 버튼에서 "{OPEN_IN_SIDEBAR}") 새 항목을 넣을 폴더를 선택한 다음,
+페이지를 마우스 오른쪽 버튼으로 클릭하세요: <i>{CapturePage}</i>, <i>{CaptureSelection}</i>(먼저 텍스트를 선택), <i>{CaptureUrl}</i>
+또는 <i>{CaptureAdvance}</i>. 같은 작업이 도구 모음 버튼에도 있으며, 열려 있는 모든 탭을 저장할 수도 있습니다("{CaptureTabs}").</p>
+<p>저장하는 동안에는 사이드바를 열어 두세요(고급 저장 제외). 새 항목은 페이지 저장이 끝날 때까지 회전하는 아이콘을 표시합니다.
+항목은 끌어서 옮길 수 있습니다.</p>
+<li class="h3">읽기와 편집</li>
+<p>항목을 클릭하면 저장된 페이지가 열립니다. 저장된 페이지 아래쪽의 막대로 텍스트를 강조하고, 원하지 않는 부분을 지우고,
+페이지를 편집해 변경 내용을 저장할 수 있습니다. 항목 옆의 작은 버튼은 페이지의 원래 주소를 엽니다.</p>
+
+<!-- rdf -->
+<h2 id="help_rdf">RDF 파일</h2>
+<p>RDF 파일은 스크랩북의 목차입니다. 항목과 폴더를 나열하며, 저장된 페이지는 그 옆의 "data" 폴더에 보관됩니다.
+RDF 파일은 여러 개 가질 수 있고, 각각 사이드바 위쪽의 목록에 나타납니다.</p>
+<p><a href="#area=configure">구성</a> 페이지에서 "+"를 클릭하고 이름과 RDF 파일의 전체 경로를 입력하세요.
+예: <i>C:\scrapbooks\news\scrapbook.rdf</i> 또는 <i>/home/me/scrapbooks/news/scrapbook.rdf</i>.
+아직 없는 파일은 빈 파일로 만들어집니다.</p>
+
+<!-- manual backend -->
+<h2 id="help_install">백엔드를 직접 실행하기</h2>
+<p>보통은 ScrapBro가 백엔드 프로그램을 직접 시작하고(구성 페이지의 "자동") 비어 있는 포트를 선택합니다.
+서비스처럼 직접 실행하려면 "수동"을 선택하고 주소를 입력한 뒤 다음 명령으로 시작하세요:</p>
+<div class="embeded-log-text">scrapbro_backend web-server [포트] [호스트] [비밀번호]<br/>
+예: scrapbro_backend web-server 9901 127.0.0.1</div>
+<p>비밀번호(영문자와 숫자만)로 백엔드를 보호할 수 있으며, 같은 비밀번호를 구성 페이지에도 입력해야 합니다.</p>
+
+<!-- trouble -->
+<h2>문제 해결</h2>
+<p>먼저 <a href="#area=configure">구성</a> 페이지에서 <i>디버그</i>를 켜고 <a href="#area=log">로그</a>를 확인하세요.
+백엔드와 주고받은 메시지, 저장된 모든 파일과 저장 단계가 표시되며, 실패하면 오류도 표시됩니다.</p>
+
+<h4>사이드바에 백엔드가 실행 중이 아니라고 표시됨</h4>
+<p>보통 로그에 이유가 나옵니다:</p>
+<li><i>Specified native messaging host not found</i>: 설치 스크립트를 실행하지 않았거나, 그 뒤에 구성 파일을 옮겼습니다.
+프로그램, 구성 파일, 설치 스크립트를 한 폴더에 두고 스크립트를 다시 실행하세요.</li>
+<li><i>Access to the specified native messaging host is forbidden</i>: 구성 파일이 다른 ScrapBro 사본의 것입니다.
+확장 프로그램을 제거했다가 다시 추가하면 ID가 바뀔 수 있습니다. 구성 파일을 다시 다운로드하고(설치, 2단계) 스크립트를 실행하세요.</li>
+<li>시작 직후 <i>Backend disconnected</i>: 프로그램이 없거나 차단되었습니다. 구성 파일 옆에 있는지,
+보안 소프트웨어가 삭제하지 않았는지 확인하세요.</li>
+<p>변경할 때마다 브라우저의 확장 프로그램 페이지에서 ScrapBro를 껐다가 다시 켜세요.</p>
+
+<h4>브라우저가 프로그램 다운로드를 차단함</h4>
+<p>브라우저는 아직 다운로드 수가 적은 프로그램에 경고를 표시합니다. 브라우저의 다운로드 페이지를 열고 파일을 유지하도록 선택하세요.
+여기서도 다운로드할 수 있습니다: <a href="" class="download_exe">백엔드 프로그램 다운로드</a>.</p>
+
+<h4>보안 소프트웨어가 프로그램을 경고함</h4>
+<p>일부 백신은 백엔드처럼 서명되지 않은 작은 프로그램을 탐지합니다. 차단되거나 삭제되면 백신의 예외 목록에 추가하세요.</p>
+
+<h4>스크랩북을 불러오거나 저장할 수 없음</h4>
+<li>구성 페이지의 경로가 올바른지, RDF 파일이 있는지 확인하세요.</li>
+<li>스크랩북은 사용자가 쓸 수 있는 폴더에 두세요. 예를 들어 Windows에서는 C:\ 바로 아래는 피하세요.</li>
+<li>로그에 "failed to load ... 404"가 표시되면 백엔드가 파일을 찾지 못한 것입니다. 경로를 확인하세요.</li>
+
+<h4>포트</h4>
+<p>자동 모드에서는 ScrapBro가 포트를 선택하고, 사용 중이면 다른 포트를 사용합니다. 사용 중인 포트는 구성 페이지에 표시됩니다.
+수동 모드에서 백엔드가 "address already in use"를 보고하면 다른 포트로 시작하세요.</p>
+
+<h4>그래도 안 되나요?</h4>
+<p>브라우저를 다시 시작하면 해결되는 경우가 있습니다. 그래도 안 되면 로그 내용을 첨부해 다음 주소에 문제를 알려 주세요:
+<a href="https://github.com/unalignedcoder/scrapbro/issues" target="_blank">github.com/unalignedcoder/scrapbro</a>.</p>
+
+<h2>백업</h2>
+<p>스크랩북 폴더(RDF 파일과 "data" 폴더)를 정기적으로 백업하세요. ScrapBro는 저장된 페이지를 백업하지 않습니다.
+RDF 파일을 저장하기 전에 하루에 한 번 이전 버전의 사본을 옆의 "backup" 폴더에 둡니다.</p>

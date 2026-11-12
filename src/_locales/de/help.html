@@ -1,0 +1,78 @@
+<h2>Was ist ScrapBro?</h2>
+<p>ScrapBro speichert Webseiten oder Teile davon auf Ihrer Festplatte und ordnet sie in der Seitenleiste des Browsers.
+Es liest und schreibt die Daten von <a href="https://en.wikipedia.org/wiki/ScrapBook" target="_blank">ScrapBook</a>
+und <a href="https://github.com/vctfence/scrapbee" target="_blank">ScrapBee</a>, dessen Fork es ist, vorhandene Scrapbooks funktionieren also weiter.
+Es läuft in Chrome, Edge, Brave, Vivaldi und anderen Chromium-Browsern sowie in Firefox und seinen Ablegern.</p>
+<p><b>Wichtig:</b> Verwenden Sie ScrapBro und ScrapBee nicht im selben Browser. Beide schreiben in dieselben Scrapbook-Dateien,
+beide zu nutzen kann Änderungen verlieren oder ein Scrapbook beschädigen. Zum Wechseln exportieren Sie die Einstellungen aus ScrapBee, entfernen es und importieren sie hier.
+Sichern Sie vorher Ihre Scrapbook-Ordner.</p>
+
+<!-- use -->
+<h2>Benutzung</h2>
+<li class="h3">Vor der ersten Benutzung</li>
+<p>Installieren Sie das Backend-Programm wie auf der Seite <a href="#area=install">Installation</a> beschrieben und fügen Sie dann auf der Seite
+<a href="#area=configure">Konfiguration</a> Ihre RDF-Dateien hinzu (siehe unten).</p>
+<li class="h3">Speichern</li>
+<p>Öffnen Sie ScrapBro in der Seitenleiste (Symbolleisten-Schaltfläche, dann „{OPEN_IN_SIDEBAR}“), wählen Sie den Ordner für neue Einträge
+und klicken Sie mit der rechten Maustaste auf die Seite: <i>{CapturePage}</i>, <i>{CaptureSelection}</i> (vorher Text markieren), <i>{CaptureUrl}</i>
+oder <i>{CaptureAdvance}</i>. Dieselben Aktionen gibt es in der Symbolleisten-Schaltfläche, die auch alle offenen Tabs speichern kann („{CaptureTabs}“).</p>
+<p>Lassen Sie die Seitenleiste beim Speichern offen (außer beim erweiterten Speichern). Ein neuer Eintrag zeigt ein sich drehendes Symbol, bis die Seite gespeichert ist.
+Einträge lassen sich durch Ziehen verschieben.</p>
+<li class="h3">Lesen und bearbeiten</li>
+<p>Klicken Sie auf einen Eintrag, um die gespeicherte Seite zu öffnen. Mit der Leiste unten auf einer gespeicherten Seite können Sie Text markieren, unerwünschte Teile der Seite entfernen,
+sie bearbeiten und die Änderungen speichern. Die kleine Schaltfläche neben einem Eintrag öffnet die ursprüngliche Adresse der Seite.</p>
+
+<!-- rdf -->
+<h2 id="help_rdf">RDF-Dateien</h2>
+<p>Eine RDF-Datei ist der Index eines Scrapbooks: Sie listet Einträge und Ordner auf, die gespeicherten Seiten liegen im Ordner „data“ daneben.
+Sie können mehrere RDF-Dateien haben, jede erscheint in der Liste oben in der Seitenleiste.</p>
+<p>Klicken Sie auf der Seite <a href="#area=configure">Konfiguration</a> auf „+“, geben Sie einen Namen und den vollständigen Pfad der RDF-Datei ein,
+z. B. <i>C:\scrapbooks\news\scrapbook.rdf</i> oder <i>/home/ich/scrapbooks/news/scrapbook.rdf</i>.
+Eine Datei, die noch nicht existiert, wird leer angelegt.</p>
+
+<!-- manual backend -->
+<h2 id="help_install">Das Backend selbst starten</h2>
+<p>Normalerweise startet ScrapBro das Backend-Programm selbst („Automatisch“ auf der Seite Konfiguration) und wählt einen freien Port.
+Um es stattdessen selbst zu starten, z. B. als Dienst, wählen Sie „Manuell“, geben seine Adresse ein und starten es mit:</p>
+<div class="embeded-log-text">scrapbro_backend web-server [port] [host] [passwort]<br/>
+z. B. scrapbro_backend web-server 9901 127.0.0.1</div>
+<p>Ein Passwort (nur Buchstaben und Ziffern) schützt das Backend, dasselbe Passwort muss auf der Seite Konfiguration eingetragen werden.</p>
+
+<!-- trouble -->
+<h2>Fehlerbehebung</h2>
+<p>Schalten Sie zuerst <i>Debug</i> auf der Seite <a href="#area=configure">Konfiguration</a> ein und sehen Sie ins <a href="#area=log">Protokoll</a>:
+Es zeigt die mit dem Backend ausgetauschten Meldungen, jede gespeicherte Datei und jeden Speicherschritt, mit dem Fehler, wenn etwas schiefgeht.</p>
+
+<h4>Die Seitenleiste meldet, dass das Backend nicht läuft</h4>
+<p>Das Protokoll nennt meist den Grund:</p>
+<li><i>Specified native messaging host not found</i>: Das Installationsskript wurde nicht ausgeführt, oder die Konfigurationsdatei wurde danach verschoben.
+Legen Sie Programm, Konfigurationsdatei und Installationsskript in einen Ordner und führen Sie das Skript erneut aus.</li>
+<li><i>Access to the specified native messaging host is forbidden</i>: Die Konfigurationsdatei gehört zu einer anderen Kopie von ScrapBro.
+Das passiert, wenn die Erweiterung entfernt und neu hinzugefügt wurde, was ihre ID ändern kann: Laden Sie die Konfigurationsdatei erneut herunter (Installation, Schritt 2) und führen Sie das Skript aus.</li>
+<li><i>Backend disconnected</i> direkt nach dem Start: Das Programm fehlt oder wird blockiert, prüfen Sie, ob es neben der Konfigurationsdatei liegt
+und keine Sicherheitssoftware es entfernt hat.</li>
+<p>Schalten Sie ScrapBro nach jeder Änderung auf der Erweiterungsseite des Browsers aus und wieder ein.</p>
+
+<h4>Der Browser blockiert den Download des Programms</h4>
+<p>Browser warnen vor Programmen, die noch selten heruntergeladen wurden. Öffnen Sie die Download-Seite des Browsers und wählen Sie, die Datei zu behalten.
+Sie können es auch hier herunterladen: <a href="" class="download_exe">Backend-Programm herunterladen</a>.</p>
+
+<h4>Sicherheitssoftware meldet das Programm</h4>
+<p>Manche Virenscanner melden kleine, nicht signierte Programme wie das Backend. Fügen Sie es den Ausnahmen des Scanners hinzu, wenn es blockiert oder entfernt wird.</p>
+
+<h4>Ein Scrapbook lädt nicht oder lässt sich nicht speichern</h4>
+<li>Prüfen Sie, ob der Pfad auf der Seite Konfiguration stimmt und die RDF-Datei existiert.</li>
+<li>Legen Sie Scrapbooks in einen Ordner, in dem Ihr Benutzer schreiben darf, unter Windows z. B. nicht direkt in C:\.</li>
+<li>Zeigt das Protokoll „failed to load ... 404“, hat das Backend die Datei nicht gefunden: Prüfen Sie den Pfad.</li>
+
+<h4>Port</h4>
+<p>Im automatischen Modus wählt ScrapBro den Port und nimmt einen anderen, wenn er belegt ist, die Seite Konfiguration zeigt den verwendeten.
+Meldet das Backend im manuellen Modus „address already in use“, starten Sie es auf einem anderen Port.</p>
+
+<h4>Funktioniert es immer noch nicht?</h4>
+<p>Manchmal hilft ein Neustart des Browsers. Melden Sie das Problem sonst mit den Zeilen aus dem Protokoll auf
+<a href="https://github.com/unalignedcoder/scrapbro/issues" target="_blank">github.com/unalignedcoder/scrapbro</a>.</p>
+
+<h2>Sicherung</h2>
+<p>Sichern Sie Ihre Scrapbook-Ordner (RDF-Dateien und „data“-Ordner) regelmäßig, ScrapBro sichert die gespeicherten Seiten nicht.
+Bevor es eine RDF-Datei speichert, legt es einmal am Tag eine Kopie der vorherigen Version in einem Ordner „backup“ daneben ab.</p>

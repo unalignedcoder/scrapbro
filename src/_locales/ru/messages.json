@@ -1,0 +1,499 @@
+{
+    "extensionDescription": {
+        "message": "Сохраняет веб-страницы на локальный диск и упорядочивает их в боковой панели браузера. Совместим с документами ScrapBook.",
+        "description": "Description of the extension."
+    },
+    "DLG_OK": {
+        "message": "OK"
+    },
+    "DLG_CANCEL": {
+        "message": "ОТМЕНА"
+    },
+    "Setting": {
+        "message": "Настройки"
+    },
+    "Configure": {
+        "message": "Параметры"
+    },
+    "Reload": {
+        "message": "Обновить"
+    },
+    "Search": {
+        "message": "Поиск"
+    },
+    "Stop": {
+        "message": "Стоп"
+    },
+    "Help": {
+        "message": "Справка"
+    },
+    "Folder": {
+        "message": "Папка"
+    },
+    "Open_Folder": {
+        "message": "Открыть папку"
+    },
+    "Title": {
+        "message": "Заголовок"
+    },
+    "Content": {
+        "message": "Содержимое"
+    },
+    "Step": {
+        "message": "Шаг"
+    },
+    "Name": {
+        "message": "Имя"
+    },
+    "Save": {
+        "message": "Сохранить"
+    },
+    "MODIFY_DOM_ON": {
+        "message": "Удалить элементы"
+    },
+    "MODIFY_DOM_OFF": {
+        "message": "Закончить удаление"
+    },
+    "MARK_PEN": {
+        "message": "Выделить"
+    },
+    "SOURCE_CODE": {
+        "message": "Исходный код"
+    },
+    "File": {
+        "message": "Файл"
+    },
+    "Donate": {
+        "message": "Поддержать"
+    },
+    "New_Folder": {
+        "message": "Новая папка"
+    },
+    "New_Separator": {
+        "message": "Новый разделитель"
+    },
+    "New_Note": {
+        "message": "Новая заметка"
+    },
+    "CapturePage": {
+        "message": "Сохранить страницу"
+    },
+    "SAME_LEVEL": {
+        "message": "На том же уровне"
+    },
+    "CaptureSelection": {
+        "message": "Сохранить выделенное"
+    },
+    "CaptureUrl": {
+        "message": "Сохранить закладку"
+    },
+    "CaptureAdvance": {
+        "message": "Расширенное сохранение..."
+    },
+    "CaptureTabs": {
+        "message": "Сохранить все вкладки"
+    },
+    "Download": {
+        "message": "Скачать"
+    },
+    "Delete": {
+        "message": "Удалить"
+    },
+    "Install": {
+        "message": "Установка"
+    },
+    "Log": {
+        "message": "Журнал"
+    },
+    "RDF_Files": {
+        "message": "Файлы RDF"
+    },
+    "CUSTOM_INSTALL_TIP": {
+        "message": "Эти шаги устанавливают программу-бэкенд. <b>Сохраните все три файла в одну папку.</b>"
+    },
+    "STEP1_TEXT_1": {
+        "message": "Скачайте программу-бэкенд ScrapBro."
+    },
+    "STEP1_TEXT_2": {
+        "message": "Программа скачивается из выпуска ScrapBro на GitHub, соответствующего этой версии, и перед сохранением проверяется её контрольная сумма SHA-256."
+    },
+    "STEP2_TEXT_1": {
+        "message": "Скачайте файл конфигурации, который сообщает браузеру, где находится программа. <b>Сохраните его в ту же папку, что и программу.</b>"
+    },
+    "STEP3_TEXT_1": {
+        "message": "Запустите скрипт установки."
+    },
+    "STEP3_TEXT_3": {
+        "message": "он регистрирует бэкенд для вашего пользователя, права администратора не нужны"
+    },
+    "STEP4_TEXT": {
+        "message": "Выключите и снова включите ScrapBro на странице расширений или перезапустите браузер."
+    },
+    "FONT_SIZE": {
+        "message": "Размер шрифта"
+    },
+    "FONT_NAME": {
+        "message": "Шрифт"
+    },
+    "LINE_SPACING": {
+        "message": "Межстрочный интервал"
+    },
+    "Separator": {
+        "message": "Разделитель"
+    },
+    "BACKEND_TIP": {
+        "message": "ScrapBro нужна программа-бэкенд, см. страницу <a href=\"#area=install\">Установка</a> и <a href=\"#area=help&scroll=help_install\">справку</a>."
+    },
+    "RDF_FILES_TIP": {
+        "message": "Файл RDF — это <b>оглавление</b> коллекции, сохранённые страницы лежат в папке «data» рядом с ним, см. <a href='#area=help&scroll=help_rdf'>справку</a>.<br/><br/>Можно использовать несколько файлов RDF, в том числе в одной папке. Несуществующий файл создаётся пустым.<br/>Файлы RDF из <a href=\"https://en.wikipedia.org/wiki/ScrapBook\" target=\"_blank\">ScrapBook</a> и <a href=\"https://github.com/vctfence/scrapbee\" target=\"_blank\">ScrapBee</a> тоже поддерживаются.<br/><br/><b>Нажмите «+» ниже, чтобы добавить файл RDF: введите имя и полный путь к файлу.</b>"
+    },
+    "Appearance": {
+        "message": "Внешний вид"
+    },
+    "Behavior": {
+        "message": "Поведение"
+    },
+    "OPEN_IN_CURRENT_TAB": {
+        "message": "Открывать в текущей вкладке"
+    },
+    "OPEN_IN_CURRENT_TAB_TIP": {
+        "message": "По умолчанию щелчок по элементу открывает его в новой вкладке, а щелчок с Ctrl (Cmd на Mac) или средней кнопкой мыши — в текущей.<br/>Этот параметр меняет их местами."
+    },
+    "DONATE_WORDS": {
+        "message": "ScrapBro бесплатен. Если он вам полезен, вы можете поддержать разработку, угостив меня кофе. Спасибо!"
+    },
+    "RESULTS_FOUND": {
+        "message": " результат(ов) найдено"
+    },
+    "ConfirmDeleteItem": {
+        "message": "Действительно удалить выбранные элементы?"
+    },
+    "Warning": {
+        "message": "Предупреждение"
+    },
+    "Loading___": {
+        "message": "Загрузка..."
+    },
+    "Starting___": {
+        "message": "Запуск..."
+    },
+    "NO_SELECTION_ACTIVATED": {
+        "message": "Ничего не выделено"
+    },
+    "Announcement": {
+        "message": "Список изменений"
+    },
+    "NODE_MOVER_TIP": {
+        "message": "С помощью этого инструмента можно перемещать или копировать элементы вместе с содержимым между двумя файлами RDF, а также перетаскивать и удалять элементы внутри одного RDF."
+    },
+    "NODE_MOVER_WARN_TIP": {
+        "message": "<b>ОСТОРОЖНО</b><br>Сделайте резервную копию данных перед использованием этого инструмента.<br>Не вносите изменения в другом месте во время работы с ним, иначе возможны конфликты."
+    },
+    "Tools": {
+        "message": "Инструменты"
+    },
+    "Node_Mover": {
+        "message": "Перемещение элементов"
+    },
+    "Exporter": {
+        "message": "Экспорт"
+    },
+    "Done": {
+        "message": "Готово"
+    },
+    "EDIT_CONTENT": {
+        "message": "Редактировать"
+    },
+    "STOP_EDIT_CONTENT": {
+        "message": "Закончить правку"
+    },
+    "NO_SOURCE_NODE_SELECTED": {
+        "message": "Не выбран исходный элемент"
+    },
+    "MOVE_TO": {
+        "message": "переместить в"
+    },
+    "COPY_TO": {
+        "message": "копировать в"
+    },
+    "Left": {
+        "message": "слева"
+    },
+    "Right": {
+        "message": "справа"
+    },
+    "Sort": {
+        "message": "Сортировать"
+    },
+    "Export": {
+        "message": "Экспорт"
+    },
+    "Import": {
+        "message": "Импорт"
+    },
+    "INVALID_CONFIGURATION_FILE": {
+        "message": "Неверный файл конфигурации"
+    },
+    "UNCHECK_ALL": {
+        "message": "Снять выделение"
+    },
+    "ERROR_MOVE_FOLER_INTO_ITSELF": {
+        "message": "Недопустимая операция: папку нельзя переместить в саму себя"
+    },
+    "OPEN_ALL_ITEMS": {
+        "message": "Открыть все элементы"
+    },
+    "OPEN_ORIGIN_LINK": {
+        "message": "Открыть адрес"
+    },
+    "Properties": {
+        "message": "Свойства"
+    },
+    "Page": {
+        "message": "Страница"
+    },
+    "Bookmark": {
+        "message": "Закладка"
+    },
+    "Note": {
+        "message": "Заметка"
+    },
+    "Selection": {
+        "message": "Выделенное"
+    },
+    "CREATE_TIME": {
+        "message": "Создано"
+    },
+    "Type": {
+        "message": "Тип"
+    },
+    "General": {
+        "message": "Общие"
+    },
+    "Comment": {
+        "message": "Комментарий"
+    },
+    "LOCATE_NODE": {
+        "message": "Показать в боковой панели"
+    },
+    "SAVE_TO": {
+        "message": "Сохранить в"
+    },
+    "CAPTURE": {
+        "message": "Сохранить"
+    },
+    "Icon": {
+        "message": "Значок"
+    },
+    "Select": {
+        "message": "Выбрать"
+    },
+    "Default": {
+        "message": "По умолчанию"
+    },
+    "Clear": {
+        "message": "Очистить"
+    },
+    "OPEN_IN_SIDEBAR": {
+        "message": "Открыть в боковой панели"
+    },
+    "FAIL_START_BACKEND_HINT": {
+        "message": "Программа-бэкенд не запущена, проверьте <a href='options.html#area=install' target='_blank'>установку</a> и <a href='options.html#area=log' target='_blank'>журнал</a>"
+    },
+    "NO_RDF_SETTED_HINT": {
+        "message": "Файл RDF ещё не настроен, проверьте <a href='options.html#area=configure' target='_blank'>настройки</a>"
+    },
+    "EXPORTER_TYPE": {
+        "message": "Тип"
+    },
+    "EXPORTER_HTML_PAGE": {
+        "message": "HTML-страница"
+    },
+    "EXPORTER_SOURCE": {
+        "message": "Источник"
+    },
+    "EXPORTER_EXPORT_AS": {
+        "message": "Экспортировать как"
+    },
+    "EXPORTER_INCLUDE_SEPARATOR": {
+        "message": "Включить разделители"
+    },
+    "EXPORTER_OPEN_LINKS_IN_NEW_TAB": {
+        "message": "Открывать ссылки в новой вкладке"
+    },
+    "AUTO_CLOSE_SAVING_DIALOG": {
+        "message": "Автоматически закрывать окно сохранения"
+    },
+    "SHOW_NOTIFICATION": {
+        "message": "Показывать уведомления"
+    },
+    "SAVING_SAVE_FRAMES": {
+        "message": "Сохранять фреймы"
+    },
+    "Automatically": {
+        "message": "Автоматически"
+    },
+    "Manually": {
+        "message": "Вручную"
+    },
+    "Port": {
+        "message": "Порт"
+    },
+    "Password": {
+        "message": "Пароль"
+    },
+    "Address": {
+        "message": "Адрес"
+    },
+    "BACKEND_PROGRAM": {
+        "message": "Программа-бэкенд"
+    },
+    "Execute": {
+        "message": "Запустите"
+    },
+    "Date": {
+        "message": "Дата"
+    },
+    "Order": {
+        "message": "Порядок"
+    },
+    "Target": {
+        "message": "Цель"
+    },
+    "SORT_BY": {
+        "message": "Сортировать по"
+    },
+    "WHOLE_TREE": {
+        "message": "Всё дерево"
+    },
+    "Ascending": {
+        "message": "По возрастанию"
+    },
+    "Descending": {
+        "message": "По убыванию"
+    },
+    "Debug": {
+        "message": "Отладка"
+    },
+    "CASE_SENSITIVE": {
+        "message": "С учётом регистра"
+    },
+    "NEW_POS": {
+        "message": "Новые элементы добавлять"
+    },
+    "Top": {
+        "message": "Вверху"
+    },
+    "Bottom": {
+        "message": "Внизу"
+    },
+    "SIDEBAR_SHOW_ROOT": {
+        "message": "Показывать корень в боковой панели"
+    },
+    "SHOW_ROOT": {
+        "message": "Показывать корень"
+    },
+    "PORT_AUTO_TIP": {
+        "message": "Выбирается автоматически при запуске бэкенда и сохраняется, пока он свободен. Настраивать ничего не нужно."
+    },
+    "SAVED_TO": {
+        "message": "Сохранено в"
+    },
+    "DOWNLOAD_AGAIN": {
+        "message": "Скачать снова"
+    },
+    "BACKEND_RUNNING": {
+        "message": "Программа-бэкенд работает"
+    },
+    "IN_FOLDER": {
+        "message": "в папке"
+    },
+    "Downloading___": {
+        "message": "Скачивание..."
+    },
+    "STEP_SCRIPT_TEXT": {
+        "message": "Скачайте скрипт установки, который регистрирует файл конфигурации в браузере. <b>Сохраните его в ту же папку.</b>"
+    },
+    "INSTALL_SAME_FOLDER": {
+        "message": "Файлы находятся в разных папках: переместите программу, файл конфигурации и скрипт установки в одну папку и запустите скрипт там."
+    },
+    "RESET_STATE": {
+        "message": "Сбросить"
+    },
+    "RESET_STATE_TIP": {
+        "message": "Забыть, куда были сохранены файлы, и снова показать все инструкции"
+    },
+    "DEBUG_TIP": {
+        "message": "показывать подробные строки в журнале: сообщения бэкенда, сохранённые файлы, шаги сохранения, со временем выполнения. Полезно, когда что-то не работает."
+    },
+    "DONATE_CREDIT": {
+        "message": "ScrapBro основан на ScrapBee от vctfence."
+    },
+    "LOCALE_DIR":{
+        "message": "ru",
+        "description": "Name of this locale folder, do not translate."
+    },
+    "NO_BACKEND_CHECKSUM":{
+        "message": "В этой сборке ScrapBro нет контрольных сумм программы-бэкенда, поэтому скачать её нельзя. Используйте выпущенную версию или возьмите программу из выпусков ScrapBro на GitHub."
+    },
+    "BACKEND_CHECKSUM_MISMATCH":{
+        "message": "Скачанная программа не совпадает со своей контрольной суммой и не была сохранена. Попробуйте позже или сообщите об этом на GitHub."
+    },
+    "THEME":{
+        "message": "Тема"
+    },
+    "THEME_AUTO":{
+        "message": "Как в браузере"
+    },
+    "THEME_LIGHT":{
+        "message": "Светлая"
+    },
+    "THEME_DARK":{
+        "message": "Тёмная"
+    },
+    "FONT_DEFAULT":{
+        "message": "По умолчанию (системный шрифт)"
+    },
+    "BACKEND_LAUNCH":{
+        "message": "Запуск"
+    },
+    "LAUNCH_TIP":{
+        "message": "<b>Автоматически</b>: ScrapBro сам запускает программу-бэкенд, больше ничего делать не нужно.<br/><b>Вручную</b>: ScrapBro её не запускает, а подключается к адресу ниже — для бэкенда, который вы запускаете сами (например, как службу или на другом компьютере)."
+    },
+    "PASSWORD_TIP":{
+        "message": "Необязательно. Защищает бэкенд, чтобы другие программы на этом компьютере не могли им пользоваться. ScrapBro передаёт его сам, вас о нём никогда не спросят. Только буквы и цифры.<br/>В ручном режиме запускайте бэкенд с тем же паролем."
+    },
+    "CLEAR_HIGHLIGHTS":{
+        "message": "Убрать выделения"
+    },
+    "HIGHLIGHT_SAMPLE":{
+        "message": "Пример текста"
+    },
+    "TIP_SAVE":{
+        "message": "Сохранить изменения этой страницы"
+    },
+    "TIP_DELETE_ELEMENTS":{
+        "message": "Щёлкайте по частям страницы, чтобы удалить их, щёлкните кнопку снова, чтобы закончить"
+    },
+    "TIP_HIGHLIGHT":{
+        "message": "Выделите текст и выберите цвет маркера"
+    },
+    "TIP_EDIT":{
+        "message": "Редактировать текст страницы напрямую"
+    },
+    "TIP_SOURCE_CODE":{
+        "message": "Редактировать исходный HTML-код страницы"
+    },
+    "TIP_RELOAD":{
+        "message": "Перезагрузить сохранённую страницу, несохранённые изменения пропадут"
+    },
+    "TIP_LOCATE":{
+        "message": "Выбрать эту страницу в боковой панели"
+    },
+    "EXPORTED_TO":{
+        "message": "Экспортировано в"
+    },
+    "EXPORT_FAILED":{
+        "message": "Ошибка экспорта"
+    }
+}

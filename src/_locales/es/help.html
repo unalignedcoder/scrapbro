@@ -1,0 +1,78 @@
+<h2>¿Qué es ScrapBro?</h2>
+<p>ScrapBro guarda páginas web, o partes de ellas, en su disco y las organiza en la barra lateral del navegador.
+Lee y escribe los datos de <a href="https://en.wikipedia.org/wiki/ScrapBook" target="_blank">ScrapBook</a>
+y de <a href="https://github.com/vctfence/scrapbee" target="_blank">ScrapBee</a>, del que es una variante, así que los scrapbooks existentes siguen funcionando.
+Funciona en Chrome, Edge, Brave, Vivaldi y otros navegadores Chromium, y en Firefox y sus derivados.</p>
+<p><b>Importante:</b> no use ScrapBro y ScrapBee en el mismo navegador. Ambos escriben en los mismos archivos,
+usar los dos puede perder cambios o dañar un scrapbook. Para cambiar, exporte los ajustes de ScrapBee, desinstálelo y luego impórtelos aquí.
+Antes, haga una copia de seguridad de sus carpetas de scrapbooks.</p>
+
+<!-- use -->
+<h2>Cómo se usa</h2>
+<li class="h3">Antes del primer uso</li>
+<p>Instale el programa backend como se indica en la página <a href="#area=install">Instalación</a> y después añada sus archivos RDF en la página
+<a href="#area=configure">Configuración</a> (vea más abajo).</p>
+<li class="h3">Guardar</li>
+<p>Abra ScrapBro en la barra lateral (botón de la barra de herramientas y luego «{OPEN_IN_SIDEBAR}»), seleccione la carpeta para los elementos nuevos
+y haga clic derecho en la página: <i>{CapturePage}</i>, <i>{CaptureSelection}</i> (seleccione antes un texto), <i>{CaptureUrl}</i>
+o <i>{CaptureAdvance}</i>. Las mismas acciones están en el botón de la barra de herramientas, que también puede guardar todas las pestañas abiertas («{CaptureTabs}»).</p>
+<p>Mantenga abierta la barra lateral mientras guarda (salvo en el guardado avanzado). Un elemento nuevo muestra un icono giratorio hasta que la página se guarda.
+Los elementos se pueden mover arrastrándolos.</p>
+<li class="h3">Leer y editar</li>
+<p>Haga clic en un elemento para abrir la página guardada. La barra en la parte inferior de una página guardada permite resaltar texto, quitar partes no deseadas,
+editarla y guardar los cambios. El pequeño botón junto a un elemento abre la dirección original de la página.</p>
+
+<!-- rdf -->
+<h2 id="help_rdf">Archivos RDF</h2>
+<p>Un archivo RDF es el índice de un scrapbook: enumera los elementos y las carpetas, y las páginas guardadas están en la carpeta «data» junto a él.
+Puede tener varios archivos RDF, cada uno aparece en la lista de la parte superior de la barra lateral.</p>
+<p>En la página <a href="#area=configure">Configuración</a>, haga clic en «+», escriba un nombre y la ruta completa del archivo RDF,
+por ejemplo <i>C:\scrapbooks\news\scrapbook.rdf</i> o <i>/home/yo/scrapbooks/news/scrapbook.rdf</i>.
+Un archivo que aún no existe se crea vacío.</p>
+
+<!-- manual backend -->
+<h2 id="help_install">Ejecutar el backend usted mismo</h2>
+<p>Normalmente ScrapBro inicia el programa backend por sí solo («Automáticamente» en la página Configuración) y elige un puerto libre.
+Para ejecutarlo usted mismo, por ejemplo como servicio, elija «Manualmente», escriba su dirección e inícielo con:</p>
+<div class="embeded-log-text">scrapbro_backend web-server [puerto] [host] [contraseña]<br/>
+por ejemplo scrapbro_backend web-server 9901 127.0.0.1</div>
+<p>Una contraseña (solo letras y números) protege el backend, la misma contraseña debe indicarse en la página Configuración.</p>
+
+<!-- trouble -->
+<h2>Solución de problemas</h2>
+<p>Primero active <i>Depuración</i> en la página <a href="#area=configure">Configuración</a> y mire el <a href="#area=log">Registro</a>:
+muestra los mensajes intercambiados con el backend, cada archivo guardado y cada paso del guardado, con el error cuando algo falla.</p>
+
+<h4>La barra lateral dice que el backend no está en ejecución</h4>
+<p>El Registro suele indicar el motivo:</p>
+<li><i>Specified native messaging host not found</i>: no se ejecutó el script de instalación, o el archivo de configuración se movió después.
+Ponga el programa, el archivo de configuración y el script de instalación en una sola carpeta y vuelva a ejecutar el script.</li>
+<li><i>Access to the specified native messaging host is forbidden</i>: el archivo de configuración es de otra copia de ScrapBro.
+Ocurre cuando la extensión se quitó y se volvió a añadir, lo que puede cambiar su ID: descargue otra vez el archivo de configuración (Instalación, paso 2) y ejecute el script.</li>
+<li><i>Backend disconnected</i> justo después de iniciar: el programa falta o está bloqueado, compruebe que está junto al archivo de configuración
+y que ningún software de seguridad lo ha eliminado.</li>
+<p>Después de cada cambio, desactive y vuelva a activar ScrapBro en la página de extensiones del navegador.</p>
+
+<h4>El navegador bloquea la descarga del programa</h4>
+<p>Los navegadores avisan de los programas que todavía se descargan poco. Abra la página de descargas del navegador y elija conservar el archivo.
+También puede descargarlo aquí: <a href="" class="download_exe">descargar el programa backend</a>.</p>
+
+<h4>El software de seguridad señala el programa</h4>
+<p>Algunos antivirus marcan programas pequeños sin firmar como el backend. Añádalo a las excepciones del antivirus si lo bloquea o elimina.</p>
+
+<h4>Un scrapbook no se carga o no se puede guardar</h4>
+<li>Compruebe que la ruta en la página Configuración es correcta y que el archivo RDF existe.</li>
+<li>Guarde los scrapbooks en una carpeta en la que su usuario pueda escribir, por ejemplo no directamente en C:\ en Windows.</li>
+<li>Si el Registro muestra «failed to load ... 404», el backend no encontró el archivo: revise la ruta.</li>
+
+<h4>Puerto</h4>
+<p>En modo automático ScrapBro elige el puerto y toma otro si está ocupado, la página Configuración muestra el que se usa.
+En modo manual, si el backend indica «address already in use», inícielo en otro puerto.</p>
+
+<h4>¿Sigue sin funcionar?</h4>
+<p>A veces ayuda reiniciar el navegador. Si no, informe del problema con las líneas del Registro en
+<a href="https://github.com/unalignedcoder/scrapbro/issues" target="_blank">github.com/unalignedcoder/scrapbro</a>.</p>
+
+<h2>Copia de seguridad</h2>
+<p>Haga copias de seguridad de sus carpetas de scrapbooks (archivos RDF y carpetas «data») con regularidad, ScrapBro no copia las páginas guardadas.
+Antes de guardar un archivo RDF, guarda una copia de la versión anterior en una carpeta «backup» junto a él, una vez al día.</p>

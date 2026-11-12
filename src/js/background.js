@@ -21,11 +21,28 @@ log.sendLog = function(logtype, content){
     }
     var log = {logtype:logtype, content: content.htmlEncode()};
     log_pool.push(log);
+    /** debug lines are always kept (the log page filters them), keep the pool bounded */
+    if(log_pool.length > 2000)
+        log_pool.splice(0, log_pool.length - 2000);
     browser.runtime.sendMessage({type:'LOGGING', log}).catch(() => {}); // options page may not be opened
 };
 log.clear = function(){
     log_pool = [];
 };
+/** debug line for a backend request or file operation: what, outcome and duration */
+function traced(what, promise){
+    var t = Date.now();
+    return promise.then(r => {
+        log.debug(`${what}: ok (${Date.now() - t} ms)`);
+        return r;
+    }, e => {
+        log.debug(`${what}: failed (${Date.now() - t} ms): ${e && e.message || e}`);
+        throw e;
+    });
+}
+function sizeOf(text){
+    return text ? `${text.length} chars` : "empty";
+}
 /* load and log version and platform */
 var browser_info_loading;
 function loadBrowserInfo(){
@@ -76,7 +93,9 @@ function communicate(command, body){
             reject(backend_inst_port.error);
         }else{
             body.command = command;
+            log.debug(`native message to backend: ${JSON.stringify({...body, pwd: body.pwd ? "***" : ""})}`);
             var listener = (response) => {
+                log.debug(`native message from backend: ${JSON.stringify(response)}`);
                 resolve(response);
                 backend_inst_port.onMessage.removeListener(listener);
             };
@@ -140,13 +159,14 @@ function startWebServer(try_times){
             } else { /** connect AUTO MODE */
                 web_status = "launching";
                 loadBrowserInfo().then(() => {
-                    log.info(`start web server: port = '${port}'. pwd = '${pwd}'`);
+                    log.info(`start web server: port = ${port}, password ${pwd ? "set" : "not set"}`);
                     communicate("web-server", {addr: `127.0.0.1:${port}`, port, pwd}).then(function(r){
                         if(r.Serverstate != "ok"){
                             log.error(`failed to start backend service: ${r.Error}`);
                             web_status = "error";
                             if(try_times > 0){
                                 port = randomPort(port);
+                                log.debug(`port taken, trying port ${port} (${try_times} tries left)`);
                                 fntry(try_times - 1);
                             }else{
                                 web_status = "failed";
@@ -208,7 +228,9 @@ function waitSidebarReady(windowId, timeout=10000){
 }
 /* capture with the side panel of the tab's window, the panel must be opened by caller (user gesture) */
 function captureInTab(tab, type){
+    log.debug(`capture ${type} requested for ${tab.url}`);
     return waitSidebarReady(tab.windowId).then(ready => {
+        log.debug(`sidebar of window ${tab.windowId} ${ready ? "is ready" : "did not get ready in time"}`);
         if(!ready){
             showNotification({message: "Please open ScrapBro in sidebar before the action", title: "Info"});
         }else if(type == 'SAVE_URL_REQUEST'){
@@ -239,11 +261,13 @@ var handlers = {
             return Promise.reject(Error('empty blob'));
         }
         var file = dataURLtoBlob(request.item.blob);
-        return ajaxFormPost(CONF.getBackendAddress() + "savebinfile", {filename, file, pwd: CONF.getItem("backend.pwd")});
+        return traced(`save ${filename} (${file.size} bytes)`,
+                      ajaxFormPost(CONF.getBackendAddress() + "savebinfile", {filename, file, pwd: CONF.getItem("backend.pwd")}));
     },
     'DOWNLOAD_FILE': function(request){
         let {url, itemId, filename} = request;
-        return ajaxFormPost(CONF.getBackendAddress() + "download", {url, itemId, filename, pwd: CONF.getItem("backend.pwd")});
+        return traced(`backend download ${url} to ${filename}`,
+                      ajaxFormPost(CONF.getBackendAddress() + "download", {url, itemId, filename, pwd: CONF.getItem("backend.pwd")}));
     },
     'SAVE_TEXT_FILE': function(request){
         if(request.backup){
@@ -254,11 +278,11 @@ var handlers = {
     },
     'FS_MOVE': function(request){
         let src = request.src, dest = request.dest;
-        return ajaxFormPost(CONF.getBackendAddress() + "fs/move", {src, dest, pwd: CONF.getItem("backend.pwd")});
+        return traced(`move ${src} to ${dest}`, ajaxFormPost(CONF.getBackendAddress() + "fs/move", {src, dest, pwd: CONF.getItem("backend.pwd")}));
     },
     'FS_COPY': function(request){
         let src = request.src, dest = request.dest;
-        return ajaxFormPost(CONF.getBackendAddress() + "fs/copy", {src, dest, pwd: CONF.getItem("backend.pwd")});
+        return traced(`copy ${src} to ${dest}`, ajaxFormPost(CONF.getBackendAddress() + "fs/copy", {src, dest, pwd: CONF.getItem("backend.pwd")}));
     },
     'NOTIFY': function(request){
         return showNotification(request.message, request.title, request.notify_type);
@@ -340,15 +364,15 @@ var handlers = {
         // local files can not be downloaded directly
         var fs = CONF.getFileServiceAddress();
         url = url.replace(/^file\:\/{3}/, fs);
-        return downloadFile(url).then(blobToDataURL);
+        return traced(`fetch resource ${url}`, downloadFile(url)).then(blobToDataURL);
     },
     /** fetch text for content scripts, they are restricted by CORS of the page in chrome */
     'FETCH_TEXT': function(request){
-        return fetch(request.url, {cache: "no-store", credentials: "include"}).then(async r => {
+        return traced(`fetch text ${request.url}`, fetch(request.url, {cache: "no-store", credentials: "include"}).then(async r => {
             if(!r.ok)
                 throw Error(`request ${r.status}: ${request.url}`);
             return r.text();
-        });
+        }));
     },
     'WAIT_WEB_SERVER': function(request){
         var times = request.try_times;
@@ -382,7 +406,8 @@ browser.runtime.onMessage.addListener(function (request, sender) {
 function saveTextFile(request){
     var filename = request.path;
     var content = request.text;
-    return ajaxFormPost(CONF.getBackendAddress() + "savefile", {filename, content, pwd: CONF.getItem("backend.pwd")}).then(response => {
+    return traced(`save ${filename} (${sizeOf(content)})`,
+                  ajaxFormPost(CONF.getBackendAddress() + "savefile", {filename, content, pwd: CONF.getItem("backend.pwd")})).then(response => {
         if(request.boardcast){
             var msg = {type: 'FILE_CONTENT_CHANGED', filename, srcToken:request.srcToken};
             browser.runtime.sendMessage(msg).catch(() => {});
@@ -446,10 +471,16 @@ if(IS_FIREFOX)
     createMenus();
 else
     browser.runtime.onInstalled.addListener(createMenus);
+/* first install: show how to install the backend */
+browser.runtime.onInstalled.addListener(function(details){
+    if(details.reason == "install")
+        browser.tabs.create({url: "/html/options.html#area=install"}).catch(() => {});
+});
 browser.contextMenus.onClicked.addListener(function(info, tab){
     var type = MENU_ACTIONS[info.menuItemId];
     if(!type || !tab)
         return;
+    log.debug(`context menu: ${type}`);
     if(type == "SAVE_ADVANCE_REQUEST"){
         sendTabContentMessage(tab, {type}).catch(() => {});
         return;

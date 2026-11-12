@@ -1,0 +1,78 @@
+<h2>Czym jest ScrapBro?</h2>
+<p>ScrapBro zapisuje strony internetowe lub ich fragmenty na dysku i porządkuje je w panelu bocznym przeglądarki.
+Czyta i zapisuje dane <a href="https://en.wikipedia.org/wiki/ScrapBook" target="_blank">ScrapBook</a>
+i <a href="https://github.com/vctfence/scrapbee" target="_blank">ScrapBee</a>, którego jest forkiem, więc istniejące kolekcje nadal działają.
+Działa w Chrome, Edge, Brave, Vivaldi i innych przeglądarkach opartych na Chromium, a także w Firefoksie i jego pochodnych.</p>
+<p><b>Ważne:</b> nie używaj ScrapBro i ScrapBee w tej samej przeglądarce. Oba zapisują do tych samych plików,
+używanie obu może spowodować utratę zmian lub uszkodzenie kolekcji. Aby przejść na ScrapBro, wyeksportuj ustawienia ze ScrapBee, usuń go i zaimportuj je tutaj.
+Wcześniej wykonaj kopię zapasową folderów kolekcji.</p>
+
+<!-- use -->
+<h2>Jak używać</h2>
+<li class="h3">Przed pierwszym użyciem</li>
+<p>Zainstaluj program backendu zgodnie ze stroną <a href="#area=install">Instalacja</a>, a następnie dodaj pliki RDF na stronie
+<a href="#area=configure">Konfiguracja</a> (zobacz niżej).</p>
+<li class="h3">Zapisywanie</li>
+<p>Otwórz ScrapBro w panelu bocznym (przycisk na pasku narzędzi, a potem „{OPEN_IN_SIDEBAR}”), wybierz folder na nowe elementy
+i kliknij prawym przyciskiem na stronie: <i>{CapturePage}</i>, <i>{CaptureSelection}</i> (najpierw zaznacz tekst), <i>{CaptureUrl}</i>
+lub <i>{CaptureAdvance}</i>. Te same akcje są w przycisku na pasku narzędzi, który potrafi też zapisać wszystkie otwarte karty („{CaptureTabs}”).</p>
+<p>Podczas zapisu pozostaw panel boczny otwarty (poza zapisem zaawansowanym). Nowy element pokazuje obracającą się ikonę, dopóki strona nie zostanie zapisana.
+Elementy można przenosić przeciągając je.</p>
+<li class="h3">Czytanie i edycja</li>
+<p>Kliknij element, aby otworzyć zapisaną stronę. Pasek na dole zapisanej strony pozwala zakreślać tekst, usuwać niepotrzebne fragmenty strony,
+edytować ją i zapisywać zmiany. Mały przycisk obok elementu otwiera oryginalny adres strony.</p>
+
+<!-- rdf -->
+<h2 id="help_rdf">Pliki RDF</h2>
+<p>Plik RDF to spis treści kolekcji: wymienia elementy i foldery, a zapisane strony znajdują się w folderze „data” obok niego.
+Możesz mieć kilka plików RDF, każdy pojawia się na liście u góry panelu bocznego.</p>
+<p>Na stronie <a href="#area=configure">Konfiguracja</a> kliknij „+”, wpisz nazwę i pełną ścieżkę pliku RDF,
+na przykład <i>C:\scrapbooks\news\scrapbook.rdf</i> lub <i>/home/ja/scrapbooks/news/scrapbook.rdf</i>.
+Plik, który jeszcze nie istnieje, zostanie utworzony pusty.</p>
+
+<!-- manual backend -->
+<h2 id="help_install">Samodzielne uruchamianie backendu</h2>
+<p>Zwykle ScrapBro sam uruchamia program backendu („Automatycznie” na stronie Konfiguracja) i wybiera wolny port.
+Aby uruchamiać go samodzielnie, na przykład jako usługę, wybierz „Ręcznie”, wpisz jego adres i uruchom go poleceniem:</p>
+<div class="embeded-log-text">scrapbro_backend web-server [port] [host] [hasło]<br/>
+na przykład scrapbro_backend web-server 9901 127.0.0.1</div>
+<p>Hasło (tylko litery i cyfry) chroni backend, to samo hasło trzeba podać na stronie Konfiguracja.</p>
+
+<!-- trouble -->
+<h2>Rozwiązywanie problemów</h2>
+<p>Najpierw włącz <i>Debugowanie</i> na stronie <a href="#area=configure">Konfiguracja</a> i zajrzyj do <a href="#area=log">Dziennika</a>:
+pokazuje komunikaty wymieniane z backendem, każdy zapisany plik i każdy krok zapisu, a gdy coś się nie uda, także błąd.</p>
+
+<h4>Panel boczny informuje, że backend nie działa</h4>
+<p>Dziennik zwykle podaje przyczynę:</p>
+<li><i>Specified native messaging host not found</i>: skrypt instalacyjny nie został uruchomiony albo plik konfiguracyjny przeniesiono później.
+Umieść program, plik konfiguracyjny i skrypt instalacyjny w jednym folderze i uruchom skrypt ponownie.</li>
+<li><i>Access to the specified native messaging host is forbidden</i>: plik konfiguracyjny należy do innej kopii ScrapBro.
+Dzieje się tak, gdy rozszerzenie usunięto i dodano ponownie, co może zmienić jego ID: pobierz ponownie plik konfiguracyjny (Instalacja, krok 2) i uruchom skrypt.</li>
+<li><i>Backend disconnected</i> zaraz po uruchomieniu: brakuje programu lub jest zablokowany, sprawdź, czy leży obok pliku konfiguracyjnego
+i czy nie usunęło go oprogramowanie zabezpieczające.</li>
+<p>Po każdej zmianie wyłącz i włącz ponownie ScrapBro na stronie rozszerzeń przeglądarki.</p>
+
+<h4>Przeglądarka blokuje pobieranie programu</h4>
+<p>Przeglądarki ostrzegają przed programami, które są jeszcze rzadko pobierane. Otwórz stronę pobierania przeglądarki i wybierz zachowanie pliku.
+Możesz go też pobrać tutaj: <a href="" class="download_exe">pobierz program backendu</a>.</p>
+
+<h4>Oprogramowanie zabezpieczające zgłasza program</h4>
+<p>Niektóre antywirusy oznaczają małe, niepodpisane programy, takie jak backend. Dodaj go do wyjątków antywirusa, jeśli jest blokowany lub usuwany.</p>
+
+<h4>Kolekcja się nie wczytuje lub nie da się jej zapisać</h4>
+<li>Sprawdź, czy ścieżka na stronie Konfiguracja jest poprawna i czy plik RDF istnieje.</li>
+<li>Trzymaj kolekcje w folderze, do którego Twój użytkownik może zapisywać, na przykład nie bezpośrednio w C:\ w Windows.</li>
+<li>Jeśli Dziennik pokazuje „failed to load ... 404”, backend nie znalazł pliku: sprawdź ścieżkę.</li>
+
+<h4>Port</h4>
+<p>W trybie automatycznym port wybiera ScrapBro i bierze inny, gdy jest zajęty, strona Konfiguracja pokazuje używany port.
+W trybie ręcznym, jeśli backend zgłasza „address already in use”, uruchom go na innym porcie.</p>
+
+<h4>Nadal nie działa?</h4>
+<p>Czasem pomaga ponowne uruchomienie przeglądarki. W przeciwnym razie zgłoś problem, dołączając wiersze z Dziennika, na
+<a href="https://github.com/unalignedcoder/scrapbro/issues" target="_blank">github.com/unalignedcoder/scrapbro</a>.</p>
+
+<h2>Kopia zapasowa</h2>
+<p>Regularnie rób kopie zapasowe folderów kolekcji (plików RDF i folderów „data”), ScrapBro nie kopiuje zapisanych stron.
+Przed zapisaniem pliku RDF raz dziennie odkłada kopię poprzedniej wersji do folderu „backup” obok niego.</p>

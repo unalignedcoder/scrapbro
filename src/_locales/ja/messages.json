@@ -1,0 +1,499 @@
+{
+    "extensionDescription": {
+        "message": "ウェブページをローカルディスクに保存し、ブラウザーのサイドバーで整理します。ScrapBook の文書と互換性があります。",
+        "description": "Description of the extension."
+    },
+    "DLG_OK": {
+        "message": "OK"
+    },
+    "DLG_CANCEL": {
+        "message": "キャンセル"
+    },
+    "Setting": {
+        "message": "設定"
+    },
+    "Configure": {
+        "message": "構成"
+    },
+    "Reload": {
+        "message": "再読み込み"
+    },
+    "Search": {
+        "message": "検索"
+    },
+    "Stop": {
+        "message": "停止"
+    },
+    "Help": {
+        "message": "ヘルプ"
+    },
+    "Folder": {
+        "message": "フォルダー"
+    },
+    "Open_Folder": {
+        "message": "フォルダーを開く"
+    },
+    "Title": {
+        "message": "タイトル"
+    },
+    "Content": {
+        "message": "内容"
+    },
+    "Step": {
+        "message": "ステップ"
+    },
+    "Name": {
+        "message": "名前"
+    },
+    "Save": {
+        "message": "保存"
+    },
+    "MODIFY_DOM_ON": {
+        "message": "要素を削除"
+    },
+    "MODIFY_DOM_OFF": {
+        "message": "削除を終了"
+    },
+    "MARK_PEN": {
+        "message": "ハイライト"
+    },
+    "SOURCE_CODE": {
+        "message": "ソースコード"
+    },
+    "File": {
+        "message": "ファイル"
+    },
+    "Donate": {
+        "message": "寄付"
+    },
+    "New_Folder": {
+        "message": "新しいフォルダー"
+    },
+    "New_Separator": {
+        "message": "新しい区切り線"
+    },
+    "New_Note": {
+        "message": "新しいメモ"
+    },
+    "CapturePage": {
+        "message": "ページを保存"
+    },
+    "SAME_LEVEL": {
+        "message": "同じ階層"
+    },
+    "CaptureSelection": {
+        "message": "選択範囲を保存"
+    },
+    "CaptureUrl": {
+        "message": "ブックマークを保存"
+    },
+    "CaptureAdvance": {
+        "message": "詳細保存..."
+    },
+    "CaptureTabs": {
+        "message": "すべてのタブを保存"
+    },
+    "Download": {
+        "message": "ダウンロード"
+    },
+    "Delete": {
+        "message": "削除"
+    },
+    "Install": {
+        "message": "インストール"
+    },
+    "Log": {
+        "message": "ログ"
+    },
+    "RDF_Files": {
+        "message": "RDF ファイル"
+    },
+    "CUSTOM_INSTALL_TIP": {
+        "message": "以下の手順でバックエンドプログラムをインストールします。<b>3 つのファイルはすべて同じフォルダーに保存してください。</b>"
+    },
+    "STEP1_TEXT_1": {
+        "message": "ScrapBro のバックエンドプログラムをダウンロードします。"
+    },
+    "STEP1_TEXT_2": {
+        "message": "プログラムは、このバージョンに対応する GitHub の ScrapBro リリースからダウンロードされ、保存前に SHA-256 チェックサムが検証されます。"
+    },
+    "STEP2_TEXT_1": {
+        "message": "プログラムの場所をブラウザーに伝える設定ファイルをダウンロードします。<b>プログラムと同じフォルダーに保存してください。</b>"
+    },
+    "STEP3_TEXT_1": {
+        "message": "インストールスクリプトを実行します。"
+    },
+    "STEP3_TEXT_3": {
+        "message": "現在のユーザーにバックエンドを登録します。管理者権限は不要です"
+    },
+    "STEP4_TEXT": {
+        "message": "拡張機能ページで ScrapBro をオフにしてから再びオンにするか、ブラウザーを再起動してください。"
+    },
+    "FONT_SIZE": {
+        "message": "フォントサイズ"
+    },
+    "FONT_NAME": {
+        "message": "フォント"
+    },
+    "LINE_SPACING": {
+        "message": "行間"
+    },
+    "Separator": {
+        "message": "区切り線"
+    },
+    "BACKEND_TIP": {
+        "message": "ScrapBro にはバックエンドプログラムが必要です。<a href=\"#area=install\">インストール</a>ページと<a href=\"#area=help&scroll=help_install\">ヘルプ</a>を参照してください。"
+    },
+    "RDF_FILES_TIP": {
+        "message": "RDF ファイルはスクラップブックの<b>目次</b>で、保存したページはその隣の「data」フォルダーに入ります。<a href='#area=help&scroll=help_rdf'>ヘルプ</a>を参照してください。<br/><br/>RDF ファイルは複数持つことができ、同じフォルダーに置くこともできます。まだ存在しないファイルは空のファイルとして作成されます。<br/><a href=\"https://en.wikipedia.org/wiki/ScrapBook\" target=\"_blank\">ScrapBook</a> や <a href=\"https://github.com/vctfence/scrapbee\" target=\"_blank\">ScrapBee</a> の RDF ファイルも使えます。<br/><br/><b>下の「+」をクリックして RDF ファイルを追加し、名前とファイルのフルパスを入力してください。</b>"
+    },
+    "Appearance": {
+        "message": "外観"
+    },
+    "Behavior": {
+        "message": "動作"
+    },
+    "OPEN_IN_CURRENT_TAB": {
+        "message": "現在のタブで開く"
+    },
+    "OPEN_IN_CURRENT_TAB_TIP": {
+        "message": "通常は項目をクリックすると新しいタブで開き、Ctrl (Mac では Cmd) を押しながら、またはマウスの中ボタンでクリックすると現在のタブで開きます。<br/>このオプションはその 2 つを入れ替えます。"
+    },
+    "DONATE_WORDS": {
+        "message": "ScrapBro は無料です。役に立ったら、コーヒーをおごって開発を応援していただけると嬉しいです。ありがとうございます！"
+    },
+    "RESULTS_FOUND": {
+        "message": " 件見つかりました"
+    },
+    "ConfirmDeleteItem": {
+        "message": "選択した項目を削除してもよろしいですか？"
+    },
+    "Warning": {
+        "message": "警告"
+    },
+    "Loading___": {
+        "message": "読み込み中..."
+    },
+    "Starting___": {
+        "message": "起動中..."
+    },
+    "NO_SELECTION_ACTIVATED": {
+        "message": "選択されていません"
+    },
+    "Announcement": {
+        "message": "更新履歴"
+    },
+    "NODE_MOVER_TIP": {
+        "message": "このツールでは、2 つの RDF ファイル間で項目を内容ごと移動またはコピーできます。1 つの RDF 内でのドラッグや削除もできます。"
+    },
+    "NODE_MOVER_WARN_TIP": {
+        "message": "<b>ご注意ください</b><br>このツールを使う前にデータをバックアップしてください。<br>使用中はほかの場所で変更しないでください。競合の原因になります。"
+    },
+    "Tools": {
+        "message": "ツール"
+    },
+    "Node_Mover": {
+        "message": "項目の移動"
+    },
+    "Exporter": {
+        "message": "エクスポート"
+    },
+    "Done": {
+        "message": "完了"
+    },
+    "EDIT_CONTENT": {
+        "message": "編集"
+    },
+    "STOP_EDIT_CONTENT": {
+        "message": "編集を終了"
+    },
+    "NO_SOURCE_NODE_SELECTED": {
+        "message": "移動元の項目が選択されていません"
+    },
+    "MOVE_TO": {
+        "message": "移動先:"
+    },
+    "COPY_TO": {
+        "message": "コピー先:"
+    },
+    "Left": {
+        "message": "左"
+    },
+    "Right": {
+        "message": "右"
+    },
+    "Sort": {
+        "message": "並べ替え"
+    },
+    "Export": {
+        "message": "エクスポート"
+    },
+    "Import": {
+        "message": "インポート"
+    },
+    "INVALID_CONFIGURATION_FILE": {
+        "message": "無効な設定ファイルです"
+    },
+    "UNCHECK_ALL": {
+        "message": "すべての選択を解除"
+    },
+    "ERROR_MOVE_FOLER_INTO_ITSELF": {
+        "message": "無効な操作: フォルダーをそれ自身の中に移動することはできません"
+    },
+    "OPEN_ALL_ITEMS": {
+        "message": "すべての項目を開く"
+    },
+    "OPEN_ORIGIN_LINK": {
+        "message": "元のアドレスを開く"
+    },
+    "Properties": {
+        "message": "プロパティ"
+    },
+    "Page": {
+        "message": "ページ"
+    },
+    "Bookmark": {
+        "message": "ブックマーク"
+    },
+    "Note": {
+        "message": "メモ"
+    },
+    "Selection": {
+        "message": "選択範囲"
+    },
+    "CREATE_TIME": {
+        "message": "作成日時"
+    },
+    "Type": {
+        "message": "種類"
+    },
+    "General": {
+        "message": "一般"
+    },
+    "Comment": {
+        "message": "コメント"
+    },
+    "LOCATE_NODE": {
+        "message": "サイドバーに表示"
+    },
+    "SAVE_TO": {
+        "message": "保存先"
+    },
+    "CAPTURE": {
+        "message": "保存"
+    },
+    "Icon": {
+        "message": "アイコン"
+    },
+    "Select": {
+        "message": "選択"
+    },
+    "Default": {
+        "message": "既定"
+    },
+    "Clear": {
+        "message": "クリア"
+    },
+    "OPEN_IN_SIDEBAR": {
+        "message": "サイドバーで開く"
+    },
+    "FAIL_START_BACKEND_HINT": {
+        "message": "バックエンドプログラムが動作していません。<a href='options.html#area=install' target='_blank'>インストール</a>と<a href='options.html#area=log' target='_blank'>ログ</a>を確認してください"
+    },
+    "NO_RDF_SETTED_HINT": {
+        "message": "RDF ファイルがまだ設定されていません。<a href='options.html#area=configure' target='_blank'>設定</a>を確認してください"
+    },
+    "EXPORTER_TYPE": {
+        "message": "種類"
+    },
+    "EXPORTER_HTML_PAGE": {
+        "message": "HTML ページ"
+    },
+    "EXPORTER_SOURCE": {
+        "message": "ソース"
+    },
+    "EXPORTER_EXPORT_AS": {
+        "message": "エクスポート先"
+    },
+    "EXPORTER_INCLUDE_SEPARATOR": {
+        "message": "区切り線を含める"
+    },
+    "EXPORTER_OPEN_LINKS_IN_NEW_TAB": {
+        "message": "リンクを新しいタブで開く"
+    },
+    "AUTO_CLOSE_SAVING_DIALOG": {
+        "message": "保存ダイアログを自動で閉じる"
+    },
+    "SHOW_NOTIFICATION": {
+        "message": "通知を表示"
+    },
+    "SAVING_SAVE_FRAMES": {
+        "message": "フレームを保存"
+    },
+    "Automatically": {
+        "message": "自動"
+    },
+    "Manually": {
+        "message": "手動"
+    },
+    "Port": {
+        "message": "ポート"
+    },
+    "Password": {
+        "message": "パスワード"
+    },
+    "Address": {
+        "message": "アドレス"
+    },
+    "BACKEND_PROGRAM": {
+        "message": "バックエンドプログラム"
+    },
+    "Execute": {
+        "message": "実行:"
+    },
+    "Date": {
+        "message": "日付"
+    },
+    "Order": {
+        "message": "順序"
+    },
+    "Target": {
+        "message": "対象"
+    },
+    "SORT_BY": {
+        "message": "並べ替えの基準"
+    },
+    "WHOLE_TREE": {
+        "message": "ツリー全体"
+    },
+    "Ascending": {
+        "message": "昇順"
+    },
+    "Descending": {
+        "message": "降順"
+    },
+    "Debug": {
+        "message": "デバッグ"
+    },
+    "CASE_SENSITIVE": {
+        "message": "大文字と小文字を区別"
+    },
+    "NEW_POS": {
+        "message": "新しい項目の位置"
+    },
+    "Top": {
+        "message": "先頭"
+    },
+    "Bottom": {
+        "message": "末尾"
+    },
+    "SIDEBAR_SHOW_ROOT": {
+        "message": "サイドバーにルートを表示"
+    },
+    "SHOW_ROOT": {
+        "message": "ルートを表示"
+    },
+    "PORT_AUTO_TIP": {
+        "message": "バックエンドの起動時に自動で選ばれ、空いている間は同じポートが使われます。設定は不要です。"
+    },
+    "SAVED_TO": {
+        "message": "保存先"
+    },
+    "DOWNLOAD_AGAIN": {
+        "message": "再ダウンロード"
+    },
+    "BACKEND_RUNNING": {
+        "message": "バックエンドプログラムは動作中です"
+    },
+    "IN_FOLDER": {
+        "message": "フォルダー"
+    },
+    "Downloading___": {
+        "message": "ダウンロード中..."
+    },
+    "STEP_SCRIPT_TEXT": {
+        "message": "設定ファイルをブラウザーに登録するインストールスクリプトをダウンロードします。<b>これも同じフォルダーに保存してください。</b>"
+    },
+    "INSTALL_SAME_FOLDER": {
+        "message": "ファイルが別々のフォルダーにあります。プログラム、設定ファイル、インストールスクリプトを 1 つのフォルダーに移動し、そこでスクリプトを実行してください。"
+    },
+    "RESET_STATE": {
+        "message": "リセット"
+    },
+    "RESET_STATE_TIP": {
+        "message": "ファイルの保存場所を忘れ、すべての手順を再表示します"
+    },
+    "DEBUG_TIP": {
+        "message": "ログに詳細を表示します: バックエンドとのメッセージ、保存したファイル、保存の各手順とその所要時間。うまく動かないときに役立ちます。"
+    },
+    "DONATE_CREDIT": {
+        "message": "ScrapBro は vctfence による ScrapBee をもとにしています。"
+    },
+    "LOCALE_DIR":{
+        "message": "ja",
+        "description": "Name of this locale folder, do not translate."
+    },
+    "NO_BACKEND_CHECKSUM":{
+        "message": "この ScrapBro のビルドにはバックエンドプログラムのチェックサムが含まれていないため、ダウンロードできません。リリース版を使うか、GitHub の ScrapBro リリースからプログラムを入手してください。"
+    },
+    "BACKEND_CHECKSUM_MISMATCH":{
+        "message": "ダウンロードしたプログラムがチェックサムと一致しないため、保存しませんでした。しばらくしてからやり直すか、GitHub で報告してください。"
+    },
+    "THEME":{
+        "message": "テーマ"
+    },
+    "THEME_AUTO":{
+        "message": "ブラウザーに合わせる"
+    },
+    "THEME_LIGHT":{
+        "message": "ライト"
+    },
+    "THEME_DARK":{
+        "message": "ダーク"
+    },
+    "FONT_DEFAULT":{
+        "message": "既定 (システムフォント)"
+    },
+    "BACKEND_LAUNCH":{
+        "message": "起動"
+    },
+    "LAUNCH_TIP":{
+        "message": "<b>自動</b>: ScrapBro がバックエンドプログラムを自動で起動します。ほかに操作は不要です。<br/><b>手動</b>: ScrapBro は起動せず、下のアドレスに接続します。自分で動かすバックエンド (サービスとして、または別のコンピューターで) 向けです。"
+    },
+    "PASSWORD_TIP":{
+        "message": "任意。バックエンドをロックし、このコンピューター上のほかのプログラムが使えないようにします。ScrapBro が自動で送るので、入力を求められることはありません。英字と数字のみ。<br/>手動モードでは、同じパスワードでバックエンドを起動してください。"
+    },
+    "CLEAR_HIGHLIGHTS":{
+        "message": "ハイライトを消去"
+    },
+    "HIGHLIGHT_SAMPLE":{
+        "message": "サンプルテキスト"
+    },
+    "TIP_SAVE":{
+        "message": "このページの変更を保存します"
+    },
+    "TIP_DELETE_ELEMENTS":{
+        "message": "ページの一部をクリックすると削除されます。もう一度ボタンをクリックすると終了します"
+    },
+    "TIP_HIGHLIGHT":{
+        "message": "テキストを選択してから、ハイライトの色を選びます"
+    },
+    "TIP_EDIT":{
+        "message": "ページのテキストを直接編集します"
+    },
+    "TIP_SOURCE_CODE":{
+        "message": "ページの HTML ソースを編集します"
+    },
+    "TIP_RELOAD":{
+        "message": "保存したページを再読み込みします。保存していない変更は失われます"
+    },
+    "TIP_LOCATE":{
+        "message": "このページをサイドバーで選択します"
+    },
+    "EXPORTED_TO":{
+        "message": "エクスポート先"
+    },
+    "EXPORT_FAILED":{
+        "message": "エクスポートに失敗しました"
+    }
+}

@@ -103,6 +103,13 @@ class History extends StorageDB{
     }    
 }
 
+/** the settings a user can change: exported, and the only ones taken from an imported file */
+var SETTINGS = ["backend.type", "backend.address", "backend.pwd", "tree.paths", "tree.names", "tree.font.size", "tree.font.name",
+                "tree.line.spacing", "sidebar.theme", "sidebar.behavior.open.dest", "sidebar.behavior.root.show",
+                "capture.behavior.saving.dialog.close", "capture.behavior.frames.save", "capture.behavior.item.new.pos",
+                "global.notification.show", "global.debug"];
+/** older names of settings (ScrapBee) */
+var SETTING_ALIASES = {"sidebar.line.spacing": "tree.line.spacing"};
 class Configuration extends StorageDB{
     constructor(){
         super("__config__");
@@ -144,7 +151,7 @@ class Configuration extends StorageDB{
                    'focused_bg_color': 'tree.color.focused.bg',
                    'font_size': 'tree.font.size',
                    'font_name': 'tree.font.name',
-                   'line_spacing': 'sidebar.line.spacing',
+                   'line_spacing': 'tree.line.spacing',
                    'open_in_current_tab': 'sidebar.behavior.open.dest',
                    'sidebar_show_root': 'sidebar.behavior.root.show',
                    'auto_close_saving_dialog': 'capture.behavior.saving.dialog.close',
@@ -184,7 +191,8 @@ class Configuration extends StorageDB{
                     set('tree.color.focused.bg', '07a');
                     set('tree.font.size', '12');
                     set('tree.font.name', '');
-                    set('sidebar.line.spacing', '5');
+                    set('tree.line.spacing', '5');
+                    set('sidebar.theme', 'auto'); // 'auto' (follow the browser) / 'light' / 'dark'
                     set('sidebar.behavior.open.dest', 'new-tab'); // 'new-tab' / 'curr-tab'
                     set('sidebar.behavior.root.show', 'off');
                     set('capture.behavior.saving.dialog.close', 'manually');
@@ -196,45 +204,62 @@ class Configuration extends StorageDB{
             }).catch(e => {reject(e)});
         });
     }
+    /** import settings (a ScrapBro or ScrapBee export, nested or with the old flat names): only the current
+        settings are taken, anything else (removed options, the backend port, computed values) is skipped */
     loadJson(json){
-        var self = this;
-        /** the port belongs to the backend this browser runs (see background.js), an imported one is stale */
-        var port = this.getItem("backend.port");
-        Object.keys(json).forEach(function(key) {
-            if(key == "__computed") // derived values written by getJson()
-                return;
-            var nKey = self.translateKey(key) || key;
-            if(nKey == "backend.port")
-                return;
-            self.setItem(nKey, json[key], true);
-        });
-        this.setItem("backend.port", port || "", true);
+        var self = this, imported = [], skipped = [];
+        function walk(obj, prefix){
+            Object.keys(obj || {}).forEach(function(key){
+                var path = prefix ? prefix + "." + key : (self.translateKey(key) || key);
+                var value = obj[key];
+                if(value && typeof value == "object" && !Array.isArray(value)){
+                    walk(value, path);
+                    return;
+                }
+                path = SETTING_ALIASES[path] || path;
+                if(SETTINGS.indexOf(path) < 0 || value === null || value === undefined){
+                    skipped.push(path);
+                }else{
+                    self.setItem(path, Array.isArray(value) ? value.map(String) : String(value), true);
+                    imported.push(path);
+                }
+            });
+        }
+        if(json && typeof json == "object")
+            walk(json, "");
         this.commit();
+        return {imported, skipped};
+    }
+    /** export: the current settings only, nested like the storage (and like ScrapBee exports) */
+    exportJson(){
+        var out = {}, self = this;
+        SETTINGS.forEach(function(path){
+            var value = self.getItem(path);
+            if(value === null || value === undefined)
+                return;
+            var t = out, keys = path.split("."), last = keys.pop();
+            keys.forEach(k => t = t[k] = t[k] || {});
+            t[last] = value;
+        });
+        return out;
     }
     getJson(){
         var json = {...this.data};
         json.__computed = {fileServiceAddress: this.getFileServiceAddress()};
         return json;
     }
+    /** a list; older settings kept it as text, one item per line */
+    listSetting(key){
+        var value = this.getItem(key);
+        if(Array.isArray(value))
+            return value;
+        return String(value || "").split(/\r?\n/).filter(line => line.trim() != "");
+    }
     getRdfPaths(){
-        var paths = this.getItem("tree.paths");
-        if(paths && Array.isArray(paths)){ // paths.constructor == Array
-            return paths;
-        }else{
-            let paths = (paths || "").split("\n");
-            paths.pop();
-            return paths;
-        }
+        return this.listSetting("tree.paths");
     }
     getRdfNames(){
-        var names = this.getItem("tree.names");
-        if(names && Array.isArray(names)){ // names.constructor == Array
-            return names;
-        }else{
-            let names = (names || "").split("\n");
-            names.pop();
-            return names;
-        }
+        return this.listSetting("tree.names");
     }
     getBackendAddress(){
         var type =  this.getItem("backend.type");

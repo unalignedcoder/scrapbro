@@ -194,11 +194,7 @@ menulistener.onProperty = function(){
         var m = id.match(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/);
         var icon0 = currTree.getItemIcon(id);
         if(m){
-            var lang = "en";
-            var ui = browser.i18n.getUILanguage();
-            if(["en", "zh-CN", "fr"].indexOf(ui) > -1){
-                lang = ui;
-            }
+            var lang = browser.i18n.getUILanguage();
             var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
             time = new Date(m[1], m[2]-1, m[3], m[4], m[5]).toLocaleDateString(lang, options);
         }
@@ -293,6 +289,23 @@ function loadRdfList(){
         $(".folder-content.toplevel").html("{FAIL_START_BACKEND_HINT}".translate());
     });
 }
+/* sidebar colors: the system colors of the browser (Canvas, CanvasText, Highlight...), light or dark following
+   the browser (prefers-color-scheme) unless set to light or dark in the settings */
+function sidebarColors(dark){
+    return {bg: "Canvas", fg: "CanvasText", separator: "GrayText", bookmark: dark ? "#8fd18f" : "#005500",
+            focused: {bg: "Highlight", fg: "HighlightText"}};
+}
+var SYSTEM_CONTROLS_CSS = `
+.dlg{ background:Canvas; border-color:GrayText; }
+.dlg *{ color:CanvasText; }
+input[type=text], textarea, select{ background:Field; color:FieldText; border-color:GrayText; }
+`;
+var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+function isDarkTheme(){
+    var theme = CONF.getItem("sidebar.theme") || "auto";
+    return theme == "dark" || (theme == "auto" && darkQuery.matches);
+}
+darkQuery.addEventListener("change", () => applyAppearance());
 function applyAppearance(){
     var id = "scrapbee_setting_style";
     $("#"+id).remove();
@@ -303,38 +316,41 @@ function applyAppearance(){
     var icon_h = item_h * 1.2;
     var icon_space = icon_h + 2;
     var origin_h = item_h * 0.80;
-    var bg_color = CONF.getItem("tree.color.bg");
-    // var filter = getColorFilter("#"+settings.font_color).filter;
     var label_lineheight = CONF.getItem('tree.font.size') + 3;
     var appearance = CONF.getJson().tree;
+    var dark = isDarkTheme();
+    var c = sidebarColors(dark);
     sheet.innerHTML = `
+:root{
+  color-scheme:${dark ? "dark" : "light"};
+}
 *{
-  color:${appearance.color.fg};
+  color:${c.fg};
   font-family:${appearance.font.name};
 }
+${SYSTEM_CONTROLS_CSS}
 .item.local,.item.folder{
-  color:#${appearance.color.fg};
+  color:${c.fg};
 }
 .item.bookmark label{
-  color:#${appearance.color.bookmark};
+  color:${c.bookmark};
 }
 body{
-  background:#${appearance.color.bg};
+  background:${c.bg};
 }
 .dlg-cover{
-  background:#${appearance.color.bg}99;
+  background:color-mix(in srgb, ${c.bg} 60%, transparent);
 }
 .toolbar{
-  backgroud-color:#${appearance.color.bg};
-  border-color:#${appearance.color.fg};
-  background:#${appearance.color.bg};
+    border-color:${c.fg};
+  background:${c.bg};
 }
 .item.separator > .stroke{
-    background:#${appearance.color.separator};
+    background:${c.separator};
 }
 .item.separator.focus > .stroke{
-  background:#${appearance.color.focused.fg};
-  border-color:#${appearance.color.focused.bg};
+  background:${c.focused.fg};
+  border-color:${c.focused.bg};
 }
 .item.page,.item.bookmark,.item.folder,.item.note{
   background-size:${icon_h}px ${icon_h}px;
@@ -356,7 +372,7 @@ body{
   height:${icon_h}px;
 }
 .item input[type='checkbox']{
-  background-color:#${appearance.color.fg};
+  background-color:${c.fg};
 }
 .folder-content{
   margin-left:${item_h}px;
@@ -365,41 +381,41 @@ body{
   width:${origin_h}px;
   height:${origin_h}px;
   mask-size:${origin_h}px ${origin_h}px;
-  background:#${appearance.color.fg}
+  background:${c.fg}
 }
 .item{
   margin-top:0 !important;
   margin-bottom:${line_spacing}px !important
 }
 .simple-menu-item{
-  border-color:#${appearance.color.fg};
-  color:#${appearance.color.fg}
+  border-color:${c.fg};
+  color:${c.fg}
 }
 .simple-dropdown, .simple-menu{
-  background:#${bg_color};
-  border-color:#${appearance.color.fg}
+  background:${c.bg};
+  border-color:${c.fg}
 }
 .drop-button{
-  border-color:#${appearance.color.fg}
+  border-color:${c.fg}
 }
 .drop-button .label{
-  color:#${appearance.color.fg}
+  color:${c.fg}
 }
 .drop-button .button{
-  border-color:#${appearance.color.fg};
-  color:#${appearance.color.fg}
+  border-color:${c.fg};
+  color:${c.fg}
 }
 .item.focus label,
 .simple-menu-item:hover,
 .tool-button:hover{
-  background-color:#${appearance.color.focused.bg};
-  color:#${appearance.color.focused.fg};
+  background-color:${c.focused.bg};
+  color:${c.focused.fg};
 }
 .tool-button:hover:before,.simple-menu-item:hover .icon{
-  background-color:#${appearance.color.focused.fg};
+  background-color:${c.focused.fg};
 }
 .tool-button:before,.simple-menu-item .icon{
-  background-color:#${appearance.color.fg};
+  background-color:${c.fg};
 }`;
     document.body.appendChild(sheet);
 }
@@ -408,7 +424,7 @@ CONF.onchange=function(key, value){
         loadRdfList();
     }else if(key == "sidebar.behavior.root.show"){
         currTree.showRoot(value == "on");
-    }else if(key.match(/tree\.(color|font|line)\.\w+/)){
+    }else if(key.match(/tree\.(color|font|line)\.\w+/) || key == "sidebar.theme"){
         applyAppearance();
     }else if(key == "__backend__"){
         $(".folder-content.toplevel").empty().text("{Loading...}".translate());
@@ -457,6 +473,11 @@ $(document).ready(async function(){
         }).catch((e) => {
             log.error("failed to start backend, please check installation and settings");
             $(".folder-content.toplevel").html("{FAIL_START_BACKEND_HINT}".translate());
+        });
+    };
+    document.getElementById("btnInstall").onclick = function(){
+        browser.tabs.create({
+            "url": "/html/options.html#area=install"
         });
     };
     var btn = document.getElementById("btnSet");
@@ -509,15 +530,16 @@ $(document).ready(async function(){
     applyAppearance();
     loadRdfList();
     /** announcement */
-    var ann = "2.5.0"; // browser.i18n.getMessage("announcement_version")
-    var showed = HISTORY.getItem("announce.version_showed") || "";
+    /** the red dot shows once per new version, until the announcement page is opened */
+    var ann = browser.runtime.getManifest().version;
+    var showed = HISTORY.getItem("announce.scrapbro_version_showed") || "";
     if(gtv(ann, showed)){
         $("#announcement-red-dot").show();
     }else{
         $("#announcement-red-dot").hide();
     }
     $("#announcement-red-dot").parent().click(function(){
-        HISTORY.setItem('announce.version_showed', ann);
+        HISTORY.setItem('announce.scrapbro_version_showed', ann);
         $("#announcement-red-dot").hide();
         HISTORY.commit();
     });
@@ -535,6 +557,15 @@ function loadXml(rdf){
         var rdf_file = rdf.replace(/.*[\/\\]/, "");
         var xmlhttp=new XMLHttpRequest();
         xmlhttp.onload = async function(r) {
+            var status = r.target.status, text = r.target.response || "";
+            log.debug(`rdf request: ${status}, ${text.length} chars, ${r.target.responseURL}`);
+            if(status != 200){
+                /** the backend answered with an error page, not the rdf */
+                $(".folder-content.toplevel").html("{FAIL_START_BACKEND_HINT}".translate());
+                log.error(`failed to load ${rdf}: ${status} ${String(text).slice(0, 200)}`);
+                reject(Error(`failed to load ${rdf}`));
+                return;
+            }
             try{
                 var _begin = new Date().getTime();
                 currTree = new BookTree(r.target.response, rdf);
@@ -542,6 +573,7 @@ function loadXml(rdf){
                 currTree.toggleFolder(currTree.getItemById("root"), true);
                 var cost = new Date().getTime() - _begin;
                 log.info(`rdf loaded in ${cost}ms`);
+                log.debug(`rdf ${rdf}: ${Object.keys(currTree.descNodeCache || {}).length} entries`);
             }catch(e){
                 log.error(e.message);
                 return;
@@ -777,12 +809,15 @@ browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
             });
         }
     }else if(request.type == 'REMOVE_FAILED_NODE'){
+        log.debug(`capture failed, removing entry ${request.itemId}`);
         if(currTree && currTree.rendered && request.rdf == currTree.rdf){
             // currTree.updateItemIcon($("#"+request.itemId), icon);
             currTree.removeItem($("#"+request.itemId));
         }
     }else if(request.type == 'UPDATE_FINISHED_NODE'){
         /** update node in sidebar only in the same window, sidebar in other windows will reloaded after icon updated */
+        if(sender.tab && sender.tab.windowId == thisWindowId)
+            log.debug(`capture finished: entry ${request.itemId}, icon ${request.iconFilename || "none"}`);
         if(currTree && currTree.rendered && request.rdf == currTree.rdf){
             var icon = request.iconFilename ? "resource://scrapbook/data/" + request.itemId + "/" + request.iconFilename : "";
             currTree.updateItemIcon($("#"+request.itemId), icon);
@@ -810,6 +845,7 @@ browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                             is_new: true,
                             pos: CONF.getItem("capture.behavior.item.new.pos")
                         });
+                        log.debug(`capture started: entry ${itemId} for ${request.url}`);
                         resolve({rdf:currTree.rdf, rdfHome:currTree.rdfHome, itemId});
                     }catch(e){
                         reject(e);

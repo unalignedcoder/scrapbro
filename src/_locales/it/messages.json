@@ -1,0 +1,499 @@
+{
+    "extensionDescription": {
+        "message": "Salva le pagine web sul disco locale e le organizza nella barra laterale del browser. Compatibile con i documenti di ScrapBook.",
+        "description": "Description of the extension."
+    },
+    "DLG_OK": {
+        "message": "OK"
+    },
+    "DLG_CANCEL": {
+        "message": "ANNULLA"
+    },
+    "Setting": {
+        "message": "Impostazioni"
+    },
+    "Configure": {
+        "message": "Configurazione"
+    },
+    "Reload": {
+        "message": "Ricarica"
+    },
+    "Search": {
+        "message": "Cerca"
+    },
+    "Stop": {
+        "message": "Ferma"
+    },
+    "Help": {
+        "message": "Aiuto"
+    },
+    "Folder": {
+        "message": "Cartella"
+    },
+    "Open_Folder": {
+        "message": "Apri cartella"
+    },
+    "Title": {
+        "message": "Titolo"
+    },
+    "Content": {
+        "message": "Contenuto"
+    },
+    "Step": {
+        "message": "Passo"
+    },
+    "Name": {
+        "message": "Nome"
+    },
+    "Save": {
+        "message": "Salva"
+    },
+    "MODIFY_DOM_ON": {
+        "message": "Elimina elementi"
+    },
+    "MODIFY_DOM_OFF": {
+        "message": "Termina eliminazione"
+    },
+    "MARK_PEN": {
+        "message": "Evidenzia"
+    },
+    "SOURCE_CODE": {
+        "message": "Codice sorgente"
+    },
+    "File": {
+        "message": "File"
+    },
+    "Donate": {
+        "message": "Dona"
+    },
+    "New_Folder": {
+        "message": "Nuova cartella"
+    },
+    "New_Separator": {
+        "message": "Nuovo separatore"
+    },
+    "New_Note": {
+        "message": "Nuova nota"
+    },
+    "CapturePage": {
+        "message": "Salva pagina"
+    },
+    "SAME_LEVEL": {
+        "message": "Stesso livello"
+    },
+    "CaptureSelection": {
+        "message": "Salva selezione"
+    },
+    "CaptureUrl": {
+        "message": "Salva segnalibro"
+    },
+    "CaptureAdvance": {
+        "message": "Salvataggio avanzato..."
+    },
+    "CaptureTabs": {
+        "message": "Salva tutte le schede"
+    },
+    "Download": {
+        "message": "Scarica"
+    },
+    "Delete": {
+        "message": "Elimina"
+    },
+    "Install": {
+        "message": "Installazione"
+    },
+    "Log": {
+        "message": "Registro"
+    },
+    "RDF_Files": {
+        "message": "File RDF"
+    },
+    "CUSTOM_INSTALL_TIP": {
+        "message": "Questi passi installano il programma backend. <b>Salva tutti e tre i file nella stessa cartella.</b>"
+    },
+    "STEP1_TEXT_1": {
+        "message": "Scarica il programma backend di ScrapBro."
+    },
+    "STEP1_TEXT_2": {
+        "message": "Il programma viene scaricato dalla versione di ScrapBro su GitHub corrispondente a questa versione, e la sua checksum SHA-256 viene verificata prima di salvarlo."
+    },
+    "STEP2_TEXT_1": {
+        "message": "Scarica il file di configurazione, che indica al browser dove si trova il programma. <b>Salvalo nella stessa cartella del programma.</b>"
+    },
+    "STEP3_TEXT_1": {
+        "message": "Esegui lo script di installazione."
+    },
+    "STEP3_TEXT_3": {
+        "message": "registra il backend per il tuo utente, senza bisogno di permessi di amministratore"
+    },
+    "STEP4_TEXT": {
+        "message": "Disattiva e riattiva ScrapBro nella pagina delle estensioni, oppure riavvia il browser."
+    },
+    "FONT_SIZE": {
+        "message": "Dimensione carattere"
+    },
+    "FONT_NAME": {
+        "message": "Carattere"
+    },
+    "LINE_SPACING": {
+        "message": "Interlinea"
+    },
+    "Separator": {
+        "message": "Separatore"
+    },
+    "BACKEND_TIP": {
+        "message": "ScrapBro ha bisogno del suo programma backend, vedi la pagina <a href=\"#area=install\">Installazione</a> e l'<a href=\"#area=help&scroll=help_install\">aiuto</a>."
+    },
+    "RDF_FILES_TIP": {
+        "message": "Un file RDF è l'<b>indice</b> di uno scrapbook, le pagine salvate si trovano nella cartella «data» accanto a esso, vedi l'<a href='#area=help&scroll=help_rdf'>aiuto</a>.<br/><br/>Puoi avere più file RDF, anche nella stessa cartella. Un file che non esiste ancora viene creato vuoto.<br/>Funzionano anche i file RDF di <a href=\"https://en.wikipedia.org/wiki/ScrapBook\" target=\"_blank\">ScrapBook</a> e <a href=\"https://github.com/vctfence/scrapbee\" target=\"_blank\">ScrapBee</a>.<br/><br/><b>Fai clic su «+» qui sotto per aggiungere un file RDF: inserisci un nome e il percorso completo del file.</b>"
+    },
+    "Appearance": {
+        "message": "Aspetto"
+    },
+    "Behavior": {
+        "message": "Comportamento"
+    },
+    "OPEN_IN_CURRENT_TAB": {
+        "message": "Apri nella scheda corrente"
+    },
+    "OPEN_IN_CURRENT_TAB_TIP": {
+        "message": "Normalmente un clic su un elemento lo apre in una nuova scheda, mentre un clic con Ctrl (Cmd su Mac) o con il tasto centrale del mouse lo apre nella scheda corrente.<br/>Questa opzione inverte i due comportamenti."
+    },
+    "DONATE_WORDS": {
+        "message": "ScrapBro è gratuito. Se ti è utile, puoi sostenerne lo sviluppo offrendomi un caffè. Grazie!"
+    },
+    "RESULTS_FOUND": {
+        "message": " risultato/i trovato/i"
+    },
+    "ConfirmDeleteItem": {
+        "message": "Eliminare davvero gli elementi selezionati?"
+    },
+    "Warning": {
+        "message": "Attenzione"
+    },
+    "Loading___": {
+        "message": "Caricamento..."
+    },
+    "Starting___": {
+        "message": "Avvio..."
+    },
+    "NO_SELECTION_ACTIVATED": {
+        "message": "Nessuna selezione"
+    },
+    "Announcement": {
+        "message": "Novità"
+    },
+    "NODE_MOVER_TIP": {
+        "message": "Con questo strumento puoi spostare o copiare elementi e il loro contenuto tra due file RDF, puoi anche trascinare ed eliminare elementi all'interno di uno stesso RDF."
+    },
+    "NODE_MOVER_WARN_TIP": {
+        "message": "<b>ATTENZIONE</b><br>Fai un backup dei tuoi dati prima di usare questo strumento.<br>Non fare modifiche altrove mentre lo usi, potrebbero verificarsi conflitti."
+    },
+    "Tools": {
+        "message": "Strumenti"
+    },
+    "Node_Mover": {
+        "message": "Sposta elementi"
+    },
+    "Exporter": {
+        "message": "Esporta"
+    },
+    "Done": {
+        "message": "Fatto"
+    },
+    "EDIT_CONTENT": {
+        "message": "Modifica"
+    },
+    "STOP_EDIT_CONTENT": {
+        "message": "Termina modifica"
+    },
+    "NO_SOURCE_NODE_SELECTED": {
+        "message": "Nessun elemento di origine selezionato"
+    },
+    "MOVE_TO": {
+        "message": "sposta in"
+    },
+    "COPY_TO": {
+        "message": "copia in"
+    },
+    "Left": {
+        "message": "sinistra"
+    },
+    "Right": {
+        "message": "destra"
+    },
+    "Sort": {
+        "message": "Ordina"
+    },
+    "Export": {
+        "message": "Esporta"
+    },
+    "Import": {
+        "message": "Importa"
+    },
+    "INVALID_CONFIGURATION_FILE": {
+        "message": "File di configurazione non valido"
+    },
+    "UNCHECK_ALL": {
+        "message": "Deseleziona tutto"
+    },
+    "ERROR_MOVE_FOLER_INTO_ITSELF": {
+        "message": "Operazione non valida: una cartella non può essere spostata dentro sé stessa"
+    },
+    "OPEN_ALL_ITEMS": {
+        "message": "Apri tutti gli elementi"
+    },
+    "OPEN_ORIGIN_LINK": {
+        "message": "Apri indirizzo"
+    },
+    "Properties": {
+        "message": "Proprietà"
+    },
+    "Page": {
+        "message": "Pagina"
+    },
+    "Bookmark": {
+        "message": "Segnalibro"
+    },
+    "Note": {
+        "message": "Nota"
+    },
+    "Selection": {
+        "message": "Selezione"
+    },
+    "CREATE_TIME": {
+        "message": "Creato"
+    },
+    "Type": {
+        "message": "Tipo"
+    },
+    "General": {
+        "message": "Generale"
+    },
+    "Comment": {
+        "message": "Commento"
+    },
+    "LOCATE_NODE": {
+        "message": "Mostra nella barra laterale"
+    },
+    "SAVE_TO": {
+        "message": "Salva in"
+    },
+    "CAPTURE": {
+        "message": "Salva"
+    },
+    "Icon": {
+        "message": "Icona"
+    },
+    "Select": {
+        "message": "Seleziona"
+    },
+    "Default": {
+        "message": "Predefinito"
+    },
+    "Clear": {
+        "message": "Cancella"
+    },
+    "OPEN_IN_SIDEBAR": {
+        "message": "Apri nella barra laterale"
+    },
+    "FAIL_START_BACKEND_HINT": {
+        "message": "Il programma backend non è in esecuzione, controlla l'<a href='options.html#area=install' target='_blank'>installazione</a> e il <a href='options.html#area=log' target='_blank'>registro</a>"
+    },
+    "NO_RDF_SETTED_HINT": {
+        "message": "Nessun file RDF ancora configurato, controlla le <a href='options.html#area=configure' target='_blank'>impostazioni</a>"
+    },
+    "EXPORTER_TYPE": {
+        "message": "Tipo"
+    },
+    "EXPORTER_HTML_PAGE": {
+        "message": "Pagina HTML"
+    },
+    "EXPORTER_SOURCE": {
+        "message": "Origine"
+    },
+    "EXPORTER_EXPORT_AS": {
+        "message": "Esporta come"
+    },
+    "EXPORTER_INCLUDE_SEPARATOR": {
+        "message": "Includi separatori"
+    },
+    "EXPORTER_OPEN_LINKS_IN_NEW_TAB": {
+        "message": "Apri i link in una nuova scheda"
+    },
+    "AUTO_CLOSE_SAVING_DIALOG": {
+        "message": "Chiudi automaticamente la finestra di salvataggio"
+    },
+    "SHOW_NOTIFICATION": {
+        "message": "Mostra notifiche"
+    },
+    "SAVING_SAVE_FRAMES": {
+        "message": "Salva i frame"
+    },
+    "Automatically": {
+        "message": "Automaticamente"
+    },
+    "Manually": {
+        "message": "Manualmente"
+    },
+    "Port": {
+        "message": "Porta"
+    },
+    "Password": {
+        "message": "Password"
+    },
+    "Address": {
+        "message": "Indirizzo"
+    },
+    "BACKEND_PROGRAM": {
+        "message": "Programma backend"
+    },
+    "Execute": {
+        "message": "Esegui"
+    },
+    "Date": {
+        "message": "Data"
+    },
+    "Order": {
+        "message": "Ordine"
+    },
+    "Target": {
+        "message": "Destinazione"
+    },
+    "SORT_BY": {
+        "message": "Ordina per"
+    },
+    "WHOLE_TREE": {
+        "message": "Tutto l'albero"
+    },
+    "Ascending": {
+        "message": "Crescente"
+    },
+    "Descending": {
+        "message": "Decrescente"
+    },
+    "Debug": {
+        "message": "Debug"
+    },
+    "CASE_SENSITIVE": {
+        "message": "Distingui maiuscole"
+    },
+    "NEW_POS": {
+        "message": "Inserisci i nuovi elementi"
+    },
+    "Top": {
+        "message": "In alto"
+    },
+    "Bottom": {
+        "message": "In basso"
+    },
+    "SIDEBAR_SHOW_ROOT": {
+        "message": "Mostra la radice nella barra laterale"
+    },
+    "SHOW_ROOT": {
+        "message": "Mostra radice"
+    },
+    "PORT_AUTO_TIP": {
+        "message": "Scelta automaticamente all'avvio del backend e mantenuta finché resta libera. Non c'è nulla da impostare."
+    },
+    "SAVED_TO": {
+        "message": "Salvato in"
+    },
+    "DOWNLOAD_AGAIN": {
+        "message": "Scarica di nuovo"
+    },
+    "BACKEND_RUNNING": {
+        "message": "Il programma backend è in esecuzione"
+    },
+    "IN_FOLDER": {
+        "message": "nella cartella"
+    },
+    "Downloading___": {
+        "message": "Download in corso..."
+    },
+    "STEP_SCRIPT_TEXT": {
+        "message": "Scarica lo script di installazione, che registra il file di configurazione nel browser. <b>Salvalo anch'esso nella stessa cartella.</b>"
+    },
+    "INSTALL_SAME_FOLDER": {
+        "message": "I file sono in cartelle diverse: sposta il programma, il file di configurazione e lo script di installazione in un'unica cartella, poi esegui lì lo script."
+    },
+    "RESET_STATE": {
+        "message": "Reimposta"
+    },
+    "RESET_STATE_TIP": {
+        "message": "Dimentica dove sono stati salvati i file e mostra di nuovo tutte le istruzioni"
+    },
+    "DEBUG_TIP": {
+        "message": "mostra righe dettagliate nel registro: messaggi del backend, file salvati, passi del salvataggio, con i tempi. Utile quando qualcosa non funziona."
+    },
+    "DONATE_CREDIT": {
+        "message": "ScrapBro è basato su ScrapBee di vctfence."
+    },
+    "LOCALE_DIR":{
+        "message": "it",
+        "description": "Name of this locale folder, do not translate."
+    },
+    "NO_BACKEND_CHECKSUM":{
+        "message": "Questa build di ScrapBro non contiene le checksum del programma backend, quindi non può scaricarlo. Usa una versione pubblicata, oppure prendi il programma dalle versioni di ScrapBro su GitHub."
+    },
+    "BACKEND_CHECKSUM_MISMATCH":{
+        "message": "Il programma scaricato non corrisponde alla sua checksum e non è stato salvato. Riprova più tardi, oppure segnalalo su GitHub."
+    },
+    "THEME":{
+        "message": "Tema"
+    },
+    "THEME_AUTO":{
+        "message": "Come il browser"
+    },
+    "THEME_LIGHT":{
+        "message": "Chiaro"
+    },
+    "THEME_DARK":{
+        "message": "Scuro"
+    },
+    "FONT_DEFAULT":{
+        "message": "Predefinito (carattere di sistema)"
+    },
+    "BACKEND_LAUNCH":{
+        "message": "Avvio"
+    },
+    "LAUNCH_TIP":{
+        "message": "<b>Automaticamente</b>: ScrapBro avvia da solo il programma backend, non serve altro.<br/><b>Manualmente</b>: ScrapBro non lo avvia, ma si collega all'indirizzo qui sotto, per un backend che esegui tu (per esempio come servizio, o su un altro computer)."
+    },
+    "PASSWORD_TIP":{
+        "message": "Facoltativa. Blocca il backend in modo che altri programmi su questo computer non possano usarlo. ScrapBro la invia da solo, non ti viene mai chiesta. Solo lettere e cifre.<br/>In modalità manuale, avvia il backend con la stessa password."
+    },
+    "CLEAR_HIGHLIGHTS":{
+        "message": "Rimuovi evidenziazioni"
+    },
+    "HIGHLIGHT_SAMPLE":{
+        "message": "Testo di esempio"
+    },
+    "TIP_SAVE":{
+        "message": "Salva le modifiche a questa pagina"
+    },
+    "TIP_DELETE_ELEMENTS":{
+        "message": "Fai clic su parti della pagina per eliminarle, fai di nuovo clic sul pulsante per terminare"
+    },
+    "TIP_HIGHLIGHT":{
+        "message": "Seleziona del testo, poi scegli un colore per evidenziarlo"
+    },
+    "TIP_EDIT":{
+        "message": "Modifica direttamente il testo della pagina"
+    },
+    "TIP_SOURCE_CODE":{
+        "message": "Modifica il codice sorgente HTML della pagina"
+    },
+    "TIP_RELOAD":{
+        "message": "Ricarica la pagina salvata, le modifiche non salvate vanno perse"
+    },
+    "TIP_LOCATE":{
+        "message": "Seleziona questa pagina nella barra laterale"
+    },
+    "EXPORTED_TO":{
+        "message": "Esportato in"
+    },
+    "EXPORT_FAILED":{
+        "message": "Esportazione non riuscita"
+    }
+}

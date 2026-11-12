@@ -47,7 +47,8 @@ class Editor{
         var self = this;
         browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
             if(request.type == "INIT"){
-                self.tabId = sender.tab.id;
+                /** chromium sets no sender.tab for messages from extension pages, the viewer sends its tab */
+                self.tabId = request.tabId || (sender.tab && sender.tab.id);
                 self.frameId = request.frameId;
 
                 /** return ok while marker css loaded */

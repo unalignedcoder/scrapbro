@@ -30,10 +30,14 @@ Edit files in `src/` (or `platform/`), never in `dist/`, which is rebuilt.
 Requires Node.js 22 or newer, no dependencies.
 
 ```
-npm run build        # dist/chrome and dist/firefox
+npm run build        # dist/chrome, dist/firefox and their zips dist/scrapbro-<browser>-<version>.zip
 npm run watch        # rebuild on every change
-npm run package      # also writes dist/scrapbro-<browser>-<version>.zip for the stores
 ```
+
+The settings page only downloads the backend program when the build contains its checksums (`backend_hashes.json`).
+Release builds get them from the release workflow. For a local build that should download the backend of an already
+published release, use `node build.mjs --checksums-from-release` (needs the GitHub CLI); `--checksums <SHA256SUMS>` takes a file.
+Upload to the stores the zips of the GitHub release, see [STORE_NOTES.md](STORE_NOTES.md).
 
 Bump `version` in `package.json` before packaging a release; it is written into both manifests.
 
@@ -61,10 +65,13 @@ ScrapBro needs a small native program, `scrapbro_backend` (in `backend/`), to re
 The browser starts it through native messaging (host name `scrapbro_backend`), and it serves the API and the saved pages over HTTP on `127.0.0.1`.
 It speaks the same API as the ScrapBee backend 1.7, but is a separate implementation.
 
-Users install it from the extension: *Settings → Install* downloads the program for their system from the latest
-[GitHub release](https://github.com/unalignedcoder/scrapbro/releases/latest) and an install script for the current browser
-into `<downloads>/scrapbro/`, then they run the script once.
-It registers `scrapbro_backend_chrome.json` (chromium) or `scrapbro_backend_firefox.json` (firefox) for the current user, both can live in the same folder.
+Users install it from the extension, *Settings → Install*, which downloads three files into a folder of their choice:
+the program for their system (from the [GitHub release](https://github.com/unalignedcoder/scrapbro/releases) of the same version,
+checked against the SHA-256 shipped in the extension before it is saved),
+the configuration file `scrapbro_backend_chrome.json` / `scrapbro_backend_firefox.json` and the install script
+`install_chrome.bat` / `install_firefox.bat` (`.sh` on Linux and macOS). Kept in one folder, running the script once registers the
+backend for the current user. On Windows the configuration points to the program relative to its own folder,
+on Linux and macOS the script writes the absolute path when it copies the configuration into the browsers' folders.
 
 The backend port needs no setup: a free port is picked on first start and kept while it stays free, if it gets taken (e.g. by ScrapBee or ScrapBro in another browser) a new one is picked.
 To run the backend yourself (e.g. as a service), start `scrapbro_backend web-server [port] [host] [password]` and choose *Manually* in the settings.

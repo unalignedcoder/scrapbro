@@ -1,17 +1,7 @@
 {
-    "extensionName": {
-        "message": "ScrapBro",
-        "description": "Name of the extension."
-    },
     "extensionDescription": {
         "message": "保存网页内容到本地存储，并可以在浏览器侧边栏中进行管理。兼容ScrapBook文档。",
         "description": "Description of the extension."
-    },
-    "Firefox":{
-        "message": "浏览器"
-    },
-    "Browser":{
-        "message": "浏览器"
     },
     "DLG_OK": {
         "message": "确认"
@@ -48,9 +38,6 @@
     },
     "Content": {
         "message": "内容"
-    },    
-    "Rename": {
-        "message": "重命名"
     },
     "Step": {
         "message": "步骤"
@@ -62,13 +49,13 @@
         "message": "保存"
     },
     "MODIFY_DOM_ON": {
-        "message": "页面清理"
+        "message": "删除元素"
     },
     "MODIFY_DOM_OFF": {
-        "message": "停止页面清理"
+        "message": "停止删除"
     },
     "MARK_PEN": {
-        "message": "记号笔"
+        "message": "高亮"
     },
     "SOURCE_CODE": {
         "message": "源码"
@@ -78,9 +65,6 @@
     },
     "Donate": {
         "message": "捐助"
-    },
-    "DONATE_WITH_PAYPAL": {
-        "message": "通过 PayPal 捐助"
     },
     "New_Folder": {
         "message": "新建文件夹"
@@ -112,20 +96,11 @@
     "Download": {
         "message": "下载"
     },
-    "ToggleSidebar": {
-        "message": "Toggle Sidebar"
-    },
     "Delete": {
         "message": "删除"
     },
-    "Initiate": {
-        "message": "初始化"
-    },
     "Install": {
         "message": "安装"
-    },
-    "History": {
-        "message": "更新历史"
     },
     "Log": {
         "message": "日志"
@@ -133,56 +108,26 @@
     "RDF_Files":{
         "message": "RDF文件"
     },
-    "Backend_Port":{
-        "message": "端口"
-    },
-    "Background": {
-        "message": "背景"
-    },
-    "FIREFOX_DOWNLOAD_DIRECTORY":{
-       "message": "火狐下载目录"
-    },
     "CUSTOM_INSTALL_TIP": {
-        "message": "以下步骤安装后端程序，之后 ScrapBro 会自动启动它（设置中的“自动”模式）。"
+        "message": "以下步骤安装后端程序。<b>请将三个文件保存到同一个目录。</b>"
     },
     "STEP1_TEXT_1": {
         "message": "下载 ScrapBro 后端程序。"
     },
     "STEP1_TEXT_2": {
-        "message": "程序从 GitHub 上 ScrapBro 的最新版本下载。如果浏览器阻止下载，请打开浏览器的下载页面并选择保留文件。"
+        "message": "程序从 GitHub 上与此版本对应的 ScrapBro 发布版本下载，保存前会校验其 SHA-256 校验和。"
     },
     "STEP2_TEXT_1": {
-        "message": "下载安装脚本。"
+        "message": "下载配置文件，它告诉浏览器程序所在的位置。<b>请保存到与程序相同的目录。</b>"
     },
     "STEP3_TEXT_1": {
-        "message": "运行安装脚本"
-    },
-    "STEP3_TEXT_2": {
-        "message": "在终端中运行"
+        "message": "运行安装脚本。"
     },
     "STEP3_TEXT_3": {
         "message": "为当前用户注册后端，无需管理员权限"
     },
     "STEP4_TEXT": {
-        "message": "在浏览器的扩展页面中关闭并重新开启 ScrapBro，或重启浏览器。"
-    },
-    "BASIC_TEXT": {
-        "message": "前景"
-    },
-    "BOOKMARK_TEXT": {
-        "message": "书签文本"
-    },
-    "SELECTED_ITEM": {
-        "message": "选中项"
-    },
-    "FOCUSED_ITEM_BG_COLOR": {
-        "message": "焦点背景色"
-    },
-    "FOCUSED_ITEM_FG_COLOR": {
-        "message": "焦点前景色"
-    },
-    "ENTITY_SIZE": {
-        "message": "条目大小"
+        "message": "在扩展页面中关闭并重新开启 ScrapBro，或重启浏览器。"
     },
     "FONT_SIZE": {
         "message": "字体大小"
@@ -192,36 +137,18 @@
     },
     "LINE_SPACING": {
         "message": "行间距"
-    },     
-    "Language": {
-        "message": "语言"
     },
     "Separator": {
         "message": "分隔符"
     },
     "BACKEND_TIP": {
-        "message": "ScrapBro需要运行一个 \"专用后端程序\" 才能正常工作。<br/><br/>有两种方式安装和运行后端程序，分别为自动或者手动方式，请参考 <a href=\"#area=help&scroll=help_install\">帮助</a>。"
+        "message": "ScrapBro 需要后端程序才能工作，请参考<a href=\"#area=install\">安装</a>页面和<a href=\"#area=help&scroll=help_install\">帮助</a>。"
     },
     "RDF_FILES_TIP": {
-        "message": "设置RDF文件的绝对路径，用于登记下载信息，以'.rdf'为扩展名（下载数据将保存到RDF文件所在目录下的data文件夹），请参考 <a href='#area=help&scroll=help_rdf'>帮助</a>。<br/><br> 例如： c:\\scrapbee\\test.rdf (Windows)&nbsp;&nbsp;&nbsp;&nbsp;/home/userID/scrapbro/test.rdf (Linux)&nbsp;&nbsp;&nbsp;&nbsp;/Users/userID/scrapbro/test.rdf (Mac)<br><br> 您可以设置多个RDF文件来实现{Scrap}的分类，可以在同一文件夹下放置多个RDF文件，不需要手工创建这些文件<br/>ScrapBro也支持读写<a href='https://en.wikipedia.org/wiki/ScrapBook' target='_blank'>ScrapBook</a>的RDF文件，这对于使用过ScrapBook的用户是一个好消息。<br><br><b>点击下面的'+'按钮添加RDF，添入'名称'为其起一个名字，'文件'处添入完整路径</b>"
-    },
-    "BACKEND_PORT_TIP":{
-        "message": "ScrapBro后端服务的TCP端口，自动选择"
-    },
-    "_COLOR":{
-        "message": "颜色"
+        "message": "RDF 文件是数据的<b>索引</b>，保存的页面位于其旁边的“data”目录中，请参考<a href='#area=help&scroll=help_rdf'>帮助</a>。<br/><br/>可以有多个 RDF 文件，也可以放在同一目录中。不存在的文件会被创建为空文件。<br/><a href=\"https://en.wikipedia.org/wiki/ScrapBook\" target=\"_blank\">ScrapBook</a> 和 <a href=\"https://github.com/vctfence/scrapbee\" target=\"_blank\">ScrapBee</a> 的 RDF 文件同样可用。<br/><br/><b>点击下方的“+”添加 RDF 文件：输入名称和文件的完整路径。</b>"
     },
     "Appearance":{
         "message": "外观"
-    },    
-    "Scrap":{
-        "message": "收藏内容"
-    },
-    "COLOR_TIP":{
-        "message": "通过改变某些元素的颜色来美化ScrapBro，颜色格式应为 #FFFFFF 或 #FFF"
-    },
-    "ALREADY_DOWNLOADED_TO": {
-        "message": "已下载到"
     },
     "Behavior":{
         "message": "行为"
@@ -230,37 +157,13 @@
         "message": "在当前标签打开"
     },
     "OPEN_IN_CURRENT_TAB_TIP":{
-        "message": "点击条目时，ScrapBro默认在新标签页中打开{Scrap}，<br>如果使用中键，或者按住Control(苹果系统中使用Meta)，则在当前标签中打开，<br>你可以通过此选项来切换两种操作"
+        "message": "默认情况下，点击条目会在新标签页中打开，按住 Ctrl（Mac 上为 Cmd）点击或使用鼠标中键点击则在当前标签页中打开。<br/>此选项会交换这两种方式。"
     },
     "DONATE_WORDS":{
-        "message": "为了使ScrapBee更健康地成长，<br>任何数量的捐助都是非常欢迎的，<br>感谢您的支持!!!<br><i><a target='_blank' href='https://addons.mozilla.org/en-US/firefox/addon/scrapbee/'>如果您喜欢ScrapBee, 请评5颗星</i></a>"
-    },
-    "MORE_DONATE_WAY_TOGGLE":{
-        "message": "其它方式"
-    },
-    "MORE_DONATE_WAY":{
-        "message": "您也可以通过以下方式捐助: <br><br> <img src='/image/donate/alipay.jpg' class='' alt='' width='300'/><br><br><img src='/image/donate/wxpay.jpg' class='' alt='' width='300' />"
+        "message": "ScrapBro 是免费的。如果它对您有用，欢迎请我喝杯咖啡来支持它的开发。谢谢！"
     },
     "RESULTS_FOUND": {
-        "message": "个结果"
-    },
-    "NOT_EXISTS": {
-        "message": "不存在"
-    },
-    "Yes": {
-        "message": "是"
-    },
-    "No": {
-        "message": "否"
-    },
-    "CREATE_OR_NOT": {
-        "message": "是否生成"
-    },
-    "NewDirectory": {
-        "message": "新建文件夹"
-    },
-    "ConfirmDeleteDirectory": {
-        "message": "这是一个文件夹, 真的要删除它和其中所有内容?"
+        "message": " 个结果"
     },
     "ConfirmDeleteItem": {
         "message": "真的要删除所选项?"
@@ -268,23 +171,17 @@
     "Warning": {
         "message": "警告"
     },
-    "Confirm": {
-        "message": "确认"
-    },
     "Loading___": {
         "message": "加载中..."
     },
     "Starting___": {
         "message": "启动..."
-    },    
-    "SAME_RDF_MODIFIED": {
-        "message": "同一RDF被修改，点击确认后刷新"
     },
     "NO_SELECTION_ACTIVATED": {
         "message": "没有激活选区"
     },
     "Announcement": {
-        "message": "公告"
+        "message": "更新日志"
     },
    "NODE_MOVER_TIP":{
         "message": "本工具可以实现两个RDF树之间的结点移动或复制，此处也允许单个RDF树内的结点拖动和删除"
@@ -309,9 +206,6 @@
     },
     "STOP_EDIT_CONTENT": {
         "message": "停止编辑"
-    },    
-    "STORAGE_WARN": {
-        "message": "目前，ScrapBro需要开启本地存储来保存设置，请关闭存储清理功能来防止设置丢失"
     },
     "NO_SOURCE_NODE_SELECTED": {
         "message": "没有选择源结点"
@@ -331,9 +225,6 @@
     "Sort": {
         "message": "排序"
     },
-    "ConfirmSorting": {
-        "message": "本操作不可逆，确定要继续吗？"
-    },
     "Export": {
         "message": "导出"
     },
@@ -346,11 +237,8 @@
     "UNCHECK_ALL": {
         "message": "清除复选"
     },
-    "MULTI_SELECT": {
-        "message": "多选"
-    },
     "ERROR_MOVE_FOLER_INTO_ITSELF": {
-        "message": "无效操作: 不能将文件夹移入自身"
+        "message": "无效操作：不能把文件夹移动到它自身之中"
     },
     "OPEN_ALL_ITEMS":{
         "message": "打开所有项目"
@@ -386,7 +274,7 @@
         "message": "注释"
     },
     "LOCATE_NODE":{
-        "message": "定位结点"
+        "message": "在侧边栏中显示"
     },
     "SAVE_TO":{
         "message": "保存到"
@@ -410,10 +298,10 @@
         "message": "在侧边栏打开"
     },
     "FAIL_START_BACKEND_HINT": {
-        "message": "加载后端服务失败，请检查 <a href='options.html#area=install' target='_blank'>安装</a> 和 <a href='options.html' target='_blank'>设置</a>"
+        "message": "后端程序未运行，请检查<a href='options.html#area=install' target='_blank'>安装</a>和<a href='options.html#area=log' target='_blank'>日志</a>"
     },
     "NO_RDF_SETTED_HINT": {
-        "message": "没有可用rdf，请检查 <a href='options.html' target='_blank'>设置</a>"
+        "message": "尚未配置 RDF 文件，请检查<a href='options.html#area=configure' target='_blank'>设置</a>"
     },
     "EXPORTER_TYPE": {
         "message": "类型"
@@ -433,9 +321,6 @@
     "EXPORTER_OPEN_LINKS_IN_NEW_TAB": {
         "message": "在新标签打开链接"
     },
-    "LOCK_EDITBAR": {
-        "message": "锁定编辑栏"
-    },
     "AUTO_CLOSE_SAVING_DIALOG": {
         "message": "自动关闭保存对话框"
     },
@@ -444,12 +329,6 @@
     },
     "SAVING_SAVE_FRAMES" : {
         "message": "保存框架"
-    },
-    "DOWNLOAD_SOURCE_1" : {
-        "message": "源1"
-    },
-    "DOWNLOAD_SOURCE_2" : {
-        "message": "源2"
     },
     "Automatically" : {
         "message": "自动"
@@ -515,7 +394,7 @@
         "message": "显示根结点(root)"
     },
     "PORT_AUTO_TIP":{
-        "message": "自动选择，无需设置"
+        "message": "后端启动时自动选择，只要端口空闲就会一直使用。无需设置。"
     },
     "SAVED_TO":{
         "message": "已保存到"
@@ -531,5 +410,90 @@
     },
     "Downloading___":{
         "message": "正在下载..."
+    },
+    "STEP_SCRIPT_TEXT":{
+        "message": "下载安装脚本，它向浏览器注册配置文件。<b>也请保存到同一目录。</b>"
+    },
+    "INSTALL_SAME_FOLDER":{
+        "message": "这些文件位于不同的目录：请将程序、配置文件和安装脚本放到同一个目录，然后在该目录运行脚本。"
+    },
+    "RESET_STATE":{
+        "message": "重置状态"
+    },
+    "RESET_STATE_TIP":{
+        "message": "忘记文件的保存位置并重新显示所有说明"
+    },
+    "DEBUG_TIP":{
+        "message": "在日志中显示详细信息：后端消息、保存的文件、捕获步骤及耗时。出现问题时很有用。"
+    },
+    "DONATE_CREDIT":{
+        "message": "ScrapBro 基于 vctfence 开发的 ScrapBee。"
+    },
+    "LOCALE_DIR":{
+        "message": "zh_CN",
+        "description": "Name of this locale folder, do not translate."
+    },
+    "NO_BACKEND_CHECKSUM":{
+        "message": "此 ScrapBro 构建不包含后端程序的校验和，因此无法下载。请使用发布版本，或从 GitHub 上的 ScrapBro 发布页面获取程序。"
+    },
+    "BACKEND_CHECKSUM_MISMATCH":{
+        "message": "下载的程序与校验和不符，未被保存。请稍后重试，或在 GitHub 上报告。"
+    },
+    "THEME":{
+        "message": "主题"
+    },
+    "THEME_AUTO":{
+        "message": "跟随浏览器"
+    },
+    "THEME_LIGHT":{
+        "message": "浅色"
+    },
+    "THEME_DARK":{
+        "message": "深色"
+    },
+    "FONT_DEFAULT":{
+        "message": "默认（系统字体）"
+    },
+    "BACKEND_LAUNCH":{
+        "message": "启动方式"
+    },
+    "LAUNCH_TIP":{
+        "message": "<b>自动</b>：ScrapBro 自行启动后端程序，无需其他操作。<br/><b>手动</b>：ScrapBro 不启动后端，而是连接到下方的地址，适用于您自行运行的后端（例如作为服务，或在另一台计算机上）。"
+    },
+    "PASSWORD_TIP":{
+        "message": "可选。锁定后端，使本机上的其他程序无法使用它。ScrapBro 会自动发送密码，不会向您询问。仅限字母和数字。<br/>在手动模式下，请用相同的密码启动后端。"
+    },
+    "CLEAR_HIGHLIGHTS":{
+        "message": "清除高亮"
+    },
+    "HIGHLIGHT_SAMPLE":{
+        "message": "示例文字"
+    },
+    "TIP_SAVE":{
+        "message": "保存对此页面的修改"
+    },
+    "TIP_DELETE_ELEMENTS":{
+        "message": "点击页面中的部分将其删除，再次点击按钮停止"
+    },
+    "TIP_HIGHLIGHT":{
+        "message": "先选中一些文字，然后选择一种颜色进行高亮"
+    },
+    "TIP_EDIT":{
+        "message": "直接编辑页面的文字"
+    },
+    "TIP_SOURCE_CODE":{
+        "message": "编辑页面的 HTML 源代码"
+    },
+    "TIP_RELOAD":{
+        "message": "重新加载保存的页面，未保存的修改将丢失"
+    },
+    "TIP_LOCATE":{
+        "message": "在侧边栏中选中此页面"
+    },
+    "EXPORTED_TO":{
+        "message": "已导出到"
+    },
+    "EXPORT_FAILED":{
+        "message": "导出失败"
     }
 }

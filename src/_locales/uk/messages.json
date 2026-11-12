@@ -1,0 +1,499 @@
+{
+    "extensionDescription": {
+        "message": "Зберігає вебсторінки на локальний диск і впорядковує їх на бічній панелі браузера. Сумісний із документами ScrapBook.",
+        "description": "Description of the extension."
+    },
+    "DLG_OK": {
+        "message": "OK"
+    },
+    "DLG_CANCEL": {
+        "message": "СКАСУВАТИ"
+    },
+    "Setting": {
+        "message": "Налаштування"
+    },
+    "Configure": {
+        "message": "Параметри"
+    },
+    "Reload": {
+        "message": "Оновити"
+    },
+    "Search": {
+        "message": "Пошук"
+    },
+    "Stop": {
+        "message": "Стоп"
+    },
+    "Help": {
+        "message": "Довідка"
+    },
+    "Folder": {
+        "message": "Тека"
+    },
+    "Open_Folder": {
+        "message": "Відкрити теку"
+    },
+    "Title": {
+        "message": "Заголовок"
+    },
+    "Content": {
+        "message": "Вміст"
+    },
+    "Step": {
+        "message": "Крок"
+    },
+    "Name": {
+        "message": "Назва"
+    },
+    "Save": {
+        "message": "Зберегти"
+    },
+    "MODIFY_DOM_ON": {
+        "message": "Видалити елементи"
+    },
+    "MODIFY_DOM_OFF": {
+        "message": "Завершити видалення"
+    },
+    "MARK_PEN": {
+        "message": "Виділити"
+    },
+    "SOURCE_CODE": {
+        "message": "Вихідний код"
+    },
+    "File": {
+        "message": "Файл"
+    },
+    "Donate": {
+        "message": "Підтримати"
+    },
+    "New_Folder": {
+        "message": "Нова тека"
+    },
+    "New_Separator": {
+        "message": "Новий роздільник"
+    },
+    "New_Note": {
+        "message": "Нова нотатка"
+    },
+    "CapturePage": {
+        "message": "Зберегти сторінку"
+    },
+    "SAME_LEVEL": {
+        "message": "На тому ж рівні"
+    },
+    "CaptureSelection": {
+        "message": "Зберегти виділене"
+    },
+    "CaptureUrl": {
+        "message": "Зберегти закладку"
+    },
+    "CaptureAdvance": {
+        "message": "Розширене збереження..."
+    },
+    "CaptureTabs": {
+        "message": "Зберегти всі вкладки"
+    },
+    "Download": {
+        "message": "Завантажити"
+    },
+    "Delete": {
+        "message": "Видалити"
+    },
+    "Install": {
+        "message": "Встановлення"
+    },
+    "Log": {
+        "message": "Журнал"
+    },
+    "RDF_Files": {
+        "message": "Файли RDF"
+    },
+    "CUSTOM_INSTALL_TIP": {
+        "message": "Ці кроки встановлюють програму-бекенд. <b>Збережіть усі три файли в одну теку.</b>"
+    },
+    "STEP1_TEXT_1": {
+        "message": "Завантажте програму-бекенд ScrapBro."
+    },
+    "STEP1_TEXT_2": {
+        "message": "Програма завантажується з випуску ScrapBro на GitHub, що відповідає цій версії, і перед збереженням перевіряється її контрольна сума SHA-256."
+    },
+    "STEP2_TEXT_1": {
+        "message": "Завантажте файл конфігурації, який повідомляє браузеру, де знаходиться програма. <b>Збережіть його в ту саму теку, що й програму.</b>"
+    },
+    "STEP3_TEXT_1": {
+        "message": "Запустіть скрипт встановлення."
+    },
+    "STEP3_TEXT_3": {
+        "message": "він реєструє бекенд для вашого користувача, права адміністратора не потрібні"
+    },
+    "STEP4_TEXT": {
+        "message": "Вимкніть і знову ввімкніть ScrapBro на сторінці розширень або перезапустіть браузер."
+    },
+    "FONT_SIZE": {
+        "message": "Розмір шрифту"
+    },
+    "FONT_NAME": {
+        "message": "Шрифт"
+    },
+    "LINE_SPACING": {
+        "message": "Міжрядковий інтервал"
+    },
+    "Separator": {
+        "message": "Роздільник"
+    },
+    "BACKEND_TIP": {
+        "message": "ScrapBro потрібна програма-бекенд, див. сторінку <a href=\"#area=install\">Встановлення</a> та <a href=\"#area=help&scroll=help_install\">довідку</a>."
+    },
+    "RDF_FILES_TIP": {
+        "message": "Файл RDF — це <b>зміст</b> колекції, збережені сторінки лежать у теці «data» поруч із ним, див. <a href='#area=help&scroll=help_rdf'>довідку</a>.<br/><br/>Можна мати кілька файлів RDF, зокрема в одній теці. Файл, якого ще немає, створюється порожнім.<br/>Файли RDF із <a href=\"https://en.wikipedia.org/wiki/ScrapBook\" target=\"_blank\">ScrapBook</a> і <a href=\"https://github.com/vctfence/scrapbee\" target=\"_blank\">ScrapBee</a> теж підтримуються.<br/><br/><b>Натисніть «+» нижче, щоб додати файл RDF: введіть назву й повний шлях до файлу.</b>"
+    },
+    "Appearance": {
+        "message": "Вигляд"
+    },
+    "Behavior": {
+        "message": "Поведінка"
+    },
+    "OPEN_IN_CURRENT_TAB": {
+        "message": "Відкривати в поточній вкладці"
+    },
+    "OPEN_IN_CURRENT_TAB_TIP": {
+        "message": "Типово клацання по елементу відкриває його в новій вкладці, а клацання з Ctrl (Cmd на Mac) або середньою кнопкою миші — у поточній.<br/>Цей параметр міняє їх місцями."
+    },
+    "DONATE_WORDS": {
+        "message": "ScrapBro безкоштовний. Якщо він вам корисний, ви можете підтримати розробку, пригостивши мене кавою. Дякую!"
+    },
+    "RESULTS_FOUND": {
+        "message": " результат(ів) знайдено"
+    },
+    "ConfirmDeleteItem": {
+        "message": "Справді видалити вибрані елементи?"
+    },
+    "Warning": {
+        "message": "Попередження"
+    },
+    "Loading___": {
+        "message": "Завантаження..."
+    },
+    "Starting___": {
+        "message": "Запуск..."
+    },
+    "NO_SELECTION_ACTIVATED": {
+        "message": "Нічого не виділено"
+    },
+    "Announcement": {
+        "message": "Список змін"
+    },
+    "NODE_MOVER_TIP": {
+        "message": "За допомогою цього інструмента можна переміщувати або копіювати елементи разом із вмістом між двома файлами RDF, а також перетягувати й видаляти елементи в межах одного RDF."
+    },
+    "NODE_MOVER_WARN_TIP": {
+        "message": "<b>ОБЕРЕЖНО</b><br>Зробіть резервну копію даних перед використанням цього інструмента.<br>Не вносьте змін деінде під час роботи з ним, інакше можливі конфлікти."
+    },
+    "Tools": {
+        "message": "Інструменти"
+    },
+    "Node_Mover": {
+        "message": "Переміщення елементів"
+    },
+    "Exporter": {
+        "message": "Експорт"
+    },
+    "Done": {
+        "message": "Готово"
+    },
+    "EDIT_CONTENT": {
+        "message": "Редагувати"
+    },
+    "STOP_EDIT_CONTENT": {
+        "message": "Завершити редагування"
+    },
+    "NO_SOURCE_NODE_SELECTED": {
+        "message": "Не вибрано вихідний елемент"
+    },
+    "MOVE_TO": {
+        "message": "перемістити в"
+    },
+    "COPY_TO": {
+        "message": "копіювати в"
+    },
+    "Left": {
+        "message": "ліворуч"
+    },
+    "Right": {
+        "message": "праворуч"
+    },
+    "Sort": {
+        "message": "Сортувати"
+    },
+    "Export": {
+        "message": "Експорт"
+    },
+    "Import": {
+        "message": "Імпорт"
+    },
+    "INVALID_CONFIGURATION_FILE": {
+        "message": "Неправильний файл конфігурації"
+    },
+    "UNCHECK_ALL": {
+        "message": "Зняти виділення"
+    },
+    "ERROR_MOVE_FOLER_INTO_ITSELF": {
+        "message": "Неприпустима операція: теку не можна перемістити саму в себе"
+    },
+    "OPEN_ALL_ITEMS": {
+        "message": "Відкрити всі елементи"
+    },
+    "OPEN_ORIGIN_LINK": {
+        "message": "Відкрити адресу"
+    },
+    "Properties": {
+        "message": "Властивості"
+    },
+    "Page": {
+        "message": "Сторінка"
+    },
+    "Bookmark": {
+        "message": "Закладка"
+    },
+    "Note": {
+        "message": "Нотатка"
+    },
+    "Selection": {
+        "message": "Виділене"
+    },
+    "CREATE_TIME": {
+        "message": "Створено"
+    },
+    "Type": {
+        "message": "Тип"
+    },
+    "General": {
+        "message": "Загальні"
+    },
+    "Comment": {
+        "message": "Коментар"
+    },
+    "LOCATE_NODE": {
+        "message": "Показати на бічній панелі"
+    },
+    "SAVE_TO": {
+        "message": "Зберегти в"
+    },
+    "CAPTURE": {
+        "message": "Зберегти"
+    },
+    "Icon": {
+        "message": "Значок"
+    },
+    "Select": {
+        "message": "Вибрати"
+    },
+    "Default": {
+        "message": "Типово"
+    },
+    "Clear": {
+        "message": "Очистити"
+    },
+    "OPEN_IN_SIDEBAR": {
+        "message": "Відкрити на бічній панелі"
+    },
+    "FAIL_START_BACKEND_HINT": {
+        "message": "Програма-бекенд не запущена, перевірте <a href='options.html#area=install' target='_blank'>встановлення</a> та <a href='options.html#area=log' target='_blank'>журнал</a>"
+    },
+    "NO_RDF_SETTED_HINT": {
+        "message": "Файл RDF ще не налаштовано, перевірте <a href='options.html#area=configure' target='_blank'>налаштування</a>"
+    },
+    "EXPORTER_TYPE": {
+        "message": "Тип"
+    },
+    "EXPORTER_HTML_PAGE": {
+        "message": "HTML-сторінка"
+    },
+    "EXPORTER_SOURCE": {
+        "message": "Джерело"
+    },
+    "EXPORTER_EXPORT_AS": {
+        "message": "Експортувати як"
+    },
+    "EXPORTER_INCLUDE_SEPARATOR": {
+        "message": "Включити роздільники"
+    },
+    "EXPORTER_OPEN_LINKS_IN_NEW_TAB": {
+        "message": "Відкривати посилання в новій вкладці"
+    },
+    "AUTO_CLOSE_SAVING_DIALOG": {
+        "message": "Автоматично закривати вікно збереження"
+    },
+    "SHOW_NOTIFICATION": {
+        "message": "Показувати сповіщення"
+    },
+    "SAVING_SAVE_FRAMES": {
+        "message": "Зберігати фрейми"
+    },
+    "Automatically": {
+        "message": "Автоматично"
+    },
+    "Manually": {
+        "message": "Вручну"
+    },
+    "Port": {
+        "message": "Порт"
+    },
+    "Password": {
+        "message": "Пароль"
+    },
+    "Address": {
+        "message": "Адреса"
+    },
+    "BACKEND_PROGRAM": {
+        "message": "Програма-бекенд"
+    },
+    "Execute": {
+        "message": "Запустіть"
+    },
+    "Date": {
+        "message": "Дата"
+    },
+    "Order": {
+        "message": "Порядок"
+    },
+    "Target": {
+        "message": "Ціль"
+    },
+    "SORT_BY": {
+        "message": "Сортувати за"
+    },
+    "WHOLE_TREE": {
+        "message": "Усе дерево"
+    },
+    "Ascending": {
+        "message": "За зростанням"
+    },
+    "Descending": {
+        "message": "За спаданням"
+    },
+    "Debug": {
+        "message": "Налагодження"
+    },
+    "CASE_SENSITIVE": {
+        "message": "З урахуванням регістру"
+    },
+    "NEW_POS": {
+        "message": "Нові елементи додавати"
+    },
+    "Top": {
+        "message": "Угорі"
+    },
+    "Bottom": {
+        "message": "Унизу"
+    },
+    "SIDEBAR_SHOW_ROOT": {
+        "message": "Показувати корінь на бічній панелі"
+    },
+    "SHOW_ROOT": {
+        "message": "Показувати корінь"
+    },
+    "PORT_AUTO_TIP": {
+        "message": "Вибирається автоматично під час запуску бекенда і зберігається, доки він вільний. Налаштовувати нічого не треба."
+    },
+    "SAVED_TO": {
+        "message": "Збережено в"
+    },
+    "DOWNLOAD_AGAIN": {
+        "message": "Завантажити знову"
+    },
+    "BACKEND_RUNNING": {
+        "message": "Програма-бекенд працює"
+    },
+    "IN_FOLDER": {
+        "message": "у теці"
+    },
+    "Downloading___": {
+        "message": "Завантаження..."
+    },
+    "STEP_SCRIPT_TEXT": {
+        "message": "Завантажте скрипт встановлення, який реєструє файл конфігурації в браузері. <b>Збережіть його в ту саму теку.</b>"
+    },
+    "INSTALL_SAME_FOLDER": {
+        "message": "Файли лежать у різних теках: перемістіть програму, файл конфігурації та скрипт встановлення в одну теку й запустіть скрипт там."
+    },
+    "RESET_STATE": {
+        "message": "Скинути"
+    },
+    "RESET_STATE_TIP": {
+        "message": "Забути, куди було збережено файли, і знову показати всі інструкції"
+    },
+    "DEBUG_TIP": {
+        "message": "показувати детальні рядки в журналі: повідомлення бекенда, збережені файли, кроки збереження, з часом виконання. Корисно, коли щось не працює."
+    },
+    "DONATE_CREDIT": {
+        "message": "ScrapBro заснований на ScrapBee від vctfence."
+    },
+    "LOCALE_DIR":{
+        "message": "uk",
+        "description": "Name of this locale folder, do not translate."
+    },
+    "NO_BACKEND_CHECKSUM":{
+        "message": "У цій збірці ScrapBro немає контрольних сум програми-бекенда, тож завантажити її неможливо. Використайте випущену версію або візьміть програму з випусків ScrapBro на GitHub."
+    },
+    "BACKEND_CHECKSUM_MISMATCH":{
+        "message": "Завантажена програма не збігається зі своєю контрольною сумою і не була збережена. Спробуйте пізніше або повідомте про це на GitHub."
+    },
+    "THEME":{
+        "message": "Тема"
+    },
+    "THEME_AUTO":{
+        "message": "Як у браузері"
+    },
+    "THEME_LIGHT":{
+        "message": "Світла"
+    },
+    "THEME_DARK":{
+        "message": "Темна"
+    },
+    "FONT_DEFAULT":{
+        "message": "Типово (системний шрифт)"
+    },
+    "BACKEND_LAUNCH":{
+        "message": "Запуск"
+    },
+    "LAUNCH_TIP":{
+        "message": "<b>Автоматично</b>: ScrapBro сам запускає програму-бекенд, більше нічого робити не треба.<br/><b>Вручну</b>: ScrapBro її не запускає, а під'єднується до адреси нижче — для бекенда, який ви запускаєте самі (наприклад, як службу або на іншому комп'ютері)."
+    },
+    "PASSWORD_TIP":{
+        "message": "Необов'язково. Захищає бекенд, щоб інші програми на цьому комп'ютері не могли ним користуватися. ScrapBro передає його сам, вас про нього ніколи не спитають. Лише літери й цифри.<br/>У ручному режимі запускайте бекенд із тим самим паролем."
+    },
+    "CLEAR_HIGHLIGHTS":{
+        "message": "Прибрати виділення"
+    },
+    "HIGHLIGHT_SAMPLE":{
+        "message": "Приклад тексту"
+    },
+    "TIP_SAVE":{
+        "message": "Зберегти зміни цієї сторінки"
+    },
+    "TIP_DELETE_ELEMENTS":{
+        "message": "Клацайте по частинах сторінки, щоб видалити їх, клацніть кнопку знову, щоб завершити"
+    },
+    "TIP_HIGHLIGHT":{
+        "message": "Виділіть текст і виберіть колір маркера"
+    },
+    "TIP_EDIT":{
+        "message": "Редагувати текст сторінки безпосередньо"
+    },
+    "TIP_SOURCE_CODE":{
+        "message": "Редагувати вихідний HTML-код сторінки"
+    },
+    "TIP_RELOAD":{
+        "message": "Перезавантажити збережену сторінку, незбережені зміни буде втрачено"
+    },
+    "TIP_LOCATE":{
+        "message": "Вибрати цю сторінку на бічній панелі"
+    },
+    "EXPORTED_TO":{
+        "message": "Експортовано в"
+    },
+    "EXPORT_FAILED":{
+        "message": "Помилка експорту"
+    }
+}

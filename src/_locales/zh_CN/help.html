@@ -1,0 +1,73 @@
+<h2>ScrapBro 是什么？</h2>
+<p>ScrapBro 将网页或网页的一部分保存到磁盘，并在浏览器侧边栏中进行管理。
+它可以读写 <a href="https://en.wikipedia.org/wiki/ScrapBook" target="_blank">ScrapBook</a>
+和 <a href="https://github.com/vctfence/scrapbee" target="_blank">ScrapBee</a>（ScrapBro 是它的分支）的数据，现有数据可以继续使用。
+它可在 Chrome、Edge、Brave、Vivaldi 等 Chromium 浏览器以及 Firefox 及其衍生版本中运行。</p>
+<p><b>重要：</b>请勿在同一浏览器中同时使用 ScrapBro 和 ScrapBee。两者写入相同的文件，同时使用可能丢失修改或损坏数据。
+切换时，请先从 ScrapBee 导出设置，卸载 ScrapBee，然后在这里导入。使用前请先备份数据目录。</p>
+
+<!-- use -->
+<h2>使用方法</h2>
+<li class="h3">首次使用前</li>
+<p>按照<a href="#area=install">安装</a>页面的说明安装后端程序，然后在<a href="#area=configure">配置</a>页面添加 RDF 文件（见下文）。</p>
+<li class="h3">捕获</li>
+<p>在侧边栏中打开 ScrapBro（点击工具栏按钮，然后选择“{OPEN_IN_SIDEBAR}”），选择新条目要放入的文件夹，
+然后在页面上点击右键：<i>{CapturePage}</i>、<i>{CaptureSelection}</i>（先选中一些文字）、<i>{CaptureUrl}</i>
+或 <i>{CaptureAdvance}</i>。工具栏按钮中也有相同的操作，还可以保存所有打开的标签页（“{CaptureTabs}”）。</p>
+<p>捕获时请保持侧边栏打开（高级捕获除外）。新条目在页面保存完成前会显示旋转的图标。可以拖动条目来移动它们。</p>
+<li class="h3">阅读与编辑</li>
+<p>点击条目即可打开保存的页面。保存页面底部的工具栏可以高亮文字、删除页面中不需要的部分、编辑页面并保存修改。
+条目旁边的小按钮可以打开页面的原始地址。</p>
+
+<!-- rdf -->
+<h2 id="help_rdf">RDF 文件</h2>
+<p>RDF 文件是数据的索引：它列出条目和文件夹，保存的页面位于其旁边的“data”目录中。
+可以有多个 RDF 文件，每个都会出现在侧边栏顶部的列表中。</p>
+<p>在<a href="#area=configure">配置</a>页面点击“+”，输入名称和 RDF 文件的完整路径，
+例如 <i>C:\scrapbooks\news\scrapbook.rdf</i> 或 <i>/home/me/scrapbooks/news/scrapbook.rdf</i>。不存在的文件会被创建为空文件。</p>
+
+<!-- manual backend -->
+<h2 id="help_install">自行运行后端</h2>
+<p>通常 ScrapBro 会自动启动后端程序（配置页面中的“自动”）并选择一个空闲端口。
+如需自行运行（例如作为服务），请选择“手动”，输入其地址，并用以下命令启动：</p>
+<div class="embeded-log-text">scrapbro_backend web-server [端口] [主机] [密码]<br/>
+例如 scrapbro_backend web-server 9901 127.0.0.1</div>
+<p>可以设置密码（仅限字母和数字）来保护后端，配置页面中必须设置相同的密码。</p>
+
+<!-- trouble -->
+<h2>故障排除</h2>
+<p>首先在<a href="#area=configure">配置</a>页面开启 <i>debug</i>，然后查看<a href="#area=log">日志</a>：
+其中会显示与后端交换的消息、保存的每个文件和每个捕获步骤，出错时会显示错误信息。</p>
+
+<h4>侧边栏提示后端未运行</h4>
+<p>日志中通常会说明原因：</p>
+<li><i>Specified native messaging host not found</i>：未运行安装脚本，或之后移动了配置文件。
+请将程序、配置文件和安装脚本放到同一个目录，然后重新运行脚本。</li>
+<li><i>Access to the specified native messaging host is forbidden</i>：配置文件属于另一个 ScrapBro 副本。
+扩展被删除后重新添加时可能会改变其 ID：请重新下载配置文件（安装，第 2 步）并运行脚本。</li>
+<li>启动后立即出现 <i>Backend disconnected</i>：程序缺失或被阻止，请检查它是否与配置文件在同一目录，以及是否被安全软件删除。</li>
+<p>每次修改后，请在浏览器的扩展页面中关闭并重新开启 ScrapBro。</p>
+
+<h4>浏览器阻止下载程序</h4>
+<p>浏览器会对下载量还不多的程序发出警告。请打开浏览器的下载页面并选择保留文件。
+也可以在这里下载：<a href="" class="download_exe">下载后端程序</a>。</p>
+
+<h4>安全软件报告该程序</h4>
+<p>一些杀毒软件会标记像后端这样未签名的小程序。如果它被阻止或删除，请将其添加到杀毒软件的例外中。</p>
+
+<h4>数据无法加载或无法保存</h4>
+<li>检查配置页面中的路径是否正确，以及 RDF 文件是否存在。</li>
+<li>请将数据保存在当前用户有写权限的目录中，例如在 Windows 下不要直接放在 C:\ 根目录。</li>
+<li>如果日志显示“failed to load ... 404”，说明后端找不到该文件：请检查路径。</li>
+
+<h4>端口</h4>
+<p>在自动模式下，端口由 ScrapBro 选择，被占用时会换一个，配置页面会显示正在使用的端口。
+在手动模式下，如果后端报告“address already in use”，请换一个端口启动。</p>
+
+<h4>仍然无法使用？</h4>
+<p>有时重启浏览器会有帮助。否则请附上日志内容，到
+<a href="https://github.com/unalignedcoder/scrapbro/issues" target="_blank">github.com/unalignedcoder/scrapbro</a> 报告问题。</p>
+
+<h2>备份</h2>
+<p>请定期备份数据目录（RDF 文件和“data”目录），ScrapBro 不会备份保存的页面。
+在保存 RDF 文件之前，它会把上一个版本复制到旁边的“backup”目录中，每天一次。</p>

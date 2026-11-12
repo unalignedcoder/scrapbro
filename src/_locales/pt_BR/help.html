@@ -1,0 +1,78 @@
+<h2>O que é o ScrapBro?</h2>
+<p>O ScrapBro salva páginas da web, ou partes delas, no seu disco e as organiza na barra lateral do navegador.
+Ele lê e grava os dados do <a href="https://en.wikipedia.org/wiki/ScrapBook" target="_blank">ScrapBook</a>
+e do <a href="https://github.com/vctfence/scrapbee" target="_blank">ScrapBee</a>, do qual é um fork, então os scrapbooks existentes continuam funcionando.
+Funciona no Chrome, Edge, Brave, Vivaldi e em outros navegadores Chromium, e no Firefox e seus derivados.</p>
+<p><b>Importante:</b> não use o ScrapBro e o ScrapBee no mesmo navegador. Os dois gravam nos mesmos arquivos,
+usar ambos pode perder alterações ou danificar um scrapbook. Para trocar, exporte as configurações do ScrapBee, remova-o e importe-as aqui.
+Antes, faça backup das pastas dos seus scrapbooks.</p>
+
+<!-- use -->
+<h2>Como usar</h2>
+<li class="h3">Antes do primeiro uso</li>
+<p>Instale o programa backend como descrito na página <a href="#area=install">Instalação</a> e depois adicione seus arquivos RDF na página
+<a href="#area=configure">Configuração</a> (veja abaixo).</p>
+<li class="h3">Salvar</li>
+<p>Abra o ScrapBro na barra lateral (botão da barra de ferramentas e depois "{OPEN_IN_SIDEBAR}"), selecione a pasta para os novos itens
+e clique com o botão direito na página: <i>{CapturePage}</i>, <i>{CaptureSelection}</i> (selecione um texto antes), <i>{CaptureUrl}</i>
+ou <i>{CaptureAdvance}</i>. As mesmas ações estão no botão da barra de ferramentas, que também pode salvar todas as abas abertas ("{CaptureTabs}").</p>
+<p>Mantenha a barra lateral aberta enquanto salva (exceto no salvamento avançado). Um item novo mostra um ícone girando até a página ser salva.
+Os itens podem ser movidos arrastando-os.</p>
+<li class="h3">Ler e editar</li>
+<p>Clique em um item para abrir a página salva. A barra na parte de baixo de uma página salva permite destacar texto, remover partes indesejadas,
+editá-la e salvar as alterações. O pequeno botão ao lado de um item abre o endereço original da página.</p>
+
+<!-- rdf -->
+<h2 id="help_rdf">Arquivos RDF</h2>
+<p>Um arquivo RDF é o índice de um scrapbook: lista os itens e as pastas, e as páginas salvas ficam na pasta "data" ao lado dele.
+Você pode ter vários arquivos RDF, cada um aparece na lista no topo da barra lateral.</p>
+<p>Na página <a href="#area=configure">Configuração</a>, clique em "+", digite um nome e o caminho completo do arquivo RDF,
+por exemplo <i>C:\scrapbooks\news\scrapbook.rdf</i> ou <i>/home/eu/scrapbooks/news/scrapbook.rdf</i>.
+Um arquivo que ainda não existe é criado vazio.</p>
+
+<!-- manual backend -->
+<h2 id="help_install">Executar o backend você mesmo</h2>
+<p>Normalmente o ScrapBro inicia o programa backend sozinho ("Automaticamente" na página Configuração) e escolhe uma porta livre.
+Para executá-lo você mesmo, por exemplo como serviço, escolha "Manualmente", digite o endereço dele e inicie-o com:</p>
+<div class="embeded-log-text">scrapbro_backend web-server [porta] [host] [senha]<br/>
+por exemplo scrapbro_backend web-server 9901 127.0.0.1</div>
+<p>Uma senha (somente letras e números) protege o backend, a mesma senha deve ser informada na página Configuração.</p>
+
+<!-- trouble -->
+<h2>Solução de problemas</h2>
+<p>Primeiro ative <i>Depuração</i> na página <a href="#area=configure">Configuração</a> e veja o <a href="#area=log">Registro</a>:
+ele mostra as mensagens trocadas com o backend, cada arquivo salvo e cada etapa do salvamento, com o erro quando algo falha.</p>
+
+<h4>A barra lateral diz que o backend não está em execução</h4>
+<p>O Registro normalmente diz o motivo:</p>
+<li><i>Specified native messaging host not found</i>: o script de instalação não foi executado, ou o arquivo de configuração foi movido depois.
+Coloque o programa, o arquivo de configuração e o script de instalação em uma só pasta e execute o script de novo.</li>
+<li><i>Access to the specified native messaging host is forbidden</i>: o arquivo de configuração é de outra cópia do ScrapBro.
+Isso acontece quando a extensão foi removida e adicionada de novo, o que pode mudar o ID dela: baixe o arquivo de configuração novamente (Instalação, passo 2) e execute o script.</li>
+<li><i>Backend disconnected</i> logo após iniciar: o programa está faltando ou bloqueado, verifique se ele está ao lado do arquivo de configuração
+e se nenhum software de segurança o removeu.</li>
+<p>Depois de cada alteração, desative e reative o ScrapBro na página de extensões do navegador.</p>
+
+<h4>O navegador bloqueia o download do programa</h4>
+<p>Os navegadores avisam sobre programas ainda pouco baixados. Abra a página de downloads do navegador e escolha manter o arquivo.
+Você também pode baixá-lo aqui: <a href="" class="download_exe">baixar o programa backend</a>.</p>
+
+<h4>Um software de segurança aponta o programa</h4>
+<p>Alguns antivírus marcam programas pequenos e sem assinatura, como o backend. Adicione-o às exceções do antivírus se ele for bloqueado ou removido.</p>
+
+<h4>Um scrapbook não carrega ou não pode ser salvo</h4>
+<li>Verifique se o caminho na página Configuração está correto e se o arquivo RDF existe.</li>
+<li>Mantenha os scrapbooks em uma pasta onde seu usuário pode gravar, por exemplo não diretamente em C:\ no Windows.</li>
+<li>Se o Registro mostrar "failed to load ... 404", o backend não encontrou o arquivo: verifique o caminho.</li>
+
+<h4>Porta</h4>
+<p>No modo automático o ScrapBro escolhe a porta e pega outra se ela estiver ocupada, a página Configuração mostra a que está em uso.
+No modo manual, se o backend informar "address already in use", inicie-o em outra porta.</p>
+
+<h4>Ainda não funciona?</h4>
+<p>Às vezes reiniciar o navegador ajuda. Caso contrário, relate o problema com as linhas do Registro em
+<a href="https://github.com/unalignedcoder/scrapbro/issues" target="_blank">github.com/unalignedcoder/scrapbro</a>.</p>
+
+<h2>Backup</h2>
+<p>Faça backup das pastas dos seus scrapbooks (arquivos RDF e pastas "data") regularmente, o ScrapBro não faz backup das páginas salvas.
+Antes de salvar um arquivo RDF, ele guarda uma cópia da versão anterior em uma pasta "backup" ao lado dele, uma vez por dia.</p>

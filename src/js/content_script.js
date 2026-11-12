@@ -419,6 +419,8 @@ html:not([dir]) pre {
     }
     var startCapture = async function(saveType, rdf, rdfHome, itemId, autoClose=false){
         if(!lock()) return;
+        var captureBegin = Date.now();
+        log.debug(`capture ${saveType} of ${location.href} into ${rdfHome}data/${itemId}/`);
 
         let style = "cursor:pointer;color:#fff;background:#555;display:inlie-block;border-radius:3px;padding:3px";
         const STATUS_CELL_WAITING = "<font style='color:#005500'>waiting</font>";
@@ -542,6 +544,7 @@ html:not([dir]) pre {
                                     inc(i, r);
                                 });
                             }).catch(e => { /** download failed */
+                                log.debug(`resource not saved: ${r.url}: ${e && e.message || e}`);
                                 dlgDownload.updateCell(i, 3, STATUS_CELL_FAILED);
                                 r.failed = 1;
                                 inc(i, r);
@@ -558,6 +561,8 @@ html:not([dir]) pre {
             });
         }
         await gather();
+        log.debug(`gathered ${res.length} resources (${res.filter(r => r.type == "image").length} files, ` +
+                  `${res.filter(r => r.failed).length} failed)`);
         dlgDownload.hint = "Save pages ...";
         res.forEach(function(r, i){
             if(r.type != "image"){
@@ -591,6 +596,7 @@ html:not([dir]) pre {
                     log.error(e.message);
                 }).finally(()=>{
                     if(!(--remain)){
+                        log.debug(`capture finished in ${Date.now() - captureBegin} ms`);
                         dlgDownload.hint = "Finished";
                         dlgDownload.showButton();
                         if(autoClose){

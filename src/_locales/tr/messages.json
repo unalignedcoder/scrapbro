@@ -1,0 +1,499 @@
+{
+    "extensionDescription": {
+        "message": "Web sayfalarını yerel diske kaydeder ve tarayıcının kenar çubuğunda düzenler. ScrapBook belgeleriyle uyumludur.",
+        "description": "Description of the extension."
+    },
+    "DLG_OK": {
+        "message": "Tamam"
+    },
+    "DLG_CANCEL": {
+        "message": "İPTAL"
+    },
+    "Setting": {
+        "message": "Ayarlar"
+    },
+    "Configure": {
+        "message": "Yapılandırma"
+    },
+    "Reload": {
+        "message": "Yeniden yükle"
+    },
+    "Search": {
+        "message": "Ara"
+    },
+    "Stop": {
+        "message": "Durdur"
+    },
+    "Help": {
+        "message": "Yardım"
+    },
+    "Folder": {
+        "message": "Klasör"
+    },
+    "Open_Folder": {
+        "message": "Klasörü aç"
+    },
+    "Title": {
+        "message": "Başlık"
+    },
+    "Content": {
+        "message": "İçerik"
+    },
+    "Step": {
+        "message": "Adım"
+    },
+    "Name": {
+        "message": "Ad"
+    },
+    "Save": {
+        "message": "Kaydet"
+    },
+    "MODIFY_DOM_ON": {
+        "message": "Ögeleri sil"
+    },
+    "MODIFY_DOM_OFF": {
+        "message": "Silmeyi bitir"
+    },
+    "MARK_PEN": {
+        "message": "Vurgula"
+    },
+    "SOURCE_CODE": {
+        "message": "Kaynak kod"
+    },
+    "File": {
+        "message": "Dosya"
+    },
+    "Donate": {
+        "message": "Bağış"
+    },
+    "New_Folder": {
+        "message": "Yeni klasör"
+    },
+    "New_Separator": {
+        "message": "Yeni ayırıcı"
+    },
+    "New_Note": {
+        "message": "Yeni not"
+    },
+    "CapturePage": {
+        "message": "Sayfayı kaydet"
+    },
+    "SAME_LEVEL": {
+        "message": "Aynı düzey"
+    },
+    "CaptureSelection": {
+        "message": "Seçimi kaydet"
+    },
+    "CaptureUrl": {
+        "message": "Yer imini kaydet"
+    },
+    "CaptureAdvance": {
+        "message": "Gelişmiş kayıt..."
+    },
+    "CaptureTabs": {
+        "message": "Tüm sekmeleri kaydet"
+    },
+    "Download": {
+        "message": "İndir"
+    },
+    "Delete": {
+        "message": "Sil"
+    },
+    "Install": {
+        "message": "Kurulum"
+    },
+    "Log": {
+        "message": "Günlük"
+    },
+    "RDF_Files": {
+        "message": "RDF dosyaları"
+    },
+    "CUSTOM_INSTALL_TIP": {
+        "message": "Bu adımlar arka uç programını kurar. <b>Üç dosyanın hepsini aynı klasöre kaydedin.</b>"
+    },
+    "STEP1_TEXT_1": {
+        "message": "ScrapBro arka uç programını indirin."
+    },
+    "STEP1_TEXT_2": {
+        "message": "Program, GitHub'daki bu sürüme karşılık gelen ScrapBro sürümünden indirilir ve kaydedilmeden önce SHA-256 sağlama toplamı doğrulanır."
+    },
+    "STEP2_TEXT_1": {
+        "message": "Tarayıcıya programın nerede olduğunu bildiren yapılandırma dosyasını indirin. <b>Programla aynı klasöre kaydedin.</b>"
+    },
+    "STEP3_TEXT_1": {
+        "message": "Kurulum betiğini çalıştırın."
+    },
+    "STEP3_TEXT_3": {
+        "message": "arka ucu kullanıcınız için kaydeder, yönetici yetkisi gerekmez"
+    },
+    "STEP4_TEXT": {
+        "message": "ScrapBro'yu uzantılar sayfasında kapatıp yeniden açın veya tarayıcıyı yeniden başlatın."
+    },
+    "FONT_SIZE": {
+        "message": "Yazı boyutu"
+    },
+    "FONT_NAME": {
+        "message": "Yazı tipi"
+    },
+    "LINE_SPACING": {
+        "message": "Satır aralığı"
+    },
+    "Separator": {
+        "message": "Ayırıcı"
+    },
+    "BACKEND_TIP": {
+        "message": "ScrapBro'nun çalışması için arka uç programı gerekir, <a href=\"#area=install\">Kurulum</a> sayfasına ve <a href=\"#area=help&scroll=help_install\">yardıma</a> bakın."
+    },
+    "RDF_FILES_TIP": {
+        "message": "RDF dosyası bir koleksiyonun <b>dizin</b>idir, kaydedilen sayfalar yanındaki \"data\" klasöründe tutulur, <a href='#area=help&scroll=help_rdf'>yardıma</a> bakın.<br/><br/>Aynı klasörde de olmak üzere birden çok RDF dosyanız olabilir. Henüz var olmayan bir dosya boş olarak oluşturulur.<br/><a href=\"https://en.wikipedia.org/wiki/ScrapBook\" target=\"_blank\">ScrapBook</a> ve <a href=\"https://github.com/vctfence/scrapbee\" target=\"_blank\">ScrapBee</a> RDF dosyaları da çalışır.<br/><br/><b>RDF dosyası eklemek için aşağıdaki \"+\" düğmesine tıklayın: bir ad ve dosyanın tam yolunu girin.</b>"
+    },
+    "Appearance": {
+        "message": "Görünüm"
+    },
+    "Behavior": {
+        "message": "Davranış"
+    },
+    "OPEN_IN_CURRENT_TAB": {
+        "message": "Geçerli sekmede aç"
+    },
+    "OPEN_IN_CURRENT_TAB_TIP": {
+        "message": "Varsayılan olarak bir ögeye tıklamak onu yeni sekmede, Ctrl (Mac'te Cmd) ile veya orta fare tuşuyla tıklamak ise geçerli sekmede açar.<br/>Bu seçenek ikisinin yerini değiştirir."
+    },
+    "DONATE_WORDS": {
+        "message": "ScrapBro ücretsizdir. İşinize yarıyorsa bana bir kahve ısmarlayarak geliştirilmesine destek olabilirsiniz. Teşekkürler!"
+    },
+    "RESULTS_FOUND": {
+        "message": " sonuç bulundu"
+    },
+    "ConfirmDeleteItem": {
+        "message": "Seçili ögeler gerçekten silinsin mi?"
+    },
+    "Warning": {
+        "message": "Uyarı"
+    },
+    "Loading___": {
+        "message": "Yükleniyor..."
+    },
+    "Starting___": {
+        "message": "Başlatılıyor..."
+    },
+    "NO_SELECTION_ACTIVATED": {
+        "message": "Seçim yok"
+    },
+    "Announcement": {
+        "message": "Değişiklikler"
+    },
+    "NODE_MOVER_TIP": {
+        "message": "Bu araçla ögeleri içerikleriyle birlikte iki RDF dosyası arasında taşıyabilir veya kopyalayabilir, bir RDF içinde de sürükleyip silebilirsiniz."
+    },
+    "NODE_MOVER_WARN_TIP": {
+        "message": "<b>DİKKAT</b><br>Bu aracı kullanmadan önce verilerinizi yedekleyin.<br>Aracı kullanırken başka bir yerde değişiklik yapmayın, çakışmalara yol açabilir."
+    },
+    "Tools": {
+        "message": "Araçlar"
+    },
+    "Node_Mover": {
+        "message": "Öge taşıyıcı"
+    },
+    "Exporter": {
+        "message": "Dışa aktarıcı"
+    },
+    "Done": {
+        "message": "Bitti"
+    },
+    "EDIT_CONTENT": {
+        "message": "Düzenle"
+    },
+    "STOP_EDIT_CONTENT": {
+        "message": "Düzenlemeyi bitir"
+    },
+    "NO_SOURCE_NODE_SELECTED": {
+        "message": "Kaynak öge seçilmedi"
+    },
+    "MOVE_TO": {
+        "message": "şuraya taşı:"
+    },
+    "COPY_TO": {
+        "message": "şuraya kopyala:"
+    },
+    "Left": {
+        "message": "sol"
+    },
+    "Right": {
+        "message": "sağ"
+    },
+    "Sort": {
+        "message": "Sırala"
+    },
+    "Export": {
+        "message": "Dışa aktar"
+    },
+    "Import": {
+        "message": "İçe aktar"
+    },
+    "INVALID_CONFIGURATION_FILE": {
+        "message": "Geçersiz yapılandırma dosyası"
+    },
+    "UNCHECK_ALL": {
+        "message": "Tüm seçimi kaldır"
+    },
+    "ERROR_MOVE_FOLER_INTO_ITSELF": {
+        "message": "Geçersiz işlem: bir klasör kendi içine taşınamaz"
+    },
+    "OPEN_ALL_ITEMS": {
+        "message": "Tüm ögeleri aç"
+    },
+    "OPEN_ORIGIN_LINK": {
+        "message": "Adresi aç"
+    },
+    "Properties": {
+        "message": "Özellikler"
+    },
+    "Page": {
+        "message": "Sayfa"
+    },
+    "Bookmark": {
+        "message": "Yer imi"
+    },
+    "Note": {
+        "message": "Not"
+    },
+    "Selection": {
+        "message": "Seçim"
+    },
+    "CREATE_TIME": {
+        "message": "Oluşturulma"
+    },
+    "Type": {
+        "message": "Tür"
+    },
+    "General": {
+        "message": "Genel"
+    },
+    "Comment": {
+        "message": "Yorum"
+    },
+    "LOCATE_NODE": {
+        "message": "Kenar çubuğunda göster"
+    },
+    "SAVE_TO": {
+        "message": "Şuraya kaydet"
+    },
+    "CAPTURE": {
+        "message": "Kaydet"
+    },
+    "Icon": {
+        "message": "Simge"
+    },
+    "Select": {
+        "message": "Seç"
+    },
+    "Default": {
+        "message": "Varsayılan"
+    },
+    "Clear": {
+        "message": "Temizle"
+    },
+    "OPEN_IN_SIDEBAR": {
+        "message": "Kenar çubuğunda aç"
+    },
+    "FAIL_START_BACKEND_HINT": {
+        "message": "Arka uç programı çalışmıyor, lütfen <a href='options.html#area=install' target='_blank'>kurulumu</a> ve <a href='options.html#area=log' target='_blank'>günlüğü</a> kontrol edin"
+    },
+    "NO_RDF_SETTED_HINT": {
+        "message": "Henüz RDF dosyası ayarlanmadı, lütfen <a href='options.html#area=configure' target='_blank'>ayarları</a> kontrol edin"
+    },
+    "EXPORTER_TYPE": {
+        "message": "Tür"
+    },
+    "EXPORTER_HTML_PAGE": {
+        "message": "HTML sayfası"
+    },
+    "EXPORTER_SOURCE": {
+        "message": "Kaynak"
+    },
+    "EXPORTER_EXPORT_AS": {
+        "message": "Farklı dışa aktar"
+    },
+    "EXPORTER_INCLUDE_SEPARATOR": {
+        "message": "Ayırıcıları dahil et"
+    },
+    "EXPORTER_OPEN_LINKS_IN_NEW_TAB": {
+        "message": "Bağlantıları yeni sekmede aç"
+    },
+    "AUTO_CLOSE_SAVING_DIALOG": {
+        "message": "Kayıt penceresini otomatik kapat"
+    },
+    "SHOW_NOTIFICATION": {
+        "message": "Bildirimleri göster"
+    },
+    "SAVING_SAVE_FRAMES": {
+        "message": "Çerçeveleri kaydet"
+    },
+    "Automatically": {
+        "message": "Otomatik"
+    },
+    "Manually": {
+        "message": "Elle"
+    },
+    "Port": {
+        "message": "Bağlantı noktası"
+    },
+    "Password": {
+        "message": "Parola"
+    },
+    "Address": {
+        "message": "Adres"
+    },
+    "BACKEND_PROGRAM": {
+        "message": "Arka uç programı"
+    },
+    "Execute": {
+        "message": "Çalıştırın:"
+    },
+    "Date": {
+        "message": "Tarih"
+    },
+    "Order": {
+        "message": "Sıra"
+    },
+    "Target": {
+        "message": "Hedef"
+    },
+    "SORT_BY": {
+        "message": "Sıralama ölçütü"
+    },
+    "WHOLE_TREE": {
+        "message": "Tüm ağaç"
+    },
+    "Ascending": {
+        "message": "Artan"
+    },
+    "Descending": {
+        "message": "Azalan"
+    },
+    "Debug": {
+        "message": "Hata ayıklama"
+    },
+    "CASE_SENSITIVE": {
+        "message": "Büyük/küçük harf duyarlı"
+    },
+    "NEW_POS": {
+        "message": "Yeni ögeleri ekle"
+    },
+    "Top": {
+        "message": "En üste"
+    },
+    "Bottom": {
+        "message": "En alta"
+    },
+    "SIDEBAR_SHOW_ROOT": {
+        "message": "Kökü kenar çubuğunda göster"
+    },
+    "SHOW_ROOT": {
+        "message": "Kökü göster"
+    },
+    "PORT_AUTO_TIP": {
+        "message": "Arka uç başlarken otomatik seçilir ve boş kaldığı sürece korunur. Ayarlanacak bir şey yok."
+    },
+    "SAVED_TO": {
+        "message": "Şuraya kaydedildi"
+    },
+    "DOWNLOAD_AGAIN": {
+        "message": "Yeniden indir"
+    },
+    "BACKEND_RUNNING": {
+        "message": "Arka uç programı çalışıyor"
+    },
+    "IN_FOLDER": {
+        "message": "klasör"
+    },
+    "Downloading___": {
+        "message": "İndiriliyor..."
+    },
+    "STEP_SCRIPT_TEXT": {
+        "message": "Yapılandırma dosyasını tarayıcıya kaydeden kurulum betiğini indirin. <b>Onu da aynı klasöre kaydedin.</b>"
+    },
+    "INSTALL_SAME_FOLDER": {
+        "message": "Dosyalar farklı klasörlerde: programı, yapılandırma dosyasını ve kurulum betiğini tek bir klasöre taşıyın ve betiği orada çalıştırın."
+    },
+    "RESET_STATE": {
+        "message": "Sıfırla"
+    },
+    "RESET_STATE_TIP": {
+        "message": "Dosyaların nereye kaydedildiğini unut ve tüm yönergeleri yeniden göster"
+    },
+    "DEBUG_TIP": {
+        "message": "günlükte ayrıntılı satırlar göster: arka uç iletileri, kaydedilen dosyalar, kayıt adımları ve süreleri. Bir şey çalışmadığında yararlıdır."
+    },
+    "DONATE_CREDIT": {
+        "message": "ScrapBro, vctfence'in ScrapBee'si üzerine kuruludur."
+    },
+    "LOCALE_DIR":{
+        "message": "tr",
+        "description": "Name of this locale folder, do not translate."
+    },
+    "NO_BACKEND_CHECKSUM":{
+        "message": "Bu ScrapBro derlemesinde arka uç programının sağlama toplamları yok, bu yüzden programı indiremez. Yayımlanmış bir sürüm kullanın veya programı GitHub'daki ScrapBro sürümlerinden alın."
+    },
+    "BACKEND_CHECKSUM_MISMATCH":{
+        "message": "İndirilen program sağlama toplamıyla eşleşmiyor ve kaydedilmedi. Daha sonra yeniden deneyin veya GitHub'da bildirin."
+    },
+    "THEME":{
+        "message": "Tema"
+    },
+    "THEME_AUTO":{
+        "message": "Tarayıcıyı izle"
+    },
+    "THEME_LIGHT":{
+        "message": "Açık"
+    },
+    "THEME_DARK":{
+        "message": "Koyu"
+    },
+    "FONT_DEFAULT":{
+        "message": "Varsayılan (sistem yazı tipi)"
+    },
+    "BACKEND_LAUNCH":{
+        "message": "Başlatma"
+    },
+    "LAUNCH_TIP":{
+        "message": "<b>Otomatik</b>: ScrapBro arka uç programını kendisi başlatır, başka bir şey yapmanız gerekmez.<br/><b>Elle</b>: ScrapBro programı başlatmaz, kendiniz çalıştırdığınız bir arka uç için aşağıdaki adrese bağlanır (örneğin bir hizmet olarak veya başka bir bilgisayarda)."
+    },
+    "PASSWORD_TIP":{
+        "message": "İsteğe bağlı. Arka ucu kilitler, böylece bu bilgisayardaki başka programlar onu kullanamaz. ScrapBro parolayı kendisi gönderir, size hiç sorulmaz. Yalnızca harf ve rakam.<br/>Elle kipinde arka ucu aynı parolayla başlatın."
+    },
+    "CLEAR_HIGHLIGHTS":{
+        "message": "Vurguları temizle"
+    },
+    "HIGHLIGHT_SAMPLE":{
+        "message": "Örnek metin"
+    },
+    "TIP_SAVE":{
+        "message": "Bu sayfadaki değişiklikleri kaydet"
+    },
+    "TIP_DELETE_ELEMENTS":{
+        "message": "Silmek için sayfanın bölümlerine tıklayın, bitirmek için düğmeye yeniden tıklayın"
+    },
+    "TIP_HIGHLIGHT":{
+        "message": "Bir metin seçin, sonra vurgulamak için bir renk seçin"
+    },
+    "TIP_EDIT":{
+        "message": "Sayfanın metnini doğrudan düzenle"
+    },
+    "TIP_SOURCE_CODE":{
+        "message": "Sayfanın HTML kaynak kodunu düzenle"
+    },
+    "TIP_RELOAD":{
+        "message": "Kaydedilen sayfayı yeniden yükle, kaydedilmemiş değişiklikler kaybolur"
+    },
+    "TIP_LOCATE":{
+        "message": "Bu sayfayı kenar çubuğunda seç"
+    },
+    "EXPORTED_TO":{
+        "message": "Dışa aktarıldı"
+    },
+    "EXPORT_FAILED":{
+        "message": "Dışa aktarma başarısız"
+    }
+}

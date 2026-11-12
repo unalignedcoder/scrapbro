@@ -132,6 +132,9 @@ html,body{
 .tool-button:hover:before{
     background:#fff;
 }
+.tool-button.install:before{
+    mask-image:url(/icons/install.svg);
+}
 .tool-button.set:before{
     mask-image:url(/icons/settings.svg);
 }

@@ -267,6 +267,7 @@ function initMover(){
         });
     }
 }
+/** resolves with the path of the exported page, rejects with the reason when reading or saving fails */
 function exportTree(rdf, name, includeSeparator, openInNewTab){
     return new Promise((resolve, reject)=>{
         httpRequest(CONF.getFileServiceAddress() + rdf).then(async (response)=>{
@@ -349,10 +350,9 @@ function exportTree(rdf, name, includeSeparator, openInNewTab){
   });
 </script>`);
             var path = rdf.replace(/\.rdf\s*$/i, ".html");
-            browser.runtime.sendMessage({type: 'SAVE_TEXT_FILE', text: buffer.join("\n"), path: path}).then((response) => {
-                resolve()
-            });
-        });
+            await browser.runtime.sendMessage({type: 'SAVE_TEXT_FILE', text: buffer.join("\n"), path: path});
+            resolve(path);
+        }).catch(reject);
     });
 }
 async function initExporter(){
@@ -384,12 +384,20 @@ async function initExporter(){
         var includeSeparator = $("#exporter #include-separator").is(":checked");
         var openInNewTab = $("#exporter #open-in-new-tab").is(":checked");
         var dialog = new DialogWaiting();
+        var $status = $("#export-status").hide();
         dialog.show();
-        exportTree(rdf, name, includeSeparator, openInNewTab).then(()=>{
-            setTimeout(()=>{
-                dialog.remove();
-            }, 2000)
-        });
+        exportTree(rdf, name, includeSeparator, openInNewTab).then((path) => {
+            /** green line with the exported file, which opens it */
+            $status.removeClass("error").empty().append(
+                document.createTextNode("{EXPORTED_TO}: ".translate()),
+                $("<a href='#'>").text(path).click(function(e){
+                    e.preventDefault();
+                    window.open(CONF.getFileServiceAddress() + path, "_blank");
+                })
+            ).show();
+        }).catch((e) => {
+            $status.addClass("error").text("{EXPORT_FAILED}: ".translate() + (e && e.message || e)).show();
+        }).finally(() => dialog.remove());
     });
 }
 export {initMover, initExporter};

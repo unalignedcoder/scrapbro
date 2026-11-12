@@ -3,24 +3,32 @@
 //   dist/firefox = src/ + platform/firefox/  (Manifest V2, Firefox and its forks)
 // The version comes from package.json.
 //
-// usage: node build.mjs [chrome] [firefox] [--zip] [--watch]
-//   no target builds both, --zip also writes dist/scrapbro-<target>-<version>.zip for the stores,
+// usage: node build.mjs [chrome] [firefox] [--zip] [--watch] [--checksums <SHA256SUMS> | --checksums-from-release]
+//   no target builds both, and every build also writes dist/scrapbro-<target>-<version>.zip (--zip is accepted, no longer needed),
 //   --watch rebuilds on changes (then reload the extension in the browser).
+//   --checksums writes the SHA-256 of the backend programs into the build (backend_hashes.json), the settings page
+//   only lets the user save a downloaded backend that matches. The release workflow passes the SHA256SUMS it creates;
+//   --checksums-from-release takes it from the published release of this version (needs the GitHub CLI, gh).
+//   Without checksums the settings page refuses to download the backend.
 import fs from "node:fs";
 import path from "node:path";
 import zlib from "node:zlib";
 import {fileURLToPath} from "node:url";
+import {execFileSync} from "node:child_process";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const TARGETS = ["chrome", "firefox"];
 const args = process.argv.slice(2);
 const targets = args.filter(a => TARGETS.includes(a));
-const unknown = args.filter(a => !a.startsWith("--") && !TARGETS.includes(a));
+const unknown = args.filter((a, i) => !a.startsWith("--") && !TARGETS.includes(a) && args[i - 1] != "--checksums");
 if(unknown.length){
     console.error(`unknown target: ${unknown.join(", ")} (known: ${TARGETS.join(", ")})`);
     process.exit(1);
 }
-const options = {zip: args.includes("--zip"), watch: args.includes("--watch")};
+/** the zips are always written, so dist/ never holds a package older than the folders */
+const options = {zip: true, watch: args.includes("--watch")};
+const checksumsArg = args.indexOf("--checksums");
+const checksumsFile = checksumsArg > -1 ? args[checksumsArg + 1] : null;
 if(!targets.length) targets.push(...TARGETS);
 
 function build(target){
@@ -29,10 +37,16 @@ function build(target){
     fs.rmSync(out, {recursive: true, force: true});
     fs.cpSync(path.join(root, "src"), out, {recursive: true});
     fs.cpSync(path.join(root, "platform", target), out, {recursive: true, force: true});
+    /** the license travels with the package, third-party licenses are in src/THIRD_PARTY_LICENSES.txt */
+    fs.copyFileSync(path.join(root, "LICENSE"), path.join(out, "LICENSE"));
     const manifestPath = path.join(out, "manifest.json");
     const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
     manifest.version = version;
     setIcon(manifest, out);
+    stampStylesheets(out);
+    const hashes = backendHashes(version);
+    if(hashes)
+        fs.writeFileSync(path.join(out, "backend_hashes.json"), JSON.stringify(hashes, null, 2) + "\n");
     fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 4) + "\n");
     let line = `${target}: dist/${target} (${version})`;
     if(options.zip){
@@ -60,6 +74,52 @@ function setIcon(manifest, out){
     const action = manifest.action || manifest.browser_action;
     if(action) action.default_icon = {[width]: ICON};
     if(manifest.sidebar_action) manifest.sidebar_action.default_icon = ICON;
+}
+
+/* a new address for the stylesheets of every build: firefox keeps loaded stylesheets by address and would
+   go on using the old ones after the extension is reloaded */
+const BUILD_STAMP = Date.now().toString(36);
+function stampStylesheets(out){
+    for(const dir of ["html", "popup"]){
+        const d = path.join(out, dir);
+        if(!fs.existsSync(d)) continue;
+        for(const f of fs.readdirSync(d).filter(f => f.endsWith(".html"))){
+            const p = path.join(d, f);
+            const html = fs.readFileSync(p, "utf8");
+            const stamped = html.replace(/(<link\s[^>]*href=["'][^"'?]+\.css)(["'])/g, `$1?b=${BUILD_STAMP}$2`);
+            if(stamped != html) fs.writeFileSync(p, stamped);
+        }
+    }
+}
+
+/* SHA-256 of the backend programs of this version, from a SHA256SUMS file ("<hash>  <file>" per line) */
+let hashesCache;
+function backendHashes(version){
+    if(hashesCache !== undefined)
+        return hashesCache;
+    let text = null;
+    if(checksumsFile){
+        text = fs.readFileSync(checksumsFile, "utf8");
+    }else if(args.includes("--checksums-from-release")){
+        try{
+            text = execFileSync("gh", ["release", "download", `v${version}`, "--pattern", "SHA256SUMS", "--output", "-"],
+                                {cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"]});
+        }catch(e){
+            throw Error(`no SHA256SUMS in release v${version}: ${(e.stderr || e.message).trim()}`);
+        }
+    }
+    if(text == null){
+        console.warn("note: no backend checksums, the settings page of this build cannot download the backend");
+        return hashesCache = null;
+    }
+    const files = {};
+    for(const line of text.split(/\r?\n/)){
+        const m = line.match(/^([0-9a-fA-F]{64})\s+\*?(\S+)$/);
+        if(m) files[path.basename(m[2])] = m[1].toLowerCase();
+    }
+    if(!Object.keys(files).length)
+        throw Error("no checksums found in SHA256SUMS");
+    return hashesCache = {version, files};
 }
 
 /* minimal zip writer (deflate), enough for the extension stores */

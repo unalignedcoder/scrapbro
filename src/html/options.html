@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="/css/tree.css" media="screen"/>
     <script type="text/javascript" src="/libs/browser-polyfill.min.js"></script>
     <script type="text/javascript" src="/libs/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="/libs/jscolor.js"></script>
     <script type="text/javascript" src="/js/proto.js"></script>
     <script type="text/javascript" src="/js/dialog.js"></script>
     <script type="module" src="/js/options.js"></script>
@@ -16,6 +15,7 @@
   <body>
     <div id="div-page">
       <div id="div-form-left">
+        <img src="/icons/bro.png" class="menu-logo" alt="ScrapBro" width="100" height="100" style="display:block;margin:15px auto 15px auto"/>
         <a class="left-index" href="#area=install">{Install}</a>
         <a class="left-index" href="#area=configure">{Configure}</a>
         <a class="left-index" href="#area=log">{Log}</a>
@@ -26,59 +26,56 @@
       </div>
       <div id="div-install" class="div-area" style="display:none">
         <!-- about:preferences -->
-        <div class="tips fit-content" id="install-tip">
+        <div class="intro" id="install-tip">
           {CUSTOM_INSTALL_TIP}
         </div>
-        <table width="" cellspacing="" cellpadding="" border="0" class="form-table" style="max-width:700px">
+        <table width="" cellspacing="" cellpadding="" border="0" class="form-table">
           <tr>
-            <td>{Step}-1</td>
+            <td>{Step} 1</td>
             <td>
               <div class="tips" id="step1-tip">
                 {STEP1_TEXT_1}<br/><br/>{STEP1_TEXT_2}
               </div>
-              <div style="display:none;">
-                <label>
-                  <input style="vertical-align:bottom;" type="radio" name="download_source" value="0" checked/>
-                  <span style="vertical-align:bottom;">{DOWNLOAD_SOURCE_1}</span>
-                </label>
-                <label>
-                  <input style="vertical-align:bottom;" type="radio" name="download_source" value="1" />
-                  <span style="vertical-align:bottom;">{DOWNLOAD_SOURCE_2}</span>
-                </label>
-              </div>
               <input id="btnDownloadBackend" type="button" name="add" value="{Download}"/>
               <span class="download-path" id="backend-saved"></span>
-              <br/><br/>
             </td>
           </tr>
           <tr class="hr"><td colspan="2"><hr/></td></tr>
           <tr>
-            <td>{Step}-2</td>
+            <td>{Step} 2</td>
             <td>
               <div class="tips" id="step2-tip">{STEP2_TEXT_1}</div>
-              <input id="btnDownloadScripts" type="button" name="add" value="{Download}"/>
-              <span class="download-path" id="scripts-saved"></span>
-              <br /><br />       
+              <input id="btnDownloadConfig" type="button" name="add" value="{Download}"/>
+              <span class="download-path" id="config-saved"></span>
             </td>
           </tr>
           <tr class="hr"><td colspan="2"><hr/></td></tr>
           <tr>
-            <td>{Step}-3</td>
+            <td>{Step} 3</td>
             <td>
-              <div>
+              <div class="tips" id="step3-tip">{STEP_SCRIPT_TEXT}</div>
+              <input id="btnDownloadScripts" type="button" name="add" value="{Download}"/>
+              <span class="download-path" id="scripts-saved"></span>
+              <input id="btnResetInstall" type="button" class="reset-button" value="{RESET_STATE}" title="{RESET_STATE_TIP}"/>
+            </td>
+          </tr>
+          <tr class="hr"><td colspan="2"><hr/></td></tr>
+          <tr>
+            <td>{Step} 4</td>
+            <td>
+              <div class="step-text">
                 {STEP3_TEXT_1}
                 <br>
-                <br><span id="step3-run">Windows: <b class="script-name">install_chrome.bat</b>, Linux/Mac: <b class="script-name">bash install_chrome.sh</b>
-                  ({STEP3_TEXT_3})</span>
-                <br><span id="step3-folder"></span>
+                <br><span id="run-script"></span>
+                <br><span id="run-folder"></span>
               </div>
             </td>
           </tr>
           <tr class="hr"><td colspan="2"><hr/></td></tr>
           <tr>
-            <td>{Step}-4</td>
+            <td>{Step} 5</td>
             <td>
-              <div>{STEP4_TEXT}</div>
+              <div class="step-text">{STEP4_TEXT}</div>
             </td>
           </tr>          
         </table>
@@ -96,27 +93,34 @@
               <div class="panel" style="vertical-align:top;padding:0">
                 <table class="form-table inner" width="" cellspacing="10" cellpadding="" border="0">
                   <tr>
-                    <td>{type}</td>
+                    <td>{BACKEND_LAUNCH}</td>
                     <td>
                       <label><input type="radio" name="backend_type" value="port" checked/> {Automatically}</label>
                       <label><input type="radio" name="backend_type" value="address" /> {Manually}</label>
+                      <i class="help-mark"></i>
+                      <div class="tips hide">{LAUNCH_TIP}</div>
                     </td>
                   </tr>
                   <tr>
                     <td>{Port}</td>
-                    <td><input type="text" name="backend_port" value="" readonly="readonly" size="8"/> <span class="port-tip">{PORT_AUTO_TIP}</span></td>
+                    <td>
+                      <input type="text" name="backend_port" value="" readonly="readonly" size="8"/>
+                      <i class="help-mark"></i>
+                      <div class="tips hide">{PORT_AUTO_TIP}</div>
+                    </td>
                   </tr>
                   <tr>
                     <td>{Address}</td>
                     <td>
-                      <input type="text" name="backend_address" value="" size="70"/>    
+                      <input type="text" name="backend_address" value=""/>    
                     </td>
                   </tr>
                   <tr>
                     <td>{Password}</td>
                     <td>
                       <input type="text" name="backend_pwd" value="" />
-                      <!-- <i class="help-mark"></i> <div class="tips hide"> </div> -->
+                      <i class="help-mark"></i>
+                      <div class="tips hide">{PASSWORD_TIP}</div>
                     </td>
                   </tr>
                 </table>
@@ -133,7 +137,7 @@
               <div class="tips">
                 {RDF_FILES_TIP}<br>
               </div>
-              <div class="panel fit-content">
+              <div class="panel">
                 <div id="rdf-area"></div>
                 <div style="text-align:right;margin-top:20px;">
                   <input type="button" name="add" value="+"/>
@@ -146,20 +150,21 @@
           <tr>
             <td>{Appearance}</td>
             <td id="">
-              <div class="tips hide">{COLOR_TIP}</div>
               <div class="panel" style="vertical-align:top;">
-                <table width="50%" cellspacing="" cellpadding="0" border="0" class="form-table inner" style="display:inline-block;vertical-align:top;">
-                  <tr><td>{Background}{_COLOR}</td><td><input type="text" name="tree.color.bg" value="" class="jscolor"/></td></tr>
-                  <tr><td>{BASIC_TEXT}{_COLOR}</td><td><input type="text" name="tree.color.fg" value="" class="jscolor"/></td></tr>
-                  <tr><td>{BOOKMARK_TEXT}{_COLOR}</td><td><input type="text" name="tree.color.bookmark" value="" class="jscolor"/></td></tr>
-                  <tr><td>{Separator}{_COLOR}</td><td><input type="text" name="tree.color.separator" value="" class="jscolor"/></td></tr>
-                  <tr><td>{FOCUSED_ITEM_BG_COLOR}</td><td><input type="text" name="tree.color.focused.bg" value="" class="jscolor"/></td></tr>
-                  <tr><td>{FOCUSED_ITEM_FG_COLOR}</td><td><input type="text" name="tree.color.focused.fg" value="" class="jscolor"/></td></tr>
-                </table>
-                <table width="50%" cellspacing="" cellpadding="50" border="0" class="form-table inner" style="display:inline-block;vertical-align:top;border-spacing:10px">
+                <table cellspacing="10" cellpadding="0" border="0" class="form-table inner">
+                  <tr>
+                    <td>{THEME}</td><td>
+                      <select name="sidebar_theme">
+                        <option value="auto">{THEME_AUTO}</option>
+                        <option value="light">{THEME_LIGHT}</option>
+                        <option value="dark">{THEME_DARK}</option>
+                      </select>
+                    </td>
+                  </tr>
                   <tr>
                     <td>{FONT_NAME}</td><td>
-                      <input type="text" name="font_name">
+                      <!-- filled with the installed fonts, see fillFontList() in options.js -->
+                      <select name="font_name"><option value="">{FONT_DEFAULT}</option></select>
                     </td>
                   </tr>
                   <tr>
@@ -224,7 +229,8 @@
                   <tr><td colspan="2" style="padding:5px 0;"><hr/></td></tr>
                   <tr>
                     <td width="100">{debug}</td><td style="position:relative">
-                      <input type="checkbox" name="debug" value="" style="vertical-align:top"/>
+                      <input type="checkbox" name="debug" value=""/> <i class="help-mark"></i>
+                      <div class="tips hide">{DEBUG_TIP}</div>
                     </td>
                   </tr>                  
                 </table>
@@ -246,23 +252,25 @@
         {ANNOUNCEMENT_CONTENT}
       </div>
       <div id="div-donate" class="div-area" style="display:none;">
-        <div style="font-size:15px;text-align:center;vertical-align:middle;">
-          <br /><br /><img src="/icons/bee-logo.svg" class="" alt="" width="200"/>
-          <br /><br />
-          {DONATE_WORDS}
-          <br />
-          <br /><input type="button" name="" value="{DONATE_WITH_PAYPAL}" id="donate"/>
-          <br /><br />
-          <div id="divMoreDonateWay" style="display:none;">
-            <div style="margin-top:30px;">{MORE_DONATE_WAY}</div>
-          </div>
+        <div class="donate">
+          <p>{DONATE_WORDS}</p>
+          <!-- the official button image, kept in the extension: no request to buymeacoffee.com until it is clicked -->
+          <a href="https://buymeacoffee.com/unalignedcoder" target="_blank" rel="noopener">
+            <img src="/icons/buymeacoffee.png" alt="Buy me a coffee" width="218" height="61"/>
+          </a>
+          <p class="credit">{DONATE_CREDIT}</p>
+        </div>
+        <!-- pinned to the bottom of the page -->
+        <div class="donate-footer">
+          <img src="/icons/bro.png" alt="ScrapBro" width="75" height="75"/>
+          <p class="copyright">&copy; <span id="copyright-year"></span> <a href="https://tuscoss.com" target="_blank" rel="noopener">tuscoss.com</a></p>
         </div>
       </div>
       <div id="div-help" class="div-area" style="display:none;">
         <div style="max-width:80em;"></div>
       </div>
       <div id="div-tools" class="div-area" style="display:none;position:relative;padding-top:0">
-        <div style="text-align:left;padding-left:15px;position:absolute;top:0;width:100%">
+        <div style="text-align:left;padding-left:15px;position:absolute;top:0;left:0;right:0">
           <span class="tab-button">{Node Mover}</span>
           <span class="tab-button">{Exporter}</span>
         </div>
@@ -344,13 +352,14 @@
               </label> 
             </div>
             <div style="">
-              <span class="header"></span><input id="btnExport" type="button" name="" value="Export" />
+              <span class="header"></span><input id="btnExport" type="button" name="" value="{Export}" />
+              <div class="download-path" id="export-status"></div>
             </div>
           </div>
         </div>
       </div>
       <!-- console -->
-      <div id="div-log" class="div-area" style="display:none;height:100%;position:relative">
+      <div id="div-log" class="div-area" style="display:none;position:relative">
         <div class="console"></div>
       </div>
       <!-- waiting dialog -->

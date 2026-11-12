@@ -163,7 +163,12 @@ function refreshTree(){
 
 /* http query */
 function httpRequest(url){
-    return fetch(url, {cache: "no-store"}).then(r => r.text());
+    return fetch(url, {cache: "no-store"}).then(async r => {
+        var text = await r.text();
+        if(!r.ok)
+            throw Error(`request ${r.status}: ${text.trim().slice(0, 100)}`);
+        return text;
+    });
 }
 function ajaxFormPost(url, json){
     var formData = new FormData();

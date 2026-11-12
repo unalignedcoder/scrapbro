@@ -7,8 +7,10 @@ const IS_FIREFOX = !IS_CHROMIUM;
 /** name of the native messaging host and of the backend program, see options.js for the install scripts */
 const NATIVE_HOST = "scrapbro_backend";
 const BACKEND_EXEC = "scrapbro_backend";
-/** the settings page downloads the backend from here: <url><exec>_<os>_<arch>[.exe], os = win|lnx|mac, arch = amd64|386|arm64 */
-const BACKEND_RELEASES = "https://github.com/unalignedcoder/scrapbro/releases/latest/download/";
+/** the settings page downloads the backend from the release of this very version (not "latest", so a reviewed version
+    can only fetch the program it was reviewed with): <url>v<version>/<exec>_<os>_<arch>[.exe], os = win|lnx|mac, arch = amd64|386|arm64.
+    The file is checked against the SHA-256 in backend_hashes.json, written into the package by the release workflow */
+const BACKEND_RELEASES = "https://github.com/unalignedcoder/scrapbro/releases/download/";
 
 /** must be called synchronously from a user action handler (no await before it) */
 function openSidebar(windowId){

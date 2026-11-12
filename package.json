@@ -1,13 +1,12 @@
 {
     "name": "scrapbro",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "private": true,
     "description": "Saves web pages to local disk and manages them in the browser sidebar, compatible with ScrapBook/ScrapBee data. Builds for Chromium and Firefox.",
     "license": "MPL-2.0",
     "scripts": {
         "build": "node build.mjs",
         "watch": "node build.mjs --watch",
-        "package": "node build.mjs --zip",
         "lint:firefox": "node build.mjs firefox && npx --yes web-ext lint --source-dir dist/firefox",
         "run:firefox": "node build.mjs firefox && npx --yes web-ext run --source-dir dist/firefox",
         "sign:firefox": "node build.mjs firefox && npx --yes web-ext sign --source-dir dist/firefox --artifacts-dir dist --channel unlisted",

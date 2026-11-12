@@ -57,6 +57,36 @@ ${FILE_I18N} <input type="text" name="value"/>
     });
 }
 
+/** fonts offered for the sidebar: common fonts of Windows, macOS and Linux, only the installed ones are listed
+    (browsers do not list the system fonts to extensions, except chrome with an extra permission) */
+var FONT_GENERIC = ["sans-serif", "serif", "monospace"];
+var FONT_CANDIDATES = [
+    "Segoe UI", "Arial", "Calibri", "Cambria", "Candara", "Consolas", "Constantia", "Corbel", "Georgia", "Tahoma",
+    "Trebuchet MS", "Verdana", "Times New Roman", "Courier New", "Lucida Sans Unicode", "Palatino Linotype",
+    "Helvetica Neue", "Helvetica", "Avenir", "Avenir Next", "Gill Sans", "Optima", "Futura", "Baskerville", "Menlo", "Monaco",
+    "DejaVu Sans", "DejaVu Serif", "DejaVu Sans Mono", "Liberation Sans", "Liberation Serif", "Ubuntu", "Cantarell",
+    "Noto Sans", "Noto Serif", "Fira Sans", "Open Sans", "Roboto", "Source Sans Pro",
+    "Microsoft YaHei", "Meiryo", "Yu Gothic", "Malgun Gothic", "PingFang SC", "Hiragino Sans"];
+/** installed if text in the font measures differently than in the generic fallback */
+function fontInstalled(name){
+    var ctx = fontInstalled.ctx || (fontInstalled.ctx = document.createElement("canvas").getContext("2d"));
+    var text = "mmmmmmmmmmlli1WQ@#";
+    return FONT_GENERIC.some(base => {
+        ctx.font = `72px ${base}`;
+        var width = ctx.measureText(text).width;
+        ctx.font = `72px "${name}", ${base}`;
+        return ctx.measureText(text).width != width;
+    });
+}
+function fillFontList(current){
+    var $select = $("select[name=font_name]");
+    $select.find("option").not(":first").remove();
+    var names = FONT_GENERIC.concat(FONT_CANDIDATES.filter(fontInstalled).sort((a, b) => a.localeCompare(b)));
+    if(current && names.indexOf(current) < 0)
+        names.push(current); /** a font set before, e.g. typed in older versions */
+    names.forEach(name => $("<option>").val(name).text(name).css("font-family", name).appendTo($select));
+    $select.val(current || "");
+}
 function showConfiguration(){    
     $("#rdf-area").empty();
     $("input[name='save']").click(function(){
@@ -96,14 +126,9 @@ function showConfiguration(){
                 // apparence
                 var size = (parseInt($("input[name=font_size]").val() / 5) * 5) / 100 * 12;
 
-                CONF.setItem('tree.color.bg', $("input[name='tree.color.bg']").val().replace("#", ""));
-                CONF.setItem('tree.color.fg', $("input[name='tree.color.fg']").val().replace("#", ""));
-                CONF.setItem('tree.color.separator', $("input[name='tree.color.separator']").val().replace("#", ""));
-                CONF.setItem('tree.color.bookmark', $("input[name='tree.color.bookmark']").val().replace("#", ""));
-                CONF.setItem('tree.color.focused.fg', $("input[name='tree.color.focused.fg']").val().replace("#", ""));
-                CONF.setItem('tree.color.focused.bg', $("input[name='tree.color.focused.bg']").val().replace("#", ""));
+                CONF.setItem('sidebar.theme', $("select[name=sidebar_theme]").val());
                 CONF.setItem('tree.font.size', size);
-                CONF.setItem('tree.font.name', $("input[name=font_name]").val());
+                CONF.setItem('tree.font.name', $("select[name=font_name]").val());
                 CONF.setItem('tree.line.spacing', $("input[name=line_spacing]").val());
                 
                 // behavior
@@ -134,20 +159,9 @@ function showConfiguration(){
     $("input[name=line_spacing]").bind("input", function(){ // bind 'input' instead of 'change' event
         $(this).next("span").text(parseInt(this.value));
     });
-    ["bg", "fg", "separator", "bookmark", "focused.fg", "focused.bg"].forEach(function(item){
-        var name = "tree.color." + item;
-        var key = "tree.color." + item;
-        var value = (CONF.getItem(key) || "").replace("#", "");
-        var element = $(`input[name='${name}']`)[0];
-        element.value = value;
-        if(element.jscolor){
-            element.jscolor.fromString(value); /** for updating */
-        }
-    });
-
-    jscolor.installByClassName("jscolor");
+    $("select[name=sidebar_theme]").val(CONF.getItem("sidebar.theme") || "auto");
     $("input[name=font_size]").val((CONF.getItem("tree.font.size") / 12) * 100).trigger("input");
-    $("input[name=font_name]").val(CONF.getItem("tree.font.name"));    
+    fillFontList(CONF.getItem("tree.font.name"));    
     $("input[name=line_spacing]").val(CONF.getItem("tree.line.spacing")).trigger("input");
 
     var type = CONF.getItem("backend.type");
@@ -173,11 +187,8 @@ $(document).ready(async function(){
 
     var paths = CONF.getRdfPaths();
 
-    var lang = "en";
-    var ui = browser.i18n.getUILanguage();
-    if(["en", "zh-CN", "fr"].indexOf(ui) > -1) {
-        lang = ui;
-    }
+    /** the locale folder the browser picked for the messages (english when there is no translation), help and changelog come from there */
+    var lang = browser.i18n.getMessage("LOCALE_DIR") || "en";
     document.title = document.title.translate();
     document.body.innerHTML = document.body.innerHTML.translate();
 
@@ -191,14 +202,8 @@ $(document).ready(async function(){
     getAsync("/_locales/" + lang + "/help.html").then((content) => {
         $("#div-help>div").html(content.translate());
         $(".download_exe").each(function(i, el){
-            this.onclick=function(){
-                var [src, dest] = getBackendDownload();
-                browser.downloads.download({
-                    url:src,
-                    filename: dest,
-                    // conflictAction: "overwrite",
-                    saveAs: true
-                });
+            this.onclick = function(){
+                downloadBackend().catch(e => alert(e.message));
                 return false;
             };
         });        
@@ -216,7 +221,7 @@ $(document).ready(async function(){
 
     /** export / import */
     $("input[name='export']").click(async function(){
-        var json = CONF.getJson();
+        var json = CONF.exportJson();
         downloadText(JSON.stringify(json, null, 2), "scrapbro_configure.json", null, true);
     });
     $("input[name='import']").click(async function(){
@@ -227,10 +232,13 @@ $(document).ready(async function(){
                 var textFromFileLoaded = fileLoadedEvent.target.result;
                 try{
                     var json = JSON.parse(textFromFileLoaded);
-                    CONF.loadJson(json);
+                    var result = CONF.loadJson(json);
+                    log.info(`settings imported: ${result.imported.length}, skipped (obsolete or unknown): ${result.skipped.length}`);
+                    if(result.skipped.length)
+                        log.debug(`skipped settings: ${result.skipped.join(", ")}`);
                     showConfiguration();
                 }catch(e){
-                    alert("Invalid configuration file".translate());
+                    alert("{INVALID_CONFIGURATION_FILE}".translate());
                 }
             };
             fileReader.readAsText(fileToLoad, "UTF-8");
@@ -248,7 +256,9 @@ $(document).ready(async function(){
         }
     }
     browser.runtime.sendMessage({type: 'GET_BACKEND_VERSION'}).then((version) => {
-        initTools(version);
+        /** not started yet (e.g. right after installing): BACKEND_SERVICE_STARTED comes later */
+        if(version)
+            initTools(version);
         showBackendStatus(version);
     });
     function findOffsetParent(el){
@@ -307,60 +317,99 @@ $(document).ready(async function(){
         location.href.replace(/.+#/, "").replace(/(\w+)=(\w+)/g, function(a, b, c){
             map[b] = c;
         });
-        map.area = map.area || "configure";
+        /** first run (no scrapbook configured yet): start with the installation */
+        map.area = map.area || (CONF.getRdfPaths().length ? "configure" : "install");
         $("#div-" + map.area).show();
         $("a.left-index[href='#area=" + map.area + "']").addClass("focus");
         if(map.scroll){
-            $(document.body).animate({
-                'scrollTop': $(`#${map.scroll}`).offset().top
-            }, 1000);
+            /** the page scrolls inside the panel (fixed height), not the window */
+            var $area = $("#div-" + map.area), target = document.getElementById(map.scroll);
+            if(target){
+                var top = target.getBoundingClientRect().top - $area[0].getBoundingClientRect().top + $area.scrollTop();
+                $area.animate({scrollTop: top - 10}, 600);
+            }
         }
     }
     
+    $("#copyright-year").text(new Date().getFullYear());
     window.onhashchange=()=>applyArea();
     applyArea();
-    $("#donate").click(() => window.open('http://PayPal.me/VFence', '_blank'));
 
     /** the backend comes from the github releases of the project, "latest" always points to the newest release */
     function getBackendDownload(){
         var os = {win: "win", mac: "mac", linux: "lnx"}[GLOBAL.platformOS] || GLOBAL.platformOS;
         var arch = {"x86-64": "amd64", "x86-32": "386", "aarch64": "arm64", "arm64": "arm64", "arm": "arm"}[GLOBAL.platformArch] || GLOBAL.platformArch;
         var exe = GLOBAL.platformOS == "win" ? ".exe" : "";
-        return [`${BACKEND_RELEASES}${BACKEND_EXEC}_${os}_${arch}${exe}`, BACKEND_EXEC + exe];
+        var asset = `${BACKEND_EXEC}_${os}_${arch}${exe}`;
+        var version = browser.runtime.getManifest().version;
+        return {url: `${BACKEND_RELEASES}v${version}/${asset}`, asset, version, dest: BACKEND_EXEC + exe};
+    }
+    /** download the backend of this version's release, check its SHA-256 against the hash shipped with the extension,
+        and only then let the user save it; nothing is ever run by the extension */
+    async function downloadBackend(){
+        var {url, asset, version, dest} = getBackendDownload();
+        var sums = await fetch(browser.runtime.getURL("/backend_hashes.json")).then(r => r.ok ? r.json() : null).catch(() => null);
+        var expected = sums && sums.version == version && sums.files && sums.files[asset];
+        if(!expected)
+            throw Error("{NO_BACKEND_CHECKSUM}".translate());
+        log.info(`download backend: ${url}`);
+        var r = await fetch(url, {credentials: "include", cache: "no-store"});
+        if(!r.ok)
+            throw Error(`download failed (${r.status}): ${url}`);
+        var data = await r.arrayBuffer();
+        var hash = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", data)), b => b.toString(16).padStart(2, "0")).join("");
+        if(hash != expected.toLowerCase()){
+            log.error(`backend checksum mismatch: ${asset} is ${hash}, expected ${expected}`);
+            throw Error("{BACKEND_CHECKSUM_MISMATCH}".translate());
+        }
+        log.info(`backend checksum verified: ${asset} sha256 ${hash}`);
+        var objectURL = URL.createObjectURL(new Blob([data], {type: "application/octet-stream"}));
+        try{
+            return await downloadFile(objectURL, "scrapbro/" + dest, true);
+        }finally{
+            URL.revokeObjectURL(objectURL);
+        }
     }
  
-    /** download install scripts */
-    $("#btnDownloadScripts").click(async function(){
-        var self = this;
-        /** one json per browser family, both can live in the same folder */
-        var family = IS_FIREFOX ? "firefox" : "chrome";
-        var jsonName = `${NATIVE_HOST}_${family}.json`;
+    /** the three install files are independent: each is saved once, wherever the user chooses,
+        they only need to be kept together in one folder */
+    var FAMILY = IS_FIREFOX ? "firefox" : "chrome";
+    var CONFIG_NAME = `${NATIVE_HOST}_${FAMILY}.json`;
+    var SCRIPT_NAME = GLOBAL.platformOS == "win" ? `install_${FAMILY}.bat` : `install_${FAMILY}.sh`;
+    /** replaced by the install script on linux/mac, where the path must be absolute */
+    var EXEC_PLACEHOLDER = "__SCRAPBRO_BACKEND__";
+
+    function savedFolder(dwInfo){
+        return dwInfo.filename.replace(/[^\\\/]*$/, "");
+    }
+
+    /** download the configuration file (native messaging host manifest) */
+    $("#btnDownloadConfig").click(async function(){
+        var exec = BACKEND_EXEC + (GLOBAL.platformOS == "win" ? ".exe" : "");
+        var json = {"description": "ScrapBro backend",
+                    "name": NATIVE_HOST,
+                    /** windows: relative to this file, linux/mac: filled in by the install script */
+                    "path": GLOBAL.platformOS == "win" ? exec : EXEC_PLACEHOLDER,
+                    "type": "stdio"};
+        if(IS_FIREFOX)
+            json.allowed_extensions = [browser.runtime.id];
+        else
+            json.allowed_origins = [`chrome-extension://${browser.runtime.id}/`];
         try{
-            /*** download the json first to get the download path (can be choosed by user) */
-            var dwInfo = await downloadText("", `scrapbro/${jsonName}`);
-            var downloadPath = dwInfo.filename.replace(/[^\\/]*$/, "");
+            var dwInfo = await downloadText(JSON.stringify(json, null, 2), `scrapbro/${CONFIG_NAME}`, null, true);
+            HISTORY.setItem("backend.config.path", savedFolder(dwInfo), true, true);
+            showInstallState();
+        }catch(e){
+            alert(e.message || e);
+        }
+    });
 
-            /*** download install script */
-            if(GLOBAL.platformOS == "win")
-                await downloadText(installBat(downloadPath, jsonName), `scrapbro/install_${family}.bat`);
-            else
-                await downloadText(installSh(jsonName), `scrapbro/install_${family}.sh`);
-
-            /*** download backend config file */
-            var [src_exec, dest_exec] = getBackendDownload();
-            /** the program is where step 1 saved it, or next to the scripts */
-            var exePath = HISTORY.getItem("backend.download.path") || downloadPath;
-            var json = {"description": "ScrapBro backend",
-                        "name": NATIVE_HOST,
-                        "path": exePath + dest_exec,
-                        "type": "stdio"};
-            if(IS_FIREFOX)
-                json.allowed_extensions = [browser.runtime.id];
-            else
-                json.allowed_origins = [`chrome-extension://${browser.runtime.id}/`];
-            await downloadText(JSON.stringify(json, null, 2), `scrapbro/${jsonName}`);
-
-            HISTORY.setItem("backend.scripts.path", downloadPath, true, true);
+    /** download the install script */
+    $("#btnDownloadScripts").click(async function(){
+        try{
+            var text = GLOBAL.platformOS == "win" ? installBat() : installSh();
+            var dwInfo = await downloadText(text, `scrapbro/${SCRIPT_NAME}`, null, true);
+            HISTORY.setItem("backend.scripts.path", savedFolder(dwInfo), true, true);
             showInstallState();
         }catch(e){
             alert(e.message || e);
@@ -369,9 +418,8 @@ $(document).ready(async function(){
 
     /** download backend */
     $("#btnDownloadBackend").click(function(){
-        var [src_exec, dest_exec] = getBackendDownload();
         $("#backend-saved").removeClass("error").text("{Downloading___}".translate()).show();
-        downloadFile(src_exec, "scrapbro/" + dest_exec).then(function(dwInfo){
+        downloadBackend().then(function(dwInfo){
             /*** where the browser really saved it (the user can choose) */
             var downloadPath = dwInfo.filename.replace(/[^\\\/]*$/,"");
             if(downloadPath)
@@ -394,28 +442,45 @@ $(document).ready(async function(){
     }
     function showInstallState(){
         var family = IS_FIREFOX ? "firefox" : "chrome";
-        var exePath = HISTORY.getItem("backend.download.path");
-        var scriptsPath = HISTORY.getItem("backend.scripts.path");
-        showSaved("backend-saved", exePath);
-        showSaved("scripts-saved", scriptsPath);
-        $("#btnDownloadBackend").val((exePath ? "{DOWNLOAD_AGAIN}" : "{Download}").translate());
-        $("#btnDownloadScripts").val((scriptsPath ? "{DOWNLOAD_AGAIN}" : "{Download}").translate());
-        $("#step1-tip").toggle(!exePath && !backendRunning);
-        $("#step2-tip").toggle(!scriptsPath && !backendRunning);
-        $("#install-tip").toggle(!(exePath && scriptsPath) && !backendRunning);
+        var paths = {
+            backend: HISTORY.getItem("backend.download.path"),
+            config: HISTORY.getItem("backend.config.path"),
+            scripts: HISTORY.getItem("backend.scripts.path"),
+        };
+        var buttons = {backend: "#btnDownloadBackend", config: "#btnDownloadConfig", scripts: "#btnDownloadScripts"};
+        var tips = {backend: "#step1-tip", config: "#step2-tip", scripts: "#step3-tip"};
+        /** a step's instructions are shown until its file is saved, the intro until the backend runs */
+        for(let k in paths){
+            showSaved(k + "-saved", paths[k]);
+            $(buttons[k]).val((paths[k] ? "{DOWNLOAD_AGAIN}" : "{Download}").translate());
+            $(tips[k]).toggle(!paths[k]);
+        }
+        /** nothing to reset until a file has been saved */
+        $("#btnResetInstall").prop("disabled", !(paths.backend || paths.config || paths.scripts));
         var script = GLOBAL.platformOS == "win" ? `install_${family}.bat` : `bash install_${family}.sh`;
-        $("#step3-run").empty().append(document.createTextNode("{Execute} ".translate()), $("<b>").text(script),
-                                       document.createTextNode(" (" + "{STEP3_TEXT_3}".translate() + ")"));
-        if(scriptsPath)
-            $("#step3-folder").empty().append(document.createTextNode("{IN_FOLDER}: ".translate()), $("<b>").text(scriptsPath));
+        $("#run-script").empty().append(document.createTextNode("{Execute} ".translate()), $("<b>").text(script),
+                                        document.createTextNode(" (" + "{STEP3_TEXT_3}".translate() + ")"));
+        $("#run-folder").empty();
+        if(paths.scripts)
+            $("#run-folder").append(document.createTextNode("{IN_FOLDER}: ".translate()), $("<b>").text(paths.scripts));
+        /** the files only work together */
+        var folders = Object.values(paths).filter(p => p);
+        if(new Set(folders).size > 1)
+            $("#run-folder").append($("<div class='download-path error' style='display:block'>").text("{INSTALL_SAME_FOLDER}".translate()));
     }
+    /** forget where the install files were saved, shows the page as on a first install */
+    $("#btnResetInstall").click(function(){
+        ["backend.download.path", "backend.config.path", "backend.scripts.path"].forEach(k => HISTORY.rmItem(k));
+        showInstallState();
+    });
     /** configure page: the backend explanation is only needed until the backend runs */
-    var backendRunning = false;
+    var backendRunning = false, backendStatusText = "";
     function showBackendStatus(version){
         backendRunning = !!version;
         if(backendRunning){
             var where = CONF.getItem("backend.type") == "address" ? CONF.getBackendAddress() : "{Port} ".translate() + CONF.getItem("backend.port");
-            $("#backend-status").text(`${"{BACKEND_RUNNING}".translate()} (${version}, ${where})`).show();
+            backendStatusText = `${"{BACKEND_RUNNING}".translate()} (${version}, ${where})`;
+            $("#backend-status").text(backendStatusText).show();
         }else{
             $("#backend-status").hide();
         }
@@ -423,18 +488,22 @@ $(document).ready(async function(){
         showInstallState();
     }
 
-    /** registers the json for the current user (no admin needed), firefox forks read the mozilla key too */
-    function installBat(backend_path, jsonName){
+    /** registers the configuration file next to the script (%~dp0) for the current user, no admin needed;
+        firefox forks read the mozilla key too */
+    function installBat(){
         var softs = IS_FIREFOX ? ["Mozilla"] : ["Google\\Chrome", "Microsoft\\Edge", "BraveSoftware\\Brave-Browser", "Chromium", "Vivaldi"];
         var keys = softs.map(soft =>
-            `reg add "HKEY_CURRENT_USER\\Software\\${soft}\\NativeMessagingHosts\\${NATIVE_HOST}" /ve /d "${backend_path}${jsonName}" /f\r\n`);
-        return `chcp 65001\r\n\r
-${keys.join("")}\r
-echo done\r
-pause`;
+            `reg add "HKEY_CURRENT_USER\\Software\\${soft}\\NativeMessagingHosts\\${NATIVE_HOST}" /ve /d "%~dp0${CONFIG_NAME}" /f\r\n`);
+        return `@echo off\r\nchcp 65001 >nul\r\n` +
+            `if not exist "%~dp0${CONFIG_NAME}" (\r\n` +
+            `  echo ${CONFIG_NAME} not found, save it in the same folder as this script\r\n` +
+            `  pause\r\n  exit /b 1\r\n)\r\n` +
+            keys.join("") +
+            `echo done\r\npause\r\n`;
     }
-    /** copies the json into the native messaging folder of every installed browser of the family */
-    function installSh(jsonName){
+    /** copies the configuration file into the native messaging folder of every installed browser of the family,
+        with the absolute path of the program next to the script */
+    function installSh(){
         var dirs;
         if(GLOBAL.platformOS == "mac"){
             var lib = "$HOME/Library/Application Support";
@@ -446,30 +515,46 @@ pause`;
                 ? ["$HOME/.mozilla/native-messaging-hosts", "$HOME/.librewolf/native-messaging-hosts", "$HOME/.floorp/native-messaging-hosts", "$HOME/.waterfox/native-messaging-hosts"]
                 : ["$HOME/.config/google-chrome/NativeMessagingHosts", "$HOME/.config/chromium/NativeMessagingHosts", "$HOME/.config/microsoft-edge/NativeMessagingHosts", "$HOME/.config/BraveSoftware/Brave-Browser/NativeMessagingHosts", "$HOME/.config/vivaldi/NativeMessagingHosts"];
         }
-        return `#!/bin/bash
-cd "$(dirname "$0")"
-chmod +x ${BACKEND_EXEC}
-${GLOBAL.platformOS == "mac" ? `xattr -d com.apple.quarantine ${BACKEND_EXEC} 2>/dev/null
-` : ""}for dest in ${dirs.map(d => `"${d}"`).join(" \\n            ")}; do
-    if [ -d "$(dirname "$dest")" ]; then
-        mkdir -p "$dest"
-        # the file name must match the host name
-        cp ${jsonName} "$dest/${NATIVE_HOST}.json"
-        echo "installed: $dest"
-    fi
-done
-echo done
-`;
+        var lines = [
+            "#!/bin/bash",
+            "set -e",
+            'cd "$(dirname "$0")"',
+            `if [ ! -f ${CONFIG_NAME} ] || [ ! -f ${BACKEND_EXEC} ]; then`,
+            `    echo "${CONFIG_NAME} and ${BACKEND_EXEC} must be in the same folder as this script"`,
+            "    exit 1",
+            "fi",
+            `chmod +x ${BACKEND_EXEC}`,
+        ];
+        if(GLOBAL.platformOS == "mac")
+            lines.push(`xattr -d com.apple.quarantine ${BACKEND_EXEC} 2>/dev/null || true`);
+        lines.push(
+            `exec_path="$(pwd)/${BACKEND_EXEC}"`,
+            "for dest in " + dirs.map(d => `"${d}"`).join(" "),
+            "do",
+            '    if [ -d "$(dirname "$dest")" ]; then',
+            '        mkdir -p "$dest"',
+            "        # the file name must match the host name, the program path must be absolute",
+            `        sed "s|${EXEC_PLACEHOLDER}|$exec_path|" ${CONFIG_NAME} > "$dest/${NATIVE_HOST}.json"`,
+            '        echo "installed: $dest"',
+            "    fi",
+            "done",
+            "echo done",
+            "");
+        return lines.join("\n");
     }
-
-    function downloadFile(src, dest){
+    
+    /** saveAs is only set to force the dialog: firefox takes `saveAs: false` as "never ask",
+        which overrides the user's "always ask where to save" setting, chromium follows the setting either way.
+        The install files always ask: they must end up together in a folder the user picks */
+    function downloadOptions(url, filename, saveAs){
+        var options = {url, filename, conflictAction: "overwrite"};
+        if(saveAs)
+            options.saveAs = true;
+        return options;
+    }
+    function downloadFile(src, dest, saveAs=false){
         return new Promise((resolve, reject) => {
-            browser.downloads.download({
-                url:src,
-                filename: dest,
-                conflictAction: "overwrite",
-                saveAs: false
-            }).then(function(id){
+            browser.downloads.download(downloadOptions(src, dest, saveAs)).then(function(id){
                 function fn(delta){
                     if(delta.id != id || !delta.state)
                         return;
@@ -495,12 +580,7 @@ echo done
         var blob = new Blob([text], {type});
         var objectURL = URL.createObjectURL(blob);
         return new Promise((resolve, reject) => {
-            browser.downloads.download({
-                url:objectURL,
-                filename: filename,
-                conflictAction: "overwrite",
-                saveAs: saveAs
-            }).then(function(id){
+            browser.downloads.download(downloadOptions(objectURL, filename, saveAs)).then(function(id){
                 function fn(delta){
                     if(delta.id != id || !delta.state)
                         return;
@@ -522,15 +602,35 @@ echo done
             });
         });
     }
-    /* LOGGING */
+    /* LOGGING: all lines are kept, debug lines are shown only with the debug option on */
+    var logLines = [];
+    function showDebug(){
+        return CONF.getItem("global.debug") == "on";
+    }
+    function appendLogLine(item){
+        $("<div class='log-line'/>").appendTo("#div-log .console").html(`[${item.logtype}] ${item.content}`).addClass(item.logtype);
+    }
+    function renderLog(){
+        var $div = $("#div-log .console").empty();
+        logLines.forEach(item => {
+            if(item.logtype != "debug" || showDebug())
+                appendLogLine(item);
+        });
+        $div.scrollTop($div[0].scrollHeight);
+    }
+    /** applies at once, no need to press save */
+    $("input[name=debug]").change(function(){
+        CONF.setItem("global.debug", this.checked ? "on" : "off", true, true);
+        renderLog();
+    });
     browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         var $div = $("#div-log .console");
         if(request.type == 'LOGGING'){
             var item = request.log;
-            if(item.logtype != "debug" || CONF.getItem("global.debug") == "on"){
+            logLines.push(item);
+            if(item.logtype != "debug" || showDebug()){
                 var b = Math.abs($div.scrollTop() - ($div[0].scrollHeight - $div.height())) < 100;
-                var $line = $("<div class='log-line'/>").appendTo($div).html(`[${item.logtype}] ${item.content}`);
-                $line.addClass(item.logtype);
+                appendLogLine(item);
                 if(b)
                     $div.scrollTop($div[0].scrollHeight - $div.height());
             }
@@ -542,12 +642,7 @@ echo done
     });
     
     browser.runtime.sendMessage({type: 'GET_ALL_LOG_REQUEST'}).then((response) => {
-        var $div = $("#div-log .console");
-        response.logs.forEach(function(item){
-            if(item.logtype != "debug" || CONF.getItem("global.debug") == "on"){
-                var $line = $("<div class='log-line'/>").appendTo($div).html(`[${item.logtype}] ${item.content}`);
-                $line.addClass(item.logtype);
-            }
-        });
+        logLines = response.logs.concat(logLines);
+        renderLog();
     });
 });

@@ -1,14 +1,7 @@
 {
-    "extensionName": {
-        "message": "ScrapBro",
-        "description": "Name of the extension."
-    },
     "extensionDescription": {
         "message": "Saves the web page into local storage and manages saved pages in browser sidebar. Compatible with ScrapBook documents.",
         "description": "Description of the extension."
-    },
-    "Firefox":{
-        "message": "browser"
     },
     "DLG_OK": {
         "message": "OK"
@@ -45,9 +38,6 @@
     },
     "Content": {
         "message": "Content"
-    },    
-    "Rename": {
-        "message": "Rename"
     },
     "Step": {
         "message": "Step"
@@ -59,13 +49,13 @@
         "message": "Save"
     },
     "MODIFY_DOM_ON": {
-        "message": "Page Cleaning"
+        "message": "Delete Elements"
     },
     "MODIFY_DOM_OFF": {
-        "message": "Stop Page Cleaning"
+        "message": "Stop Deleting"
     },
     "MARK_PEN": {
-        "message": "Mark Pen"
+        "message": "Highlight"
     },
     "SOURCE_CODE": {
         "message": "Source Code"
@@ -75,9 +65,6 @@
     },
     "Donate": {
         "message": "Donate"
-    },
-    "DONATE_WITH_PAYPAL": {
-        "message": "Donate With PayPal"
     },
     "New_Folder": {
         "message": "New Folder"
@@ -109,20 +96,11 @@
     "Download": {
         "message": "Download"
     },
-    "ToggleSidebar": {
-        "message": "Toggle Sidebar"
-    },
     "Delete": {
         "message": "Delete"
     },
-    "Initiate": {
-        "message": "Initiate"
-    },
     "Install": {
         "message": "Install"
-    },
-    "History": {
-        "message": "History"
     },
     "Log": {
         "message": "Log"
@@ -130,59 +108,26 @@
     "RDF_Files":{
         "message": "RDF Files"
     },
-    "Backend":{
-        "message": "Backend"
-    },    
-    "Backend_Port":{
-        "message": "Backend Port"
-    },
-    "Backend_Address":{
-        "message": "Backend Address"
-    },    
-    "Background": {
-        "message": "Background"
-    },
-    "FIREFOX_DOWNLOAD_DIRECTORY":{
-        "message": "Browser Download Directory"
-    },
     "CUSTOM_INSTALL_TIP": {
-        "message": "These steps install the backend program, which ScrapBro then starts by itself ('Automatically' mode in the settings)."
+        "message": "These steps install the backend program. <b>Save all three files in the same folder.</b>"
     },
     "STEP1_TEXT_1": {
         "message": "Download the ScrapBro backend program."
     },
     "STEP1_TEXT_2": {
-        "message": "The program is downloaded from the latest ScrapBro release on GitHub. If the browser blocks it, open its downloads page and choose to keep the file."
+        "message": "The program is downloaded from the ScrapBro release on GitHub that matches this version, and its SHA-256 checksum is verified before it is saved."
     },
     "STEP2_TEXT_1": {
-        "message": "Download the installation scripts."
+        "message": "Download the configuration file, which tells the browser where the program is. <b>Save it in the same folder as the program.</b>"
     },
     "STEP3_TEXT_1": {
-        "message": "Run installation scripts"
-    },
-    "STEP3_TEXT_2": {
-        "message": "Run the commands in your terminal:"
+        "message": "Run the install script."
     },
     "STEP3_TEXT_3": {
         "message": "it registers the backend for your user, no administrator rights needed"
     },
     "STEP4_TEXT": {
-        "message": "Turn ScrapBro off and on again in the extensions page of the browser, or restart the browser."
-    },
-    "BASIC_TEXT": {
-        "message": "Foreground"
-    },
-    "BOOKMARK_TEXT": {
-        "message": "Bookmark Text"
-    },
-    "SELECTED_ITEM": {
-        "message": "Selected Item"
-    },
-    "FOCUSED_ITEM_BG_COLOR": {
-        "message": "Focused Item BG Golor"
-    },
-    "FOCUSED_ITEM_FG_COLOR": {
-        "message": "Focused Item FG Golor"
+        "message": "Turn ScrapBro off and on again in the extensions page, or restart the browser."
     },
     "FONT_SIZE": {
         "message": "Font Size"
@@ -192,36 +137,18 @@
     },
     "LINE_SPACING": {
         "message": "Line Spacing"
-    },        
-    "Language": {
-        "message": "language"
     },
     "Separator": {
         "message": "Separator"
     },
     "BACKEND_TIP": {
-        "message": "ScrapBro needs a \"special backend program\" to work normally.<br/><br/>There are 2 modes to install and start the backend program, automatically or manually, see <a href=\"#area=help&scroll=help_install\">help</a>."
+        "message": "ScrapBro needs its backend program to work, see the <a href=\"#area=install\">Install</a> page and the <a href=\"#area=help&scroll=help_install\">help</a>."
     },
     "RDF_FILES_TIP": {
-        "message": "Set absolute path of RDF files(ending with extension '.rdf') to register information of scraps, downloaded scraps will be saved in \"data\" folder beside the RDF files, see <a href='#area=help&scroll=help_rdf'>help</a>.<br/><br> For example: c:\\scrapbee\\test.rdf (Windows)&nbsp;&nbsp;&nbsp;&nbsp;/home/userID/scrapbro/test.rdf (Linux)&nbsp;&nbsp;&nbsp;&nbsp;/Users/userID/scrapbro/test.rdf (Mac)<br><br> You can setup multiple RDF files to classify your scraps.<br>You can have multiple RDF files inside same directory.<br>No need to create these files maunally(Some XML tags are needed for an empty RDF file).<br>For <a href=\"https://en.wikipedia.org/wiki/ScrapBook\" target=\"_blank\">ScrapBook</a> user: ScrapBook RDFs are also supported.<br><br><b>Click on the '+' button below to register a new RDF, input an alias into 'Name' and absolute file path into 'File'</b>"
-    },
-    "BACKEND_PORT_TIP":{
-        "message": "TCP port of the ScrapBro backend service, picked automatically"
-    },
-    "_COLOR":{
-        "message": " Color"
+        "message": "An RDF file is the <b>index</b> of a scrapbook, the saved pages are kept in the \"data\" folder next to it, see <a href='#area=help&scroll=help_rdf'>help</a>.<br/><br/>You can have several RDF files, also in the same folder. A file that does not exist yet is created empty.<br/>RDF files of <a href=\"https://en.wikipedia.org/wiki/ScrapBook\" target=\"_blank\">ScrapBook</a> and <a href=\"https://github.com/vctfence/scrapbee\" target=\"_blank\">ScrapBee</a> work too.<br/><br/><b>Click on '+' below to add an RDF file: enter a name and the full path of the file.</b>"
     },
     "Appearance":{
         "message": "Appearance"
-    },    
-    "Scrap":{
-        "message": "scrap"
-    },
-    "COLOR_TIP":{
-        "message": "Change color of some elements to make ScrapBro a better looking. <br>These colors should be in format: #FFFFFF or #FFF"
-    },
-    "ALREADY_DOWNLOADED_TO": {
-        "message": "already downloaded to"
     },
     "Behavior":{
         "message": "Behavior"
@@ -230,37 +157,13 @@
         "message": "Open In Current Tab"
     },
     "OPEN_IN_CURRENT_TAB_TIP":{
-        "message": "By default, ScrapBro opens each scrap in new tab while clicking on an entity, <br>and opens scraps in current tab by holding control(meta for Mac) while doing click, this also can be done with a middle mouse button clicking. <br>You can reverse this by turn on this option. "
+        "message": "By default a click on an entry opens it in a new tab, and a click with Ctrl (Cmd on Mac) or the middle mouse button opens it in the current tab.<br/>This option swaps the two."
     },
     "DONATE_WORDS":{
-        "message": "To make ScrapBee grows better, <br/>your donations are very welcome, <br/>thanks for your support !!! <br> <i><a target='_blank' href='https://addons.mozilla.org/en-US/firefox/addon/scrapbee/'>Also, please rank 5 stars if you like ScrapBee</i></a>"
-    },
-    "MORE_DONATE_WAY_TOGGLE":{
-        "message": "In other way"
-    },    
-    "MORE_DONATE_WAY":{
-        "message": ""
+        "message": "ScrapBro is free. If you find it useful, you can support its development by buying me a coffee. Thank you!"
     },
     "RESULTS_FOUND": {
-        "message": " RESULT(S) FOUND"
-    },
-    "NOT_EXISTS": {
-        "message": "does not exist"
-    },
-    "Yes": {
-        "message": "Yes"
-    },
-    "No": {
-        "message": "No"
-    },
-    "CREATE_OR_NOT": {
-        "message": "create it"
-    },
-    "NewDirectory": {
-        "message": "New Directory"
-    },
-    "ConfirmDeleteDirectory": {
-        "message": "This is a folder, do you really want delete it and items within it?"
+        "message": " result(s) found"
     },
     "ConfirmDeleteItem": {
         "message": "Really delete the selected items?"
@@ -268,23 +171,17 @@
     "Warning": {
         "message": "Warning"
     },
-    "Confirm": {
-        "message": "Confirm"
-    },
     "Loading___": {
         "message": "Loading..."
     },
     "Starting___": {
         "message": "Starting..."
-    },    
-    "SAME_RDF_MODIFIED": {
-        "message": "Same RDF modified, click OK to refresh"
     },
     "NO_SELECTION_ACTIVATED": {
         "message": "No selection activated"
     },
     "Announcement": {
-        "message": "Announcement"
+        "message": "Changelog"
     },
     "NODE_MOVER_TIP":{
         "message": "With this tool, you can move or copy nodes and their contents between 2 RDFs (book trees), dragging and deleting nodes within one RDF are also available here."
@@ -308,10 +205,7 @@
         "message": "Edit"
     },
     "STOP_EDIT_CONTENT": {
-        "message": "Stop Edit"
-    },
-    "STORAGE_WARN": {
-        "message": "For now, ScrapBro need local storage enabled to keep settings, please turn off storage cleaning to prevent settings losing if you'v turned it on"
+        "message": "Stop Editing"
     },
     "NO_SOURCE_NODE_SELECTED": {
         "message": "No source node selected"
@@ -331,9 +225,6 @@
     "Sort": {
         "message": "Sort"
     },
-    "ConfirmSorting": {
-        "message": "This process can not be reverted, proceed?"
-    },
     "Export": {
         "message": "Export"
     },
@@ -346,11 +237,8 @@
     "UNCHECK_ALL": {
         "message": "Unselect all"
     },
-    "MULTI_SELECT": {
-        "message": "Multiple Selection"
-    },
     "ERROR_MOVE_FOLER_INTO_ITSELF": {
-        "message": "Invalid operation: can not move a foler as descendant of itself"
+        "message": "Invalid operation: a folder cannot be moved into itself"
     },
     "OPEN_ALL_ITEMS":{
         "message": "Open All Items"
@@ -386,13 +274,13 @@
         "message": "Comment"
     },
     "LOCATE_NODE":{
-        "message": "Locate Node"
+        "message": "Show in Sidebar"
     },
     "SAVE_TO":{
         "message": "Save To"
     },
     "CAPTURE":{
-        "message": "SAVE"
+        "message": "Save"
     },
     "Icon":{
         "message": "Icon"
@@ -410,10 +298,10 @@
         "message": "Open In Sidebar"
     },
     "FAIL_START_BACKEND_HINT": {
-        "message": "Failed to start backend, please check <a href='options.html#area=install' target='_blank'>installation</a> and <a href='options.html'  target='_blank'>settings</a>"
+        "message": "The backend program is not running, please check the <a href='options.html#area=install' target='_blank'>installation</a> and the <a href='options.html#area=log' target='_blank'>log</a>"
     },
     "NO_RDF_SETTED_HINT": {
-        "message": "No rdf setted, please check <a href='options.html' target='_blank'>settings</a>"
+        "message": "No RDF file configured yet, please check the <a href='options.html#area=configure' target='_blank'>settings</a>"
     },
     "EXPORTER_TYPE": {
         "message": "Type"
@@ -433,9 +321,6 @@
     "EXPORTER_OPEN_LINKS_IN_NEW_TAB": {
         "message": "Open links in new tab"
     },
-    "LOCK_EDITBAR": {
-        "message":"Lock Editbar"
-    },
     "AUTO_CLOSE_SAVING_DIALOG": {
         "message":"Auto Close Saving Dialog"
     },
@@ -444,12 +329,6 @@
     },    
     "SAVING_SAVE_FRAMES" : {
         "message":"Save Frames"
-    },
-    "DOWNLOAD_SOURCE_1" : {
-        "message":"Source 1"
-    },
-    "DOWNLOAD_SOURCE_2" : {
-        "message":"Source 2"
     },
     "Automatically" : {
         "message": "Automatically"
@@ -515,7 +394,7 @@
         "message": "Show Root"
     },
     "PORT_AUTO_TIP":{
-        "message": "picked automatically, no need to set it"
+        "message": "Picked automatically when the backend starts, and kept as long as it stays free. Nothing to set."
     },
     "SAVED_TO":{
         "message": "Saved to"
@@ -531,5 +410,90 @@
     },
     "Downloading___":{
         "message": "Downloading..."
+    },
+    "STEP_SCRIPT_TEXT":{
+        "message": "Download the install script, which registers the configuration file with the browser. <b>Save it in the same folder too.</b>"
+    },
+    "INSTALL_SAME_FOLDER":{
+        "message": "The files are in different folders: move the program, the configuration file and the install script into one folder, then run the script there."
+    },
+    "RESET_STATE":{
+        "message": "Reset state"
+    },
+    "RESET_STATE_TIP":{
+        "message": "Forget where the files were saved and show all instructions again"
+    },
+    "DEBUG_TIP":{
+        "message": "show detailed lines in the log: backend messages, files saved, capture steps, with timings. Useful when something does not work."
+    },
+    "DONATE_CREDIT":{
+        "message": "ScrapBro is based on ScrapBee by vctfence."
+    },
+    "LOCALE_DIR":{
+        "message": "en",
+        "description": "Name of this locale folder, do not translate."
+    },
+    "NO_BACKEND_CHECKSUM":{
+        "message": "This build of ScrapBro has no checksums for the backend program, so it cannot download it. Use a release build, or get the program from the ScrapBro releases on GitHub."
+    },
+    "BACKEND_CHECKSUM_MISMATCH":{
+        "message": "The downloaded program does not match its checksum and was not saved. Please try again later, or report it on GitHub."
+    },
+    "THEME":{
+        "message": "Theme"
+    },
+    "THEME_AUTO":{
+        "message": "Follow the browser"
+    },
+    "THEME_LIGHT":{
+        "message": "Light"
+    },
+    "THEME_DARK":{
+        "message": "Dark"
+    },
+    "FONT_DEFAULT":{
+        "message": "Default (system font)"
+    },
+    "BACKEND_LAUNCH":{
+        "message": "Launch"
+    },
+    "LAUNCH_TIP":{
+        "message": "<b>Automatically</b>: ScrapBro starts the backend program itself, nothing else to do.<br/><b>Manually</b>: ScrapBro does not start it, but connects to the address below, for a backend you run yourself (e.g. as a service, or on another computer)."
+    },
+    "PASSWORD_TIP":{
+        "message": "Optional. Locks the backend so that other programs on this computer cannot use it. ScrapBro sends it by itself, you are never asked for it. Letters and digits only.<br/>In manual mode, start the backend with the same password."
+    },
+    "CLEAR_HIGHLIGHTS":{
+        "message": "Clear Highlights"
+    },
+    "HIGHLIGHT_SAMPLE":{
+        "message": "Sample text"
+    },
+    "TIP_SAVE":{
+        "message": "Save the changes to this page"
+    },
+    "TIP_DELETE_ELEMENTS":{
+        "message": "Click on parts of the page to delete them, click the button again to stop"
+    },
+    "TIP_HIGHLIGHT":{
+        "message": "Select some text, then pick a color to highlight it"
+    },
+    "TIP_EDIT":{
+        "message": "Edit the text of the page directly"
+    },
+    "TIP_SOURCE_CODE":{
+        "message": "Edit the HTML source of the page"
+    },
+    "TIP_RELOAD":{
+        "message": "Reload the saved page, unsaved changes are lost"
+    },
+    "TIP_LOCATE":{
+        "message": "Select this page in the sidebar"
+    },
+    "EXPORTED_TO":{
+        "message": "Exported to"
+    },
+    "EXPORT_FAILED":{
+        "message": "Export failed"
     }
 }
