@@ -2,28 +2,60 @@
 
 # ScrapBro
 
-Save web pages to your local disk and manage them in the browser sidebar.
-ScrapBro reads and writes ScrapBook / ScrapBee data (RDF files + `data` folder), so existing scrapbooks keep working.
+ScrapBro is a fork of [ScrapBee](https://github.com/vctfence/scrapbee) by vctfence, with several improvements, the biggest being that it is available for both Firefox and Chromium browsers from one code base.
 
-ScrapBro is a fork of [ScrapBee](https://github.com/vctfence/scrapbee) by vctfence, with several improvements, the biggest being that it is available for both Firefox and Chrome from one code base.
+ScrapBro allows you to:
+- save entire pages;
+- save snippets or selections;
+- save locally on PC, without having to share anything with third parties;
+- comfortably browse through the entries in the side panel;
+- organize them in folders;
+- edit the content, removing unnecessary parts or highlighting others;
+- export entries as `html` to be shared.
 
-<img width="366" height="363" alt="image" src="https://github.com/user-attachments/assets/36d7eddf-d91c-4a17-8101-e1b343f01fc1" />
+ScrapBro adapts to the active dark/light theme, and changes interface colors accordingly.
 
-This extension allows users to save entire pages or snippets of them, locally on their computers, then to comfortably browse through the entries, organize them in folders, and even edit the content, removing unecessary parts or highlighting others.
+Settings are simple and intuitive, and can be exported and imported across browsers or kept as a backup.
 
-<img width="1236" height="82" alt="image" src="https://github.com/user-attachments/assets/5c360c79-6f00-44f7-80d0-8edcda460963" />
+ScrapBro is fully compatible with the old ScrapBee and Scrabooks `.rdf` index files.
 
-# Download and Install
+<img width="366" height="363" alt="The sidebar folder tree to browse saved pages." src="https://github.com/user-attachments/assets/36d7eddf-d91c-4a17-8101-e1b343f01fc1" />
+<br /><sup>The sidebar folder tree to browse saved pages.</sup><p>&nbsp;</p>
 
-You can find this extension on the Firefox Addons, Chrome and Edge Extension pages, or download it from the Release page.
+
+<img width="1280" height="800" alt="Highlighting and editing pages." src="https://github.com/user-attachments/assets/526f7c0a-d7bf-4c3c-9a29-79079d63b36b" />
+<br /><sup>Highlighting and editing pages.</sup><p>&nbsp;</p>
+
+
+<img width="790" height="597" alt="The settings." src="https://github.com/user-attachments/assets/0d678b59-3575-4435-905e-4a3d11578266" />
+<br /><sup>The settings.</sup><p>&nbsp;</p>
+
+## Download and Install
+
+1. Install ScrapBro from your browser's add-on store.
+2. Open its Settings → Install, choose a folder, and download the backend.
+3. Run the install script in that folder once (`install.bat` on Windows, `install.sh` on Linux/macOS).
+4. In Settings, add your scrapbook folder (new or existing).
+5. Open the sidebar / side panel and start saving, browsing or reading pages.
+   
+You can find this extension on the [Firefox](https://addons.mozilla.org/en-US/firefox/addon/scrapbro/), Chrome and [Edge](https://microsoftedge.microsoft.com/addons/detail/scrapbro/hbjddommilbcfifcmlplojifekcgpnfd) Extension pages, or download the `.zip` files from the [Releases](https://github.com/unalignedcoder/scrapbro/releases) page.
+
+## Supported platforms
+
+- Windows: supported.
+- macOS and Linux: experimental.
+- Minimum versions: Chromium 116+, Firefox 140+.
+
+## Privacy
+
+Nothing is collected; there is no analytics, telemetry, advertising or third-party tracking. The only network request is the backend download from GitHub Releases, checked with SHA-256.
 
 ## Backend
 
 ScrapBro needs a small native program, `scrapbro_backend` (in `backend/`), to read and write scrapbooks on disk.
 
 The browser starts it through [native messaging](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_messaging) and it serves the API and the saved pages over HTTP on `127.0.0.1`.
-
-It uses the same API as the ScrapBee backend v1.7, but is a separate implementation.
+It uses the same API as the Scrapbee backend v1.7, but is a separate implementation.
 
 Users install the backend from the extension, *Settings → Install*, which downloads three files into a folder of their choice:
 the program (from the [GitHub release](https://github.com/unalignedcoder/scrapbro/releases) of the same version,
@@ -33,12 +65,32 @@ Running the script once registers the backend for the current user.
 
 On Windows the configuration points to the program relative to its own folder, on Linux and macOS the script writes the absolute path when it copies the configuration into the browsers' folders.
 
-Differently from Scarpbee, the backend port needs no setup: a random, available port is picked on first start without needing intervention from the user.
+Differently from Scrapbee, the backend port needs no setup: a random, available port is picked on first start without needing intervention from the user.
 To run the backend yourself (e.g. as a service), start `scrapbro_backend web-server [port] [host] [password]` and choose *Manually* in the settings.
 
 The backend only answers the extension: requests from other web pages (checked by `Origin` and `Host`) are refused.
 
-## Project layout
+## Compatibility notes
+
+- Internal names that end up in saved pages (CSS classes like `scrapbee-marker-*`) are kept, so pages edited with ScrapBee and ScrapBro stay interchangeable.
+- **It is best not to install ScrapBro and ScrapBee in the same browser profile.** Both read and write the same scrapbooks, each keeps
+  its own copy of the tree in memory and saves the whole RDF file on every change, so working with both can silently lose
+  changes or leave a scrapbook inconsistent. You can rather export the settings from ScrapBee, remove it, install ScrapBro
+  and import the settings. This will work flawlessly, however always back up the scrapbook folders before doing any of this.
+
+## License
+
+[MPL-2.0](LICENSE), as the original ScrapBee.
+
+<p>&nbsp;</p>
+
+<div align="center"><table border="1" cellspacing="0" cellpadding="20"><tr><td><p align="center">&nbsp;<br>Why, thank you for asking!</p><hr width="60%"><p align="center">👉 You can donate to all my projects <a href="https://www.buymeacoffee.com/unalignedcoder" target="_blank">here</a> 👈<br>&nbsp;</p></td></tr></table></div>
+
+<p>&nbsp;</p>
+
+## For developers
+
+#### Project layout
 
 ```
 src/                 shared extension code (pages, scripts, styles, locales, icons)
@@ -53,7 +105,7 @@ package.json         version number of both builds, npm scripts
 
 Edit files in `src/` (or `platform/`), never in `dist/`, which is rebuilt.
 
-## Build
+#### Build
 
 Requires Node.js 22 or newer, no dependencies.
 
@@ -72,19 +124,7 @@ published release, use `node build.mjs --checksums-from-release` (needs the GitH
 
 Bump `version` in `package.json` before packaging a release; it is written into both manifests.
 
-### Trying it as developer
+#### Testing
 
 - **Chromium:** open `chrome://extensions` (`edge://extensions`), enable Developer mode, *Load unpacked* → `dist/chrome`. Reload the extension there after a rebuild.
 - **Firefox:** `about:debugging` → *This Firefox* → *Load Temporary Add-on* → `dist/firefox/manifest.json`, or `npm run run:firefox` to start a clean Firefox with it.
-
-## Compatibility notes
-
-- Internal names that end up in saved pages (CSS classes like `scrapbee-marker-*`) are kept, so pages edited with ScrapBee and ScrapBro stay interchangeable.
-- **It is best not to install ScrapBro and ScrapBee in the same browser profile.** Both read and write the same scrapbooks, each keeps
-  its own copy of the tree in memory and saves the whole RDF file on every change, so working with both can silently lose
-  changes or leave a scrapbook inconsistent. You can rather export the settings from ScrapBee, remove it, install ScrapBro
-  and import the settings. This will work flawlessly, however always back up the scrapbook folders before doing any of this.
-
-## License
-
-[MPL-2.0](LICENSE), as the original ScrapBee.
