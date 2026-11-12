@@ -1,6 +1,6 @@
 {
     "extensionDescription": {
-        "message": "Capture localement les pages web et gère les pages capturées dans un panneau latéral. Est compatible avec les documents de l'ancienne extension Scrapbook. Nécessite l'installation et l'exécution d'un programme backend en plus du navigateur web.",
+        "message": "Enregistre les pages web sur le disque local et les organise dans le panneau latéral du navigateur. Compatible avec ScrapBook.",
         "description": "Description de l'extension."
     },
     "DLG_OK": {

@@ -1,6 +1,6 @@
 {
     "extensionDescription": {
-        "message": "Speichert Webseiten auf der lokalen Festplatte und verwaltet sie in der Seitenleiste des Browsers. Kompatibel mit ScrapBook-Dokumenten.",
+        "message": "Speichert Webseiten auf der lokalen Festplatte und verwaltet sie in der Browser-Seitenleiste. Kompatibel mit ScrapBook-Dokumenten.",
         "description": "Description of the extension."
     },
     "DLG_OK": {
